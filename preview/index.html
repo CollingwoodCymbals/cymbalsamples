@@ -200,6 +200,16 @@ td:first-child{color:var(--muted);width:42%;padding-right:16px}
 .soon-box ul{margin:0;padding-left:18px;color:#cfc7bb}
 footer{border-top:1px solid var(--line);padding:30px 0 50px;font-size:13px;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-between}
+.signup{margin-top:22px;border:1px solid #3a3128;border-radius:10px;padding:22px;display:grid;grid-template-columns:1fr 1.3fr;gap:18px;align-items:center}
+.signup p{margin:6px 0 0;color:#cfc7bb}
+.signup-row{display:flex;gap:10px}
+.signup input[type=email]{flex:1;min-width:0;background:#15110c;border:1px solid #4a3f33;border-radius:6px;color:var(--text);padding:12px 14px;font:15px Inter,sans-serif}
+.signup input[type=email]:focus{outline:2px solid var(--bronze);outline-offset:1px}
+.signup .signup-msg{grid-column:1/-1;margin:0;min-height:0;font-size:14px;color:var(--bronze2)}
+.signup .signup-msg:empty{display:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:700px){.signup{grid-template-columns:1fr}.signup-row{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -375,7 +385,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       <h4>Loading the hits</h4>
       <ol class="steps">
         <li>Unzip the hits. Keep the folder <code>Collingwood - Alloy Test 1</code> together (it holds Ribbon, Mono and alloy.txt).</li>
-        <li>In Alloy press LOAD and pick that folder, or drag the folder onto Alloy.</li>
+        <li>In Alloy press LOAD.</li>
+        <li>Go to the folder <code>Collingwood - Alloy Test 1</code> and open it. You'll see Ribbon, Mono and alloy.txt.</li>
+        <li>Don't go into Ribbon or Mono. Click Load there and Alloy loads both mics and the alignment in one go.</li>
+        <li>Or drag the <code>Collingwood - Alloy Test 1</code> folder onto Alloy.</li>
         <li>Play C4 (MIDI note 60) for the tip.</li>
       </ol>
     </details>
@@ -440,6 +453,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
         </ul>
       </div>
     </div>
+
+    <form class="signup" id="signup" novalidate>
+      <div>
+        <div class="spaced" style="color:var(--bronze);font-size:12px">Mailing list</div>
+        <p>Get an email when the first pack is out.</p>
+      </div>
+      <div class="signup-row">
+        <label for="suEmail" class="sr">Email address</label>
+        <input id="suEmail" name="email" type="email" required placeholder="Your email address" autocomplete="email">
+        <input name="website" type="text" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+        <button class="btn" type="submit">Sign up</button>
+      </div>
+      <p class="signup-msg" id="suMsg" role="status"></p>
+    </form>
   </div>
 </section>
 
@@ -461,6 +488,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     function set(on){aw.classList.toggle('tips-on',on);b.textContent=on?'Hide tips':'Show tips';try{localStorage.setItem('awTips',on?'1':'0')}catch(e){}}
     var on=true;try{on=localStorage.getItem('awTips')!=='0'}catch(e){}
     set(on);b.addEventListener('click',function(){set(!aw.classList.contains('tips-on'))});})();
+</script>
+<script>
+  (function(){var f=document.getElementById('signup'),m=document.getElementById('suMsg'),b=f.querySelector('button');
+    var URL='https://script.google.com/macros/s/AKfycbziMXN00jlaeEnPqM-qGa2vjsH4LGya5F792Y2qFuXh-fFmuoRN1gtI-om0oOCkOMgD/exec';
+    f.addEventListener('submit',function(e){e.preventDefault();var em=f.email.value.trim();
+      if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(em)){m.textContent='Please enter a valid email address.';return;}
+      b.disabled=true;m.textContent='Sending...';
+      var d=new URLSearchParams({email:em,website:f.website.value,source:'cymbalsamples.com'});
+      fetch(URL,{method:'POST',mode:'no-cors',body:d}).then(function(){f.querySelector('.signup-row').remove();m.textContent="Thanks, you're on the list.";})
+      .catch(function(){b.disabled=false;m.textContent='That didn\'t go through. Please try again.';});});})();
 </script>
 <script src="alloy-web.js"></script>
 </body>
