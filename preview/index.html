@@ -149,6 +149,22 @@ input[type=range]::-moz-range-thumb{width:14px;height:22px;border-radius:2px;bac
   .pad .pn{font-size:12px;letter-spacing:.12em}
   .aw-strip .tb{flex:1 1 40%!important}
 }
+
+/* quick-start pointers */
+.qs{max-width:940px;margin:0 auto 14px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:15px;color:#e6dfd4}
+.qs b{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#e8402f;color:#fff;font:600 13px Inter,sans-serif;margin-right:8px;flex:none}
+.qs span{display:flex;align-items:center}
+.qs button{margin-left:auto;background:none;border:1px solid var(--line);color:var(--muted);border-radius:4px;padding:4px 10px;font:13px Inter,sans-serif;cursor:pointer}
+.ring{position:relative}
+.tips-on .ring::after{content:"";position:absolute;inset:-6px;border:2px solid #e8402f;border-radius:8px;pointer-events:none;animation:ringpulse 1.8s ease-in-out infinite}
+.tips-on .ring::before{content:attr(data-n);position:absolute;top:-14px;left:-14px;z-index:3;width:24px;height:24px;border-radius:50%;background:#e8402f;color:#fff;font:600 13px/24px Inter,sans-serif;text-align:center;pointer-events:none}
+@keyframes ringpulse{0%,100%{box-shadow:0 0 0 0 rgba(232,64,47,.45)}50%{box-shadow:0 0 0 6px rgba(232,64,47,0)}}
+.pad.live{min-height:96px;padding-right:30px}
+.pad .vbar{position:absolute;right:7px;top:8px;bottom:8px;width:14px;border-radius:3px;background:linear-gradient(0deg,rgba(240,166,64,.15),rgba(240,166,64,.9));pointer-events:none}
+.pad .vbar i,.pad .vbar u{position:absolute;right:18px;font:500 8px Oswald,sans-serif;letter-spacing:.15em;color:#e7c48a;text-decoration:none;font-style:normal}
+.pad .vbar i{top:0}.pad .vbar u{bottom:0}
+.pad.live .nt{display:none}
+section{scroll-margin-top:64px}
 .aw-help{max-width:940px;margin:14px auto 0;font-size:13px;color:var(--muted);text-align:center}
 .aw-help kbd{font-family:'IBM Plex Mono',monospace;background:#26211c;border:1px solid var(--line);border-radius:3px;padding:0 6px;color:var(--text)}
 
@@ -226,10 +242,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     <div class="sec-head">
       <div class="spaced">Try it now</div>
       <h2>Play Alloy in your browser</h2>
-      <p>This is the real Test 1 recording: 20 tip hits, 5 velocities with 4 round robins each. Hit the TIP pad (higher up is harder), or press the big strike button. Move BLEND to go from the ribbons to the mono mic.</p>
+      <p>The real Test 1 recording: 20 tip hits, 5 velocity layers with 4 round robins each.</p>
     </div>
 
-    <div class="aw" id="aw">
+    <div class="qs" id="qs">
+      <span><b>1</b>Click the TIP pad. Near the bottom is soft, near the top is hard.</span>
+      <span><b>2</b>Slide BLEND between the ribbons and the mono mic.</span>
+      <button id="qsHide">Hide tips</button>
+    </div>
+    <div class="aw tips-on" id="aw">
       <div class="aw-top">
         <div class="aw-title"><b>ALLOY</b><span>CYMBAL PLAYER · WEB</span></div>
         <div class="aw-brand"><div>COLLINGWOOD CYMBALS<small>BRISTOL · ENGLAND</small></div><img src="logo.png" alt=""></div>
@@ -245,7 +266,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <div class="hint" id="awHint">HIT THE TIP PAD TO START</div>
         </div>
         <div class="aw-pads">
-          <div class="pad live" id="awPadTip" title="Click higher up to hit harder">
+          <div class="pad live ring" data-n="1" id="awPadTip" title="Click higher up to hit harder"><div class="vbar"><i>HARD</i><u>SOFT</u></div>
             <div class="pn"><i></i>TIP</div><div class="nt">C4 60</div>
             <div class="rows">VEL<span id="awVelDots"><i></i><i></i><i></i><i></i><i></i></span><br>RR&nbsp;&nbsp;<span class="rr" id="awRRDots"><i></i><i></i><i></i><i></i></span></div>
           </div>
@@ -276,7 +297,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <h4>BLEND</h4>
           <div class="presets"><button class="tb" data-blend="0" title="Hold to hear the ribbons">0</button><button class="tb" data-blend="50" title="Hold to hear 50/50">50/50</button><button class="tb" data-blend="100" title="Hold to hear the mono mic">100</button></div>
           <button class="setb" id="awSet">SET</button>
-          <div class="ctl"><div class="row">RIBBONS &lt; &gt; MONO<span class="val" data-v="blend"></span></div><input type="range" data-p="blend" min="0" max="100" step="1" value="50"></div>
+          <div class="ctl ring" data-n="2"><div class="row">RIBBONS &lt; &gt; MONO<span class="val" data-v="blend"></span></div><input type="range" data-p="blend" min="0" max="100" step="1" value="50"></div>
           <div class="ctl"><div class="row">MONO DELAY<span class="val" data-v="mDelay"></span></div><input type="range" data-p="mDelay" min="0" max="5" step="0.01" value="0"></div>
           <div class="ctl"><div class="row">VELOCITY<span class="val" data-v="vel"></span></div><input type="range" data-p="vel" min="1" max="127" step="1" value="100"></div>
           <div class="ctl"><div class="row">DECAY<span class="val" data-v="decay"></span></div><input type="range" data-p="decay" min="0" max="100" step="1" value="100"></div>
@@ -435,6 +456,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
   ['awMeterL','awMeterR'].forEach(function(id){var el=document.getElementById(id);for(var i=0;i<27;i++)el.appendChild(document.createElement('i'));});
   // hide the start hint after the first hit
   ['awPadTip','awStrike'].forEach(function(id){document.getElementById(id).addEventListener('pointerdown',function(){var h=document.getElementById('awHint');if(h)h.remove();},{once:true});});
+  // quick-start tips: hide/show, remembered per browser
+  (function(){var aw=document.getElementById('aw'),qs=document.getElementById('qs'),b=document.getElementById('qsHide');
+    function set(on){aw.classList.toggle('tips-on',on);b.textContent=on?'Hide tips':'Show tips';try{localStorage.setItem('awTips',on?'1':'0')}catch(e){}}
+    var on=true;try{on=localStorage.getItem('awTips')!=='0'}catch(e){}
+    set(on);b.addEventListener('click',function(){set(!aw.classList.contains('tips-on'))});})();
 </script>
 <script src="alloy-web.js"></script>
 </body>
