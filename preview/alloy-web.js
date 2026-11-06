@@ -303,16 +303,6 @@
     });
     const big = $('awStrike'); if (big) big.addEventListener('pointerdown', (e) => { e.preventDefault(); hit(); });
     const ch = $('awChoke'); if (ch) ch.addEventListener('click', choke);
-    window.addEventListener('keydown', (e) => {
-      if (e.repeat || /input|textarea|select/i.test(e.target.tagName)) return;
-      if (!document.body.classList.contains('aw-active')) return;
-      if (e.code === 'Space') { e.preventDefault(); hit(); }
-      if (e.key >= '1' && e.key <= '5') hit(Math.round(parseInt(e.key) / 5 * 127));
-      if (e.key === 'x' || e.key === 'X') choke();
-    });
-    // keyboard only while the player is on screen
-    const sec = $('alloy-web');
-    if (sec && 'IntersectionObserver' in window) new IntersectionObserver((en) => document.body.classList.toggle('aw-active', en[0].isIntersecting), { threshold: 0.3 }).observe(sec);
     // MIDI: note 60 (C4) plays the tip, like the plug-in
     if (navigator.requestMIDIAccess) {
       const midiBtn = $('awMidi');
