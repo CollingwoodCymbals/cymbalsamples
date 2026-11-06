@@ -262,7 +262,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     </div>
     <div class="aw tips-on" id="aw">
       <div class="aw-top">
-        <div class="aw-title"><b>ALLOY</b><span>CYMBAL PLAYER · WEB</span></div>
+        <div class="aw-title"><b>ALLOY</b><span>CYMBAL PLAYER</span></div>
         <div class="aw-brand"><div>COLLINGWOOD CYMBALS<small>BRISTOL · ENGLAND</small></div><img src="logo.png" alt=""></div>
       </div>
 
@@ -273,7 +273,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <div class="lbl">RIBBONS<i>MONO</i></div>
           <div class="inf" id="awHitInfo">TIP</div>
           <div class="off">MONO MIC +0.68 ms AHEAD (MEASURED)</div>
-          <div class="hint" id="awHint">HIT THE TIP PAD TO START</div>
         </div>
         <div class="aw-pads">
           <div class="pad live ring" data-n="1" id="awPadTip" title="Click higher up to hit harder"><div class="vbar"><i>HARD</i><u>SOFT</u></div>
@@ -285,11 +284,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <div class="pad off"><div class="pn"><i></i>BELL</div><div class="nt">F4 65</div><div class="soon">NEXT SESSION</div></div>
           <div class="pad off"><div class="pn"><i></i>CHOKE</div><div class="nt">G4 67</div><div class="soon">NEXT SESSION</div></div>
           <div class="pad off"><div class="pn"><i></i>SWELL</div><div class="nt">A4 69</div><div class="soon">NEXT SESSION</div></div>
-        </div>
-        <div class="aw-strip">
-          <button class="aw-strike" id="awStrike">STRIKE</button>
-          <button class="tb plain" id="awChoke" style="flex:0 1 130px">STOP (X)</button>
-          <button class="tb" id="awMidi" style="flex:0 1 190px">USE MIDI KEYBOARD</button>
         </div>
       </div>
 
@@ -481,8 +475,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
 <script>
   // build the meter segments
   ['awMeterL','awMeterR'].forEach(function(id){var el=document.getElementById(id);for(var i=0;i<27;i++)el.appendChild(document.createElement('i'));});
-  // hide the start hint after the first hit
-  ['awPadTip','awStrike'].forEach(function(id){document.getElementById(id).addEventListener('pointerdown',function(){var h=document.getElementById('awHint');if(h)h.remove();},{once:true});});
   // quick-start tips: hide/show, remembered per browser
   (function(){var aw=document.getElementById('aw'),qs=document.getElementById('qs'),b=document.getElementById('qsHide');
     function set(on){aw.classList.toggle('tips-on',on);b.textContent=on?'Hide tips':'Show tips';try{localStorage.setItem('awTips',on?'1':'0')}catch(e){}}
