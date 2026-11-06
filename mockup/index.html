@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cymbal Samples</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141210; --panel:#1d1a17; --panel2:#25211d; --line:#3a332c;
+  --text:#ece6dc; --muted:#a59a8b; --bronze:#c99a55; --bronze2:#e7c48a;
+  --led:#ff8a2a; --green:#7fd36b;
+  --metal:linear-gradient(180deg,#3b3631 0%,#2b2724 50%,#34302b 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.spaced{font-family:Oswald,sans-serif;letter-spacing:.42em;text-transform:uppercase;font-weight:400}
+.mock-banner{background:#5a3b12;color:#ffe2b0;text-align:center;font-size:13px;padding:6px 16px}
+
+/* brushed panel with screws, the suite look */
+.brushed{position:relative;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,rgba(0,0,0,.03) 1px 3px),var(--metal);
+  border:1px solid #4a433b;border-radius:6px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 10px 30px rgba(0,0,0,.4)}
+.brushed .screw{position:absolute;width:11px;height:11px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#d8d2c8,#6d665d 70%);box-shadow:0 1px 1px rgba(0,0,0,.6)}
+.brushed .screw::after{content:"";position:absolute;left:2px;right:2px;top:5px;height:1px;background:#3b3631;transform:rotate(40deg)}
+.s1{top:9px;left:9px}.s2{top:9px;right:9px}.s3{bottom:9px;left:9px}.s4{bottom:9px;right:9px}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(20,18,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-size:17px;color:var(--bronze2)}
+nav{display:flex;gap:26px;font-size:14px;color:var(--muted)}
+nav a:hover{color:var(--text)}
+.cart-btn{background:none;border:1px solid var(--line);color:var(--text);border-radius:20px;padding:7px 14px;font:inherit;font-size:14px;cursor:pointer}
+.cart-btn b{display:inline-block;min-width:20px;background:var(--bronze);color:#1a140c;border-radius:10px;margin-left:6px;font-size:12px;padding:0 6px}
+
+/* hero */
+.hero{padding:72px 0 56px;background:radial-gradient(900px 420px at 75% 30%,rgba(201,154,85,.16),transparent 70%)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.kicker{color:var(--bronze);font-size:12px;margin-bottom:18px}
+h1{font-family:Oswald,sans-serif;font-weight:500;font-size:54px;line-height:1.05;margin-bottom:20px}
+.lead{color:var(--muted);font-size:18px;max-width:520px;margin-bottom:28px}
+.btn{display:inline-block;background:var(--bronze);color:#1a140c;border:0;border-radius:4px;padding:13px 22px;font:600 15px Inter,sans-serif;cursor:pointer}
+.btn:hover{background:var(--bronze2)}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--text);margin-left:10px}
+.hero-facts{display:flex;gap:28px;margin-top:34px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.hero-facts strong{display:block;color:var(--text);font-size:20px;font-family:Oswald,sans-serif;font-weight:500}
+
+.cymbal{width:100%;aspect-ratio:1;border-radius:50%;position:relative;cursor:pointer;
+  background:
+   radial-gradient(circle,#e6c58c 0 6%,#a77a3e 6.5% 7.5%,transparent 8%),
+   radial-gradient(circle,#d7ab68 0 16%,#b98747 16.5% 17%,transparent 17.5%),
+   repeating-radial-gradient(circle,#c9984f 0 1px,#b38443 1px 3px,#d2a35e 3px 4px),
+   #b88a48;
+  box-shadow:0 30px 60px rgba(0,0,0,.55),inset 0 0 0 2px rgba(0,0,0,.25);transition:transform .2s}
+.cymbal::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 210deg,rgba(255,255,255,.28),transparent 18%,transparent 48%,rgba(255,255,255,.18) 58%,transparent 72%)}
+.cymbal.hit{animation:wobble .5s ease-out}
+@keyframes wobble{0%{transform:rotate(0)}20%{transform:rotate(1.6deg) scale(.99)}50%{transform:rotate(-1deg)}100%{transform:rotate(0)}}
+.cymbal-label{position:absolute;bottom:-34px;left:0;right:0;text-align:center;font-size:12px;color:var(--muted)}
+
+section{padding:76px 0}
+.sec-head{margin-bottom:34px}
+.sec-head .spaced{color:var(--bronze);font-size:12px;margin-bottom:10px;display:block}
+h2{font-family:Oswald,sans-serif;font-weight:500;font-size:34px;line-height:1.15}
+.sec-head p{color:var(--muted);max-width:640px;margin-top:10px}
+
+/* listening station */
+.station{padding:30px}
+.station-title{text-align:center;font-size:14px;color:var(--bronze2);margin-bottom:22px}
+.station-top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+select{background:#16130f;color:var(--text);border:1px solid #4a433b;border-radius:4px;padding:9px 12px;font:inherit;font-size:14px}
+.leds{display:flex;gap:8px;flex-wrap:wrap}
+.led-btn{display:flex;align-items:center;gap:8px;background:#1b1814;border:1px solid #4a433b;color:var(--muted);padding:8px 12px;border-radius:4px;font:600 12px Inter,sans-serif;letter-spacing:.08em;cursor:pointer;text-transform:uppercase}
+.led-btn i{width:8px;height:8px;border-radius:50%;background:#4a2a12}
+.led-btn.on{color:var(--text)}
+.led-btn.on i{background:var(--led);box-shadow:0 0 8px var(--led)}
+.arts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.art{background:#17140f;border:1px solid #3d362f;border-radius:5px;padding:14px;cursor:pointer;text-align:left;color:var(--text);font:inherit;transition:border-color .15s}
+.art:hover{border-color:var(--bronze)}
+.art.playing{border-color:var(--led);box-shadow:0 0 0 1px var(--led) inset}
+.art b{display:block;font-size:14px;margin-bottom:2px}
+.art span{font-size:12px;color:var(--muted)}
+.vel{display:flex;align-items:center;gap:14px;margin-top:22px;flex-wrap:wrap}
+.vel label{font-size:12px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase}
+.fader{flex:1;min-width:180px;-webkit-appearance:none;appearance:none;height:6px;background:#0f0d0a;border-radius:3px;border:1px solid #4a433b}
+.fader::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:18px;border-radius:3px;background:linear-gradient(#e8e2d8,#8d867c);border:1px solid #222;cursor:pointer}
+.fader::-moz-range-thumb{width:30px;height:18px;border-radius:3px;background:linear-gradient(#e8e2d8,#8d867c);border:1px solid #222;cursor:pointer}
+.valbox{background:#0c0b09;border:1px solid #4a433b;color:var(--green);font:500 13px ui-monospace,monospace;padding:4px 10px;border-radius:3px;min-width:76px;text-align:center}
+canvas#scope{width:100%;height:90px;margin-top:20px;background:#0c0b09;border:1px solid #3d362f;border-radius:4px;display:block}
+.placeholder-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+
+/* packs */
+.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pack{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.pack-art{aspect-ratio:16/10;position:relative;display:flex;align-items:flex-end;padding:16px;background-size:cover}
+.pack-art .mini{position:absolute;right:-30px;top:-30px;width:190px;height:190px;border-radius:50%;opacity:.9;
+  background:repeating-radial-gradient(circle,var(--c1) 0 1px,var(--c2) 1px 3px),var(--c1);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.pack-art .tag{position:relative;background:rgba(0,0,0,.55);font-size:11px;letter-spacing:.2em;padding:4px 8px;border-radius:3px;text-transform:uppercase}
+.pack-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.pack h3{font-family:Oswald,sans-serif;font-weight:500;font-size:22px;margin-bottom:4px}
+.pack .meta{font-size:13px;color:var(--muted);margin-bottom:12px}
+.pack ul{list-style:none;font-size:13px;color:var(--muted);margin-bottom:18px}
+.pack li::before{content:"·  ";color:var(--bronze)}
+.pack-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.price{font-family:Oswald,sans-serif;font-size:24px}
+.small-btn{background:none;border:1px solid var(--line);color:var(--text);border-radius:4px;padding:9px 12px;font:500 13px Inter,sans-serif;cursor:pointer}
+.small-btn:hover{border-color:var(--bronze)}
+.small-btn.buy{background:var(--bronze);color:#1a140c;border-color:var(--bronze)}
+.bundle{margin-top:26px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 28px;flex-wrap:wrap}
+.bundle h3{font-family:Oswald,sans-serif;font-weight:500;font-size:22px}
+.bundle p{color:var(--muted);font-size:14px}
+.strike{text-decoration:line-through;color:var(--muted);font-size:16px;margin-right:8px}
+
+/* how recorded */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.mics{display:grid;gap:14px}
+.mic{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px 20px;display:flex;gap:16px}
+.mic .num{font-family:Oswald,sans-serif;color:var(--bronze);font-size:24px;min-width:30px}
+.mic h4{font-size:15px;margin-bottom:2px}
+.mic p{font-size:14px;color:var(--muted)}
+.diagram{padding:26px}
+.diagram svg{width:100%;height:auto;display:block}
+
+/* specs table */
+.specs{width:100%;border-collapse:collapse;font-size:14px}
+.specs td{padding:12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.specs td:first-child{color:var(--muted);width:42%;padding-right:16px}
+.tree{background:#0c0b09;border:1px solid var(--line);border-radius:6px;padding:18px 20px;font:13px/1.75 ui-monospace,monospace;color:#cfc6b8;overflow-x:auto;white-space:pre}
+.tree em{color:var(--bronze);font-style:normal}
+
+/* blend plugin teaser */
+.plugin{padding:34px 34px 30px;max-width:560px;margin:0 auto}
+.plugin .ptitle{text-align:center;font-size:15px;color:var(--text);margin-bottom:4px}
+.plugin .psub{text-align:center;font-size:11px;color:var(--muted);letter-spacing:.3em;margin-bottom:26px}
+.prow{display:flex;justify-content:space-around;align-items:flex-end;gap:16px}
+.pcol{display:flex;flex-direction:column;align-items:center;gap:10px}
+.pcol .lab{font-size:11px;letter-spacing:.25em;color:var(--muted)}
+.vfader{width:46px;height:150px;background:#0c0b09;border:1px solid #4a433b;border-radius:4px;position:relative}
+.vfader::before{content:"";position:absolute;left:50%;top:8px;bottom:8px;width:4px;margin-left:-2px;background:#2a251f;border-radius:2px}
+.vfader .cap{position:absolute;left:5px;right:5px;height:22px;border-radius:3px;background:linear-gradient(#ece6dc,#8d867c);border:1px solid #222}
+.vfader .cap::after{content:"";position:absolute;left:4px;right:4px;top:10px;height:1px;background:#222}
+.pled{display:flex;gap:8px;justify-content:center;margin-top:24px}
+
+/* about */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.photo{aspect-ratio:4/3;border-radius:8px;background:
+  linear-gradient(135deg,rgba(0,0,0,.2),rgba(0,0,0,.6)),
+  repeating-linear-gradient(45deg,#2b2620 0 14px,#25211c 14px 28px);
+  display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;border:1px dashed #4a433b}
+.about p{color:var(--muted);margin-bottom:14px}
+
+/* faq */
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between}
+.faq summary::after{content:"+";color:var(--bronze)}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--muted);margin-top:10px;font-size:15px}
+
+/* newsletter + footer */
+.signup{padding:36px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.signup input{background:#0c0b09;border:1px solid #4a433b;color:var(--text);padding:12px 14px;border-radius:4px;font:inherit;min-width:260px}
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* cart drawer */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:380px;max-width:100%;background:var(--panel);border-left:1px solid var(--line);z-index:40;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
+.drawer-head button{background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer}
+.drawer-items{flex:1;overflow:auto;padding:12px 22px}
+.ditem{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.ditem button{background:none;border:0;color:var(--muted);cursor:pointer;font-size:12px;text-decoration:underline}
+.drawer-foot{padding:20px 22px;border-top:1px solid var(--line)}
+.total{display:flex;justify-content:space-between;font-size:18px;margin-bottom:14px}
+.drawer-foot .btn{width:100%}
+.pay-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:30;display:none}
+.scrim.open{display:block}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:#2a241d;border:1px solid var(--bronze);padding:10px 18px;border-radius:6px;font-size:14px;z-index:50;transition:transform .25s,opacity .25s;opacity:0;pointer-events:none}
+.toast.show{transform:translateX(-50%);opacity:1}
+
+@media (max-width:900px){
+  .hero .wrap,.split,.about{grid-template-columns:1fr}
+  .hero-visual{max-width:360px;margin:0 auto 30px}
+  .packs{grid-template-columns:1fr 1fr}
+  .arts{grid-template-columns:repeat(2,1fr)}
+  nav{display:none}
+  h1{font-size:40px}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .packs{grid-template-columns:1fr}
+  .station,.plugin,.signup{padding:22px 18px}
+  .btn.ghost{margin:10px 0 0}
+  .logo{font-size:13px;letter-spacing:.3em}
+  section{padding:56px 0}
+  h2{font-size:28px}
+}
+
+/* checkout demo */
+.co-scrim{position:fixed;inset:0;background:rgba(10,8,6,.72);backdrop-filter:blur(3px);z-index:60;display:none;align-items:center;justify-content:center;padding:16px}
+.co-scrim.open{display:flex}
+.co{background:#fff;color:#1d1d1f;width:100%;max-width:440px;max-height:92vh;overflow:auto;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.5);font-family:Inter,system-ui,sans-serif}
+.co-top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #eee;font-size:13px;color:#666}
+.co-top button{background:none;border:0;font-size:22px;color:#888;cursor:pointer}
+.co-body{padding:18px}
+.co h3{margin:0 0 4px;font-size:15px;font-weight:600;color:#1d1d1f}
+.co .line{display:flex;justify-content:space-between;font-size:14px;padding:6px 0;color:#333}
+.co .line.tot{border-top:1px solid #eee;margin-top:6px;padding-top:10px;font-weight:600}
+.co label{display:block;font-size:12px;color:#555;margin:12px 0 4px}
+.co input{width:100%;box-sizing:border-box;border:1px solid #d6d6d6;border-radius:8px;padding:10px 12px;font-size:14px;font-family:inherit;color:#1d1d1f;background:#fafafa}
+.co .row2{display:flex;gap:10px}.co .row2>div{flex:1}
+.co .wallets{display:flex;gap:8px;margin:14px 0 4px}
+.co .wallets div{flex:1;text-align:center;border-radius:8px;padding:10px 0;font-size:13px;font-weight:600}
+.co .or{text-align:center;font-size:12px;color:#999;margin:10px 0 0}
+.co .pay{width:100%;margin-top:16px;background:#1d1d1f;color:#fff;border:0;border-radius:8px;padding:13px;font-size:15px;font-weight:600;cursor:pointer}
+.co .fine{font-size:11px;color:#888;text-align:center;margin-top:10px;line-height:1.5}
+.co .done{text-align:center;padding:10px 0}
+.co .tick{width:54px;height:54px;border-radius:50%;background:#e8f6e6;color:#2f8a2a;font-size:30px;line-height:54px;margin:6px auto 12px}
+.co .dl{display:block;background:#f4f4f5;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#1d1d1f;text-align:left;text-decoration:none}
+.demo-note{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:61;background:#c99a55;color:#141210;font:600 12px Inter,sans-serif;padding:6px 12px;border-radius:20px;display:none;max-width:90vw;text-align:center}
+.co-scrim.open~.demo-note{display:block}
+</style>
+</head>
+<body>
+
+<div class="mock-banner">Preview: sounds, pack names, prices and photos are placeholders until the recordings are ready.</div>
+
+<header>
+  <div class="wrap">
+    <a href="#" class="logo spaced">Cymbal Samples</a>
+    <nav>
+      <a href="#listen">Listen</a>
+      <a href="#packs">Packs</a>
+      <a href="#recording">How they're made</a>
+      <a href="#blend">Free player</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button class="cart-btn" onclick="openCart()">Basket<b id="cartCount">0</b></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="kicker spaced">Handmade in Bristol · Collingwood Cymbals</div>
+      <h1>Real hand-hammered cymbals, sampled properly.</h1>
+      <p class="lead">Every sound is one of my own cymbals, recorded at every point you'd actually play it: tip, shoulder, edge, bell, choke and swell. Each one has velocity layers, round robins, and a stereo ribbon pair plus a mono mic so you choose the room. Plain WAV files that work in any DAW or sampler.</p>
+      <a href="#packs" class="btn">Browse the packs</a>
+      <a href="#listen" class="btn ghost">Have a listen</a>
+      <div class="hero-facts">
+        <div><strong>24-bit WAV</strong>No compression, no loops</div>
+        <div><strong>2 mic setups</strong>Ribbon pair + mono</div>
+        <div><strong>Any software</strong>Reaper, Logic, Kontakt…</div>
+        <div><strong>5 velocities</strong>× 4 round robins</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="cymbal" id="heroCymbal" onclick="heroHit(event)" title="Click to play"></div>
+      <div style="position:relative"><div class="cymbal-label">Click the cymbal: centre is the bell, outside is the edge</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTENING STATION -->
+<section id="listen">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="spaced">Listen</span>
+      <h2>Try every articulation before you buy</h2>
+      <p>Pick a cymbal, pick a mic setup, then play any hit. On the real site each button plays the actual recording from the pack.</p>
+    </div>
+    <div class="brushed station">
+      <i class="screw s1"></i><i class="screw s2"></i><i class="screw s3"></i><i class="screw s4"></i>
+      <div class="station-title spaced">Listening station</div>
+      <div class="station-top">
+        <select id="cymSel" aria-label="Cymbal">
+          <option value="0">20" Dark Ride (placeholder)</option>
+          <option value="1">18" Thin Crash (placeholder)</option>
+          <option value="2">14" Hi-Hats (placeholder)</option>
+          <option value="3">22" Raw Ride (placeholder)</option>
+        </select>
+        <div class="leds" id="micLeds">
+          <button class="led-btn on" data-mic="ribbon"><i></i>Ribbon pair</button>
+          <button class="led-btn" data-mic="mono"><i></i>Mono</button>
+          <button class="led-btn" data-mic="blend"><i></i>50/50 blend</button>
+        </div>
+      </div>
+      <div class="arts" id="arts"></div>
+      <div class="vel">
+        <label for="vel">Velocity</label>
+        <input type="range" class="fader" id="vel" min="1" max="5" value="4">
+        <div class="valbox" id="velBox">LAYER 5</div>
+        <div class="valbox" id="rrBox">RR 1/4</div>
+      </div>
+      <canvas id="scope" width="1100" height="90"></canvas>
+      <div class="placeholder-note">These demo sounds are generated in the browser as a stand-in. Real recordings replace them.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKS -->
+<section id="packs" style="background:#181512">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="spaced">Packs</span>
+      <h2>One cymbal per pack</h2>
+      <p>Each pack is a single Collingwood cymbal, played every way it can be played. Instant download after checkout, and it's yours for life.</p>
+    </div>
+    <div class="packs" id="packGrid"></div>
+    <div class="brushed bundle">
+      <i class="screw s1"></i><i class="screw s2"></i><i class="screw s3"></i><i class="screw s4"></i>
+      <div>
+        <h3>The full set</h3>
+        <p>Every pack, plus every future pack added this year.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span class="price"><span class="strike">£96</span>£69</span>
+        <button class="small-btn buy" onclick="addToCart('The full set',69)">Add to basket</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW RECORDED -->
+<section id="recording">
+  <div class="wrap split">
+    <div>
+      <div class="sec-head">
+        <span class="spaced">How they're made</span>
+        <h2>Two recordings of every hit</h2>
+        <p>Every single sample is captured on two setups at the same moment, so they line up perfectly and blend without phasing.</p>
+      </div>
+      <div class="mics">
+        <div class="mic"><div class="num">1</div><div><h4>Stereo ribbon pair</h4><p>Smooth, wide and natural. The cymbal as you hear it standing in front of the kit.</p></div></div>
+        <div class="mic"><div class="num">2</div><div><h4>Mono close mic</h4><p>Focused and detailed, easy to sit in a busy mix or pan wherever you like.</p></div></div>
+        <div class="mic"><div class="num">3</div><div><h4>Edited by hand</h4><p>Every hit trimmed, faded to true silence and named consistently. No normalising that ruins the velocity layers.</p></div></div>
+      </div>
+    </div>
+    <div class="brushed diagram">
+      <i class="screw s1"></i><i class="screw s2"></i><i class="screw s3"></i><i class="screw s4"></i>
+      <svg viewBox="0 0 400 330" role="img" aria-label="Mic placement diagram: stereo ribbon pair above, mono mic close to the cymbal">
+        <text x="200" y="28" text-anchor="middle" fill="#a59a8b" font-family="Oswald" font-size="13" letter-spacing="5">MIC PLACEMENT</text>
+        <ellipse cx="200" cy="230" rx="140" ry="26" fill="#b88a48" stroke="#6d4e24"/>
+        <ellipse cx="200" cy="226" rx="22" ry="6" fill="#e2bd80"/>
+        <line x1="200" y1="232" x2="200" y2="310" stroke="#6d665d" stroke-width="4"/>
+        <g fill="#d8d2c8"><rect x="128" y="70" width="44" height="18" rx="4" transform="rotate(20 150 79)"/><rect x="228" y="70" width="44" height="18" rx="4" transform="rotate(-20 250 79)"/></g>
+        <text x="200" y="62" text-anchor="middle" fill="#e7c48a" font-family="Inter" font-size="12">Ribbon pair (stereo)</text>
+        <path d="M150 92 L170 200 M250 92 L230 200" stroke="#c99a55" stroke-dasharray="4 4"/>
+        <rect x="320" y="160" width="40" height="16" rx="4" fill="#d8d2c8" transform="rotate(-30 340 168)"/>
+        <text x="342" y="150" text-anchor="middle" fill="#e7c48a" font-family="Inter" font-size="12">Mono</text>
+        <path d="M325 180 L300 215" stroke="#c99a55" stroke-dasharray="4 4"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S IN A PACK -->
+<section style="background:#181512">
+  <div class="wrap split">
+    <div>
+      <div class="sec-head">
+        <span class="spaced">What's inside</span>
+        <h2>Specs</h2>
+      </div>
+      <table class="specs">
+        <tr><td>Format</td><td>WAV, 24-bit, 48 kHz</td></tr>
+        <tr><td>Mic setups</td><td>Stereo ribbon pair + mono, sample-aligned</td></tr>
+        <tr><td>Articulations</td><td>Tip, shoulder, edge, bell, choke, swell</td></tr>
+        <tr><td>Velocity layers</td><td>5 per articulation</td></tr>
+        <tr><td>Round robins</td><td>4 per layer</td></tr>
+        <tr><td>Processing</td><td>None. Trimmed and faded only</td></tr>
+        <tr><td>Works in</td><td>Any DAW or sampler that loads WAV. No special software needed</td></tr>
+        <tr><td>Licence</td><td>Royalty free in your own music</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="sec-head"><span class="spaced">Folder layout</span><h2>Named so you can find things</h2></div>
+<div class="tree"><em>Collingwood - 20in Dark Ride/</em>
+  Ribbon/
+    Collingwood_20in-Dark-Ride_Tip_V1_RR1_Ribbon.wav
+    Collingwood_20in-Dark-Ride_Tip_V1_RR2_Ribbon.wav
+    …
+    Collingwood_20in-Dark-Ride_Swell_V5_RR4_Ribbon.wav
+  Mono/
+    Collingwood_20in-Dark-Ride_Tip_V1_RR1_Mono.wav
+    …
+  alloy.txt
+  READ ME.txt</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLEND PLUGIN -->
+<section id="blend">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center">
+      <span class="spaced">Optional freebie</span>
+      <h2>Alloy, the free blend player</h2>
+      <p style="margin:10px auto 0">You don't need it: the packs are plain WAVs and work in whatever you already use. But if you want, Alloy is a free, very simple VST3 that opens a Collingwood pack and lets you blend the ribbon pair and mono mic with one fader. It comes in every pack, or download it here on its own.</p>
+    </div>
+    <div class="brushed plugin">
+      <i class="screw s1"></i><i class="screw s2"></i><i class="screw s3"></i><i class="screw s4"></i>
+      <div class="ptitle spaced">Alloy</div>
+      <div class="psub">COLLINGWOOD · DESIGN IN PROGRESS</div>
+      <div class="prow">
+        <div class="pcol"><div class="lab">RIBBONS</div><div class="vfader"><div class="cap" style="top:40px"></div></div><div class="valbox">-2.0 dB</div></div>
+        <div class="pcol"><div class="lab">BLEND</div><div class="vfader"><div class="cap" style="top:60px"></div></div><div class="valbox">40 % MONO</div></div>
+        <div class="pcol"><div class="lab">MONO</div><div class="vfader"><div class="cap" style="top:74px"></div></div><div class="valbox">-8.5 dB</div></div>
+      </div>
+      <div class="pled">
+        <span class="led-btn on"><i></i>Align</span>
+        <span class="led-btn"><i></i>Mono pan</span>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:18px"><a class="btn" href="#" onclick="event.preventDefault();toast('Mockup: this downloads Alloy')">Download Alloy free</a></p><p class="placeholder-note">Picture only. Final controls depend on the plugin design (still deciding whether it also loads other samples).</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:#181512">
+  <div class="wrap about">
+    <div class="photo">Photo: Dave in the workshop, hammering</div>
+    <div>
+      <div class="sec-head"><span class="spaced">About</span><h2>Made by the person who made the cymbals</h2></div>
+      <p>Collingwood Cymbals are hand-hammered in Bristol, one at a time. No two sound alike, which is exactly why they're worth sampling.</p>
+      <p>These packs are recorded by the same hands that made them, so every articulation is played the way the cymbal was meant to be played. (Placeholder text for Dave to rewrite in his own words.)</p>
+      <a class="btn ghost" style="margin:6px 0 0" href="#">Visit Collingwood Cymbals</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap" style="max-width:820px">
+    <div class="sec-head"><span class="spaced">Questions</span><h2>FAQ</h2></div>
+    <div class="faq">
+      <details open><summary>How do I get my files?</summary><p>You get a download link straight after paying, and by email. Links stay in your account so you can download again later.</p></details>
+      <details><summary>Can I use them in released music?</summary><p>Yes. Use them in your own tracks, commercially or not. You just can't resell or share the samples themselves.</p></details>
+      <details><summary>Do I need a special sampler?</summary><p>No. They're plain WAV files, so any DAW or sampler works. Alloy, my free player, is just an optional extra if you want an easy way to blend the two mics.</p></details>
+      <details><summary>Is there an MP3 version?</summary><p>Not yet. WAV only for now.</p></details>
+      <details><summary>Can I buy the actual cymbal?</summary><p>Many packs are of cymbals that are still available. Each pack page links to the cymbal if it is.</p></details>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="brushed signup">
+      <i class="screw s1"></i><i class="screw s2"></i><i class="screw s3"></i><i class="screw s4"></i>
+      <div><h3 style="font-family:Oswald;font-weight:500;font-size:22px">Get a free sample hit</h3><p style="color:var(--muted);font-size:14px">One cymbal, every articulation, free when you join the mailing list.</p></div>
+      <form onsubmit="event.preventDefault();toast('Mockup: this would sign you up')" style="display:flex;gap:10px;flex-wrap:wrap">
+        <input type="email" placeholder="Your email" aria-label="Email">
+        <button class="btn">Send it</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="spaced" style="color:var(--bronze2)">Cymbal Samples</div>
+    <div>cymbalsamples.com · a Collingwood Cymbals project · Bristol, UK</div>
+    <div>Licence · Refunds · Contact</div>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="scrim" id="scrim" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer" aria-label="Basket">
+  <div class="drawer-head"><span class="spaced" style="font-size:14px">Basket</span><button onclick="closeCart()" aria-label="Close">×</button></div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="total"><span>Total</span><span id="total">£0</span></div>
+    <button class="btn" onclick="openCheckout()">Checkout</button>
+    <div class="pay-note">Card, Apple Pay, Google Pay, PayPal · secure checkout</div>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+<!-- CHECKOUT DEMO: stand-in for the Lemon Squeezy pop-up -->
+<div class="co-scrim" id="coScrim">
+  <div class="co" role="dialog" aria-label="Checkout">
+    <div class="co-top"><span>🔒 Secure checkout · Cymbal Samples</span><button onclick="closeCheckout()" aria-label="Close">×</button></div>
+    <div class="co-body" id="coBody"></div>
+  </div>
+</div>
+<div class="demo-note">Preview: the real payment window (Lemon Squeezy) pops up here</div>
+
+
+<script>
+const PACKS=[
+  {name:'20" Dark Ride',tag:'Ride',price:18,c1:'#7d5a2c',c2:'#5e4220',meta:'6 articulations · 240 samples · 1.9 GB',
+   arts:['Bow tip','Shoulder','Bell','Edge crash','Choke','Swell (mallet)']},
+  {name:'18" Thin Crash',tag:'Crash',price:15,c1:'#c99a55',c2:'#a77a3e',meta:'5 articulations · 200 samples · 1.4 GB',
+   arts:['Edge crash','Shoulder','Bell','Tip','Choke']},
+  {name:'14" Hi-Hats',tag:'Hi-hat',price:18,c1:'#b38443',c2:'#8c6532',meta:'7 articulations · 280 samples · 1.2 GB',
+   arts:['Closed tip','Closed shoulder','Half open','Open','Foot chick','Foot splash','Bell']},
+  {name:'22" Raw Ride',tag:'Ride',price:18,c1:'#5a4630',c2:'#3f3122',meta:'6 articulations · 240 samples · 2.1 GB',
+   arts:['Bow tip','Shoulder','Bell','Edge crash','Choke','Rim tap']},
+  {name:'10" Splash',tag:'Effect',price:9,c1:'#d6aa66',c2:'#b78a4a',meta:'4 articulations · 160 samples · 0.6 GB',
+   arts:['Edge','Bell','Tip','Choke']},
+  {name:'18" China',tag:'Effect',price:15,c1:'#8f6a37',c2:'#6d4f27',meta:'5 articulations · 200 samples · 1.5 GB',
+   arts:['Edge crash','Shoulder','Bell','Tip','Choke']},
+];
+// articulation -> sound model: [low Hz, high Hz, decay s, attack brightness, ping Hz]
+const ART={tip:[4000,14000,1.6,.5,0],shoulder:[1800,9000,2.6,.8,0],edge:[900,12000,4.2,1,0],
+  bell:[1500,8000,3.4,.6,1250],crash:[700,12000,4.5,1,0],choke:[1500,11000,.35,1,0],
+  foot:[3000,10000,.12,.6,0],open:[3500,15000,1.4,.8,0]};
+function artModel(n){n=n.toLowerCase();
+  if(n.includes('choke'))return ART.choke; if(n.includes('bell'))return ART.bell;
+  if(n.includes('foot'))return ART.foot; if(n.includes('open')||n.includes('splash'))return ART.open;
+  if(n.includes('edge')||n.includes('crash')||n.includes('swell'))return ART.crash;
+  if(n.includes('shoulder'))return ART.shoulder; return ART.tip;}
+
+// packs grid
+const grid=document.getElementById('packGrid');
+PACKS.forEach((p,i)=>{
+  const d=document.createElement('div');d.className='pack';
+  d.innerHTML=`<div class="pack-art" style="background:linear-gradient(135deg,#2b2620,#171411)">
+     <div class="mini" style="--c1:${p.c1};--c2:${p.c2}"></div><span class="tag">${p.tag}</span></div>
+    <div class="pack-body"><h3>${p.name}</h3><div class="meta">${p.meta}</div>
+    <ul>${p.arts.slice(0,4).map(a=>`<li>${a}</li>`).join('')}${p.arts.length>4?`<li>+ ${p.arts.length-4} more</li>`:''}</ul>
+    <div class="pack-foot"><span class="price">£${p.price}</span>
+      <div style="display:flex;gap:8px"><button class="small-btn" onclick="previewPack(${i})">▶ Preview</button>
+      <button class="small-btn buy" onclick="addToCart('${p.name.replace(/"/g,'&quot;')}',${p.price})">Add</button></div></div></div>`;
+  grid.appendChild(d);
+});
+
+// listening station
+const stationArts=[['Tip','stick tip, bow'],['Shoulder','stick shoulder'],['Edge','crash on the edge'],['Bell','tip on the bell'],
+  ['Bell (shoulder)','shoulder on the bell'],['Crash','full edge crash'],['Choke','hit then grab'],['Swell','mallet roll (some packs)']];
+const artsEl=document.getElementById('arts');
+stationArts.forEach(([n,s])=>{const b=document.createElement('button');b.className='art';b.innerHTML=`<b>${n}</b><span>${s}</span>`;
+  b.onclick=()=>{play(artModel(n),+vel.value/5);flash(b)};artsEl.appendChild(b)});
+let mic='ribbon',rr=0;
+document.querySelectorAll('#micLeds .led-btn').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#micLeds .led-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');mic=b.dataset.mic});
+const vel=document.getElementById('vel');
+vel.oninput=()=>document.getElementById('velBox').textContent='LAYER '+vel.value;
+function flash(b){b.classList.add('playing');setTimeout(()=>b.classList.remove('playing'),400)}
+
+// audio
+let ctx,analyser;
+function ac(){if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();analyser=ctx.createAnalyser();analyser.fftSize=2048;analyser.connect(ctx.destination);draw()}
+  if(ctx.state==='suspended')ctx.resume();return ctx}
+function play(m,v){
+  const c=ac(),t=c.currentTime;const [lo,hi,dec,bright,ping]=m;
+  const cym=+document.getElementById('cymSel').value;const tune=[1,1.25,1.6,.85][cym];
+  rr=(rr%4)+1;document.getElementById('rrBox').textContent='RR '+rr+'/4';
+  const len=Math.ceil(c.sampleRate*(dec+.2));
+  const buf=c.createBuffer(2,len,c.sampleRate);
+  for(let ch=0;ch<2;ch++){const d=buf.getChannelData(ch);for(let i=0;i<len;i++)d[i]=Math.random()*2-1}
+  const src=c.createBufferSource();src.buffer=buf;
+  const hp=c.createBiquadFilter();hp.type='highpass';hp.frequency.value=lo*tune*(.9+Math.random()*.2);
+  const lp=c.createBiquadFilter();lp.type='lowpass';
+  const top=Math.min(hi*tune,18000)*(.5+.5*v);
+  lp.frequency.setValueAtTime(top,t);lp.frequency.exponentialRampToValueAtTime(Math.max(top*.35,lo*tune+200),t+dec);
+  const g=c.createGain();const peak=.35*v*v*(.6+.4*bright);
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(peak,t+.003);
+  g.gain.exponentialRampToValueAtTime(peak*.25,t+.08);g.gain.exponentialRampToValueAtTime(.0001,t+dec);
+  // mic character: ribbon = wide + darker, mono = narrow + brighter
+  const shelf=c.createBiquadFilter();shelf.type='highshelf';shelf.frequency.value=6000;
+  shelf.gain.value=mic==='ribbon'?-5:mic==='mono'?2:-1.5;
+  src.connect(hp).connect(lp).connect(shelf).connect(g);
+  let out=g;
+  if(mic==='mono'){const sp=c.createChannelSplitter(2),m2=c.createChannelMerger(2),mg=c.createGain();
+    g.connect(sp);sp.connect(mg,0);mg.connect(m2,0,0);mg.connect(m2,0,1);out=m2}
+  out.connect(analyser);
+  if(ping){[1,2.76,5.4].forEach((r,k)=>{const o=c.createOscillator(),og=c.createGain();
+    o.frequency.value=ping*tune*r;og.gain.setValueAtTime(.12*v/(k+1),t);og.gain.exponentialRampToValueAtTime(.0001,t+dec*.9/(k+1));
+    o.connect(og).connect(analyser);o.start(t);o.stop(t+dec)})}
+  src.start(t);src.stop(t+dec+.2);
+}
+function heroHit(e){
+  const r=e.currentTarget.getBoundingClientRect();
+  const dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5,d=Math.hypot(dx,dy)*2;
+  const m=d<.18?ART.bell:d<.45?ART.tip:d<.75?ART.shoulder:ART.crash;
+  play(m,.8);const el=e.currentTarget;el.classList.remove('hit');void el.offsetWidth;el.classList.add('hit');
+}
+function previewPack(i){const p=PACKS[i];let k=0;
+  const step=()=>{if(k>=Math.min(4,p.arts.length))return;play(artModel(p.arts[k]),.7);k++;setTimeout(step,900)};step();
+  toast('Preview: '+p.name+' (placeholder sounds)')}
+
+// scope
+const cv=document.getElementById('scope'),cx=cv.getContext('2d');
+function draw(){requestAnimationFrame(draw);const n=analyser.fftSize,a=new Float32Array(n);analyser.getFloatTimeDomainData(a);
+  cx.fillStyle='#0c0b09';cx.fillRect(0,0,cv.width,cv.height);
+  cx.strokeStyle='#c99a55';cx.lineWidth=2;cx.beginPath();
+  for(let i=0;i<n;i++){const x=i/n*cv.width,y=cv.height/2+a[i]*cv.height*1.4;i?cx.lineTo(x,y):cx.moveTo(x,y)}cx.stroke()}
+cx.fillStyle='#0c0b09';cx.fillRect(0,0,cv.width,cv.height);cx.strokeStyle='#3d362f';cx.beginPath();cx.moveTo(0,45);cx.lineTo(cv.width,45);cx.stroke();
+
+// cart
+let cart=[];
+function addToCart(n,p){if(!cart.find(x=>x.n===n))cart.push({n,p});renderCart();toast(n+' added to basket')}
+function renderCart(){document.getElementById('cartCount').textContent=cart.length;
+  document.getElementById('drawerItems').innerHTML=cart.length?cart.map((x,i)=>`<div class="ditem"><div>${x.n}<br><button onclick="rem(${i})">Remove</button></div><div>£${x.p}</div></div>`).join(''):'<p style="color:var(--muted);padding:20px 0">Your basket is empty.</p>';
+  document.getElementById('total').textContent='£'+cart.reduce((s,x)=>s+x.p,0)}
+function rem(i){cart.splice(i,1);renderCart()}
+function openCart(){renderCart();drawer.classList.add('open');scrim.classList.add('open')}
+function closeCart(){drawer.classList.remove('open');scrim.classList.remove('open')}
+let tt;function toast(s){const t=document.getElementById('toast');t.textContent=s;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200)}
+renderCart();
+
+function coTotal(){return cart.reduce((a,x)=>a+x.p,0)}
+function openCheckout(){if(!cart.length){toast('Add a pack first');return}closeCart();
+  const t=coTotal();
+  coBody.innerHTML=`<h3>Your order</h3>${cart.map(x=>`<div class="line"><span>${x.n}</span><span>£${x.p.toFixed(2)}</span></div>`).join('')}
+  <div class="line"><span style="color:#888">Sales tax (worked out for the buyer's country)</span><span style="color:#888">£0.00</span></div>
+  <div class="line tot"><span>Total</span><span>£${t.toFixed(2)}</span></div>
+  <div class="wallets"><div style="background:#000;color:#fff">Apple Pay</div><div style="background:#ffc439;color:#003087">PayPal</div></div>
+  <div class="or">or pay by card</div>
+  <label>Email (your download link is sent here)</label><input placeholder="you@example.com">
+  <label>Card number</label><input placeholder="1234 1234 1234 1234">
+  <div class="row2"><div><label>Expiry</label><input placeholder="MM / YY"></div><div><label>CVC</label><input placeholder="123"></div></div>
+  <label>Country</label><input value="United Kingdom">
+  <button class="pay" onclick="coDone()">Pay £${t.toFixed(2)}</button>
+  <div class="fine">Payment handled by Lemon Squeezy, the seller of record.<br>Your card details never touch cymbalsamples.com.</div>`;
+  coScrim.classList.add('open')}
+function coDone(){coBody.innerHTML=`<div class="done"><div class="tick">✓</div><h3>Thanks, it's yours!</h3>
+  <p style="font-size:14px;color:#555;margin:6px 0 14px">A receipt and these links have been emailed to you too.</p>
+  ${cart.map(x=>`<a class="dl" href="#" onclick="event.preventDefault();toast('Example: this downloads the zip')">⬇ Collingwood - ${x.n}.zip</a>`).join('')}
+  <a class="dl" href="#" onclick="event.preventDefault();toast('Example: this downloads Alloy')">⬇ Alloy free player (Windows + Mac)</a>
+  <button class="pay" onclick="closeCheckout();cart.length=0;renderCart()">Back to Cymbal Samples</button></div>`}
+function closeCheckout(){coScrim.classList.remove('open')}
+</script>
+</body>
+</html>

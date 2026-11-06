@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alloy, a free cymbal player · Cymbal Samples</title>
+<meta name="description" content="Alloy is a free cymbal player from Collingwood Cymbals. Download it for Windows or Mac with real hand-hammered cymbal hits, or play it in your browser.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141210; --panel:#1d1a17; --line:#3a332c;
+  --text:#ece6dc; --muted:#a59a8b; --bronze:#c99a55; --bronze2:#e7c48a;
+  --amber:#f0a640; --green:#5cc46b; --red:#ff5a4a;
+  --dev:#2b2b2e; --dev2:#232326; --devline:#3d3d42; --devtext:#d9d6d0; --devmut:#8d8a85;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--bronze2)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.spaced{font-family:Oswald,sans-serif;letter-spacing:.32em;text-transform:uppercase}
+.preview-bar{background:#3a2a14;color:var(--bronze2);font-size:13px;text-align:center;padding:6px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(20,18,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:24px;height:62px}
+.logo{color:var(--text);text-decoration:none;font-size:15px;display:flex;align-items:center;gap:12px}
+.logo img{height:30px;width:auto}
+nav{display:flex;gap:22px;margin-left:auto;font-size:14px}
+nav a{color:var(--muted);text-decoration:none}nav a:hover{color:var(--text)}
+@media(max-width:760px){nav{display:none}}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--bronze);color:#1a140c;border:0;border-radius:6px;padding:13px 22px;font:600 15px Inter,sans-serif;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--bronze2)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--bronze)}
+.btn small{font-weight:400;opacity:.75}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+.kicker{color:var(--bronze);font-size:12px;margin-bottom:14px}
+h1{font:500 clamp(38px,5.4vw,62px)/1.04 Oswald,sans-serif;margin:0 0 20px;letter-spacing:.01em}
+h1 em{font-style:normal;color:var(--bronze2)}
+.lead{font-size:18px;color:#d6cec2;max-width:560px}
+.free-tag{display:inline-block;background:#24301f;color:#a9e39c;border:1px solid #3c5a33;border-radius:20px;padding:3px 12px;font-size:13px;margin-bottom:18px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 14px}
+.fine{font-size:13px;color:var(--muted)}
+.hero-img{border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);border:1px solid #000}
+.hero-img img{display:block;width:100%;height:auto}
+
+section{padding:64px 0;border-top:1px solid var(--line)}
+.sec-head{max-width:720px;margin-bottom:34px}
+.sec-head .spaced{color:var(--bronze);font-size:12px}
+h2{font:500 clamp(28px,3.6vw,40px)/1.15 Oswald,sans-serif;margin:8px 0 12px}
+.sec-head p{color:#cfc7bb;margin:0}
+
+/* ---------- web Alloy (looks like the plug-in) ---------- */
+.aw{background:linear-gradient(180deg,#323236,#26262a);border-radius:12px;border:1px solid #111;box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.06);padding:16px 18px 18px;color:var(--devtext);font-family:Oswald,sans-serif;user-select:none;-webkit-user-select:none;touch-action:manipulation;max-width:940px;margin:0 auto}
+.aw-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.aw-title{display:flex;align-items:baseline;gap:14px}
+.aw-title b{font-weight:500;font-size:26px;letter-spacing:.2em}
+.aw-title span{font-size:12px;letter-spacing:.3em;color:var(--devmut)}
+.aw-brand{display:flex;align-items:center;gap:10px;text-align:right;font-size:12px;letter-spacing:.3em}
+.aw-brand small{display:block;font-size:9px;color:var(--devmut);letter-spacing:.3em}
+.aw-brand img{height:34px}
+.aw-screen{background:#141416;border:1px solid #000;border-radius:8px;padding:12px}
+.aw-name{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
+.aw-name .nm{background:#0c0c0d;border:1px solid #2c2c30;border-radius:3px;padding:6px 12px;font-size:16px;letter-spacing:.12em;min-width:220px;flex:1 1 220px;max-width:320px}
+.aw-name .st{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--devmut);letter-spacing:.06em}
+.aw-wave{position:relative;background:#0c0c0d;border:1px solid #222;border-radius:3px;height:110px}
+.aw-wave canvas{width:100%;height:100%;display:block}
+.aw-wave .lbl{position:absolute;top:6px;left:8px;font-size:10px;letter-spacing:.2em}
+.aw-wave .lbl i{font-style:normal;color:var(--amber);margin-left:10px}
+.aw-wave .inf{position:absolute;top:6px;right:8px;font-size:10px;letter-spacing:.2em;color:var(--devmut)}
+.aw-wave .off{position:absolute;bottom:6px;right:8px;font-size:10px;letter-spacing:.15em;color:var(--devmut)}
+.aw-wave .hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:.25em;color:#6d6a66;pointer-events:none}
+.aw-pads{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
+@media(max-width:760px){.aw-pads{grid-template-columns:repeat(3,1fr)}}
+.pad{background:linear-gradient(180deg,#2a2a2e,#222225);border:1px solid #3a3a3f;border-radius:5px;padding:8px 10px;min-height:66px;position:relative;cursor:default}
+.pad .pn{display:flex;align-items:center;gap:7px;font-size:13px;letter-spacing:.18em}
+.pad .pn i{width:7px;height:7px;border-radius:50%;background:#4a3a22}
+.pad .nt{position:absolute;top:9px;right:9px;font-size:10px;color:var(--devmut);letter-spacing:.08em}
+.pad .rows{font-size:9px;letter-spacing:.15em;color:var(--devmut);margin-top:8px;line-height:1.7}
+.pad .rows span{display:inline-flex;gap:3px;margin-left:8px;vertical-align:middle}
+.pad .rows span i{width:8px;height:8px;background:#2e3a30;border-radius:1px;display:inline-block}
+.pad .rows span.rr i{background:#3d3424}
+.pad.live{background:linear-gradient(180deg,#5a4426,#3e301c);border-color:#7a5c30;cursor:pointer}
+.pad.live .pn i{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.pad.live .rows span i.on{background:var(--green)}
+.pad.live .rows span.rr i.on{background:var(--amber)}
+.pad.live.hit{filter:brightness(1.35)}
+.pad.off{opacity:.45}
+.pad .soon{font-size:9px;letter-spacing:.15em;color:var(--devmut);margin-top:10px}
+.aw-strip{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.aw-strike{flex:1 1 240px;background:linear-gradient(180deg,#c99a55,#a77a3e);color:#1a140c;border:0;border-radius:5px;padding:12px;font:500 15px Oswald,sans-serif;letter-spacing:.25em;cursor:pointer}
+.aw-strike:active{filter:brightness(1.2)}
+.aw-body{display:grid;grid-template-columns:1fr 1fr 1fr;margin-top:14px;background:#2a2a2d;border:1px solid #1a1a1c;border-radius:8px}
+@media(max-width:860px){.aw-body{grid-template-columns:1fr}}
+.col{padding:14px 16px}
+.col+.col{border-left:1px solid var(--devline)}
+@media(max-width:860px){.col+.col{border-left:0;border-top:1px solid var(--devline)}}
+.col h4{margin:0 0 12px;font-weight:500;font-size:14px;letter-spacing:.25em}
+.col h4 small{font-size:10px;color:var(--devmut);margin-left:10px;letter-spacing:.25em}
+.col.mono h4{color:var(--amber)}
+.ctl{margin-bottom:12px}
+.ctl .row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;letter-spacing:.2em}
+.val{font-family:'IBM Plex Mono',monospace;background:#0c0c0d;border:1px solid #333;border-radius:3px;padding:2px 8px;font-size:12px;min-width:78px;text-align:right;letter-spacing:0;color:#eee}
+.gr{display:inline-flex;gap:2px;margin-left:auto;margin-right:8px}
+.gr i{width:6px;height:9px;background:#3a1f1c;border-radius:1px}
+.gr i.on{background:var(--red)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:24px;background:transparent;margin:4px 0 0;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:4px;background:#121214;border-radius:2px;border:1px solid #000}
+input[type=range]::-moz-range-track{height:4px;background:#121214;border-radius:2px;border:1px solid #000}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:24px;margin-top:-11px;border-radius:2px;background:linear-gradient(180deg,#f2f2f2,#bdbdbd 45%,#8a8a8a 50%,#cfcfcf);border:1px solid #111;box-shadow:0 2px 4px rgba(0,0,0,.6)}
+input[type=range]::-moz-range-thumb{width:14px;height:22px;border-radius:2px;background:linear-gradient(180deg,#f2f2f2,#bdbdbd 45%,#8a8a8a 50%,#cfcfcf);border:1px solid #111}
+.col.mono input[type=range]::-webkit-slider-thumb{background:linear-gradient(180deg,#f6d49a,#d9a04a 45%,#a8701f 50%,#e0b46a)}
+.col.mono input[type=range]::-moz-range-thumb{background:linear-gradient(180deg,#f6d49a,#d9a04a 45%,#a8701f 50%,#e0b46a)}
+.col.blend input[type=range]::-webkit-slider-thumb{background:linear-gradient(180deg,#e9f2ea,#a9c9ad 45%,#6c8f71 50%,#c3dcc6)}
+.tg{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.tb{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(180deg,#3a3a3f,#2c2c30);border:1px solid #18181a;border-radius:3px;color:#cfccc6;padding:7px 6px;font:500 11px Oswald,sans-serif;letter-spacing:.18em;cursor:pointer;white-space:nowrap}
+.tb::before{content:"";width:7px;height:7px;border-radius:50%;background:#4a3a22}
+.tb.on::before{background:var(--amber);box-shadow:0 0 6px var(--amber)}
+.tb.plain::before{display:none}
+.presets{display:flex;justify-content:space-between;gap:8px;margin-bottom:12px}
+.presets .tb{flex:0 0 auto;min-width:56px}
+.presets .tb::before{display:none}
+.presets .tb.on{background:#6b4f25;color:#fff}
+.setb{display:block;margin:-6px auto 10px;background:#121214;border:1px solid #333;border-radius:2px;color:var(--amber);font:500 9px Oswald,sans-serif;letter-spacing:.2em;padding:2px 8px;cursor:pointer}
+.aw-foot{display:flex;align-items:center;gap:18px;margin-top:14px;flex-wrap:wrap}
+.trig{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.2em;min-width:170px}
+.trig i{width:12px;height:12px;border-radius:50%;background:#4a1d18}
+.trig.on i{background:var(--red);box-shadow:0 0 10px var(--red)}
+.trig small{display:block;font-size:10px;color:var(--devmut);letter-spacing:.15em}
+.meters{flex:1 1 280px}
+.meter{display:flex;align-items:center;gap:8px;margin:3px 0;font-size:10px;color:var(--devmut)}
+.segs{flex:1;display:grid;grid-template-columns:repeat(27,1fr);gap:2px;background:#0c0c0d;border:1px solid #222;padding:2px;border-radius:2px}
+.segs i{height:9px;background:#1f2a20;border-radius:1px}
+.segs i.grn{background:var(--green)}.segs i.amb{background:var(--amber)}.segs i.red{background:var(--red)}
+.outc{flex:0 1 220px}
+@media(max-width:560px){
+  .aw{padding:12px 10px 14px}
+  .aw-pads{grid-template-columns:repeat(2,1fr)}
+  .aw-title span{display:none}
+  .aw-brand{font-size:10px;letter-spacing:.2em}
+  .aw-brand img{height:28px}
+  .pad .pn{font-size:12px;letter-spacing:.12em}
+  .aw-strip .tb{flex:1 1 40%!important}
+}
+.aw-help{max-width:940px;margin:14px auto 0;font-size:13px;color:var(--muted);text-align:center}
+.aw-help kbd{font-family:'IBM Plex Mono',monospace;background:#26211c;border:1px solid var(--line);border-radius:3px;padding:0 6px;color:var(--text)}
+
+/* downloads */
+.dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.dl-grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;display:flex;flex-direction:column}
+.card h3{font:500 22px Oswald,sans-serif;margin:0 0 4px;letter-spacing:.02em}
+.card .meta{font-size:13px;color:var(--muted);margin-bottom:12px}
+.card p{font-size:15px;color:#cfc7bb;margin:0 0 16px}
+.card .btn{margin-top:auto;justify-content:center}
+.steps{font-size:14px;color:#cfc7bb;margin:0 0 16px;padding-left:18px}
+.steps li{margin-bottom:6px}
+code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#0e0d0c;border:1px solid var(--line);border-radius:4px;padding:1px 6px;word-break:break-all}
+details.inst{margin-top:20px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 20px}
+details.inst summary{cursor:pointer;font-weight:600}
+details.inst h4{margin:16px 0 6px;font:500 17px Oswald,sans-serif;letter-spacing:.04em}
+
+/* recording details */
+.rec{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:900px){.rec{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td{padding:11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--muted);width:42%;padding-right:16px}
+.todo{background:#4a3410;color:#ffd58a;border-radius:3px;padding:0 5px}
+.notes{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
+.notes h3{font:500 20px Oswald,sans-serif;margin:0 0 10px}
+.notes ul{margin:0;padding-left:18px;color:#cfc7bb;font-size:15px}
+.notes li{margin-bottom:8px}
+
+.soon-box{background:linear-gradient(135deg,#231d16,#1a1714);border:1px solid var(--line);border-radius:12px;padding:34px;display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center}
+@media(max-width:900px){.soon-box{grid-template-columns:1fr}}
+.soon-box ul{margin:0;padding-left:18px;color:#cfc7bb}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">Preview of the new homepage. Bits marked like <span class="todo">this</span> need your details, Dave.</div>
+
+<header>
+  <div class="wrap">
+    <a href="#" class="logo spaced"><img src="logo.png" alt="">Cymbal Samples</a>
+    <nav>
+      <a href="#alloy-web">Play it</a>
+      <a href="#download">Download</a>
+      <a href="#recording">How it was recorded</a>
+      <a href="#coming">Coming soon</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="kicker spaced">Collingwood Cymbals · Bristol</div>
+      <span class="free-tag">Free · Windows &amp; Mac · no sign-up</span>
+      <h1>Alloy. A free cymbal player, with <em>real hand-hammered</em> hits.</h1>
+      <p class="lead">I make cymbals by hand in my Bristol workshop. Alloy is my free player for them: every hit is recorded on a stereo ribbon pair and a mono mic at the same moment, and one fader blends between the two.</p>
+      <p class="lead">Download it with my first set of example hits, all free. Or play it right here in your browser first.</p>
+      <div class="cta">
+        <a class="btn" href="#download">Download Alloy free</a>
+        <a class="btn ghost" href="#alloy-web">Play it in your browser</a>
+      </div>
+      <div class="fine">VST3 for Windows · Audio Unit + VST3 for Mac · 48 kHz 24-bit WAV hits included</div>
+    </div>
+    <div class="hero-img"><img src="alloy-panel.jpg" width="900" height="898" alt="The Alloy cymbal player: ribbons, blend and mono controls with six articulation pads"></div>
+  </div>
+</div>
+
+<!-- ============ WEB ALLOY ============ -->
+<section id="alloy-web">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="spaced">Try it now</div>
+      <h2>Play Alloy in your browser</h2>
+      <p>This is the real Test 1 recording: 20 tip hits, 5 velocities with 4 round robins each. Hit the TIP pad (higher up is harder), or press the big strike button. Move BLEND to go from the ribbons to the mono mic.</p>
+    </div>
+
+    <div class="aw" id="aw">
+      <div class="aw-top">
+        <div class="aw-title"><b>ALLOY</b><span>CYMBAL PLAYER · WEB</span></div>
+        <div class="aw-brand"><div>COLLINGWOOD CYMBALS<small>BRISTOL · ENGLAND</small></div><img src="logo.png" alt=""></div>
+      </div>
+
+      <div class="aw-screen">
+        <div class="aw-name"><div class="nm">ALLOY TEST 1</div><div class="st" id="awStatus">1 ARTICULATION · 5 LAYERS · 4 RR · 48 kHz 24 BIT</div></div>
+        <div class="aw-wave">
+          <canvas id="awWave"></canvas>
+          <div class="lbl">RIBBONS<i>MONO</i></div>
+          <div class="inf" id="awHitInfo">TIP</div>
+          <div class="off">MONO MIC +0.68 ms AHEAD (MEASURED)</div>
+          <div class="hint" id="awHint">HIT THE TIP PAD TO START</div>
+        </div>
+        <div class="aw-pads">
+          <div class="pad live" id="awPadTip" title="Click higher up to hit harder">
+            <div class="pn"><i></i>TIP</div><div class="nt">C4 60</div>
+            <div class="rows">VEL<span id="awVelDots"><i></i><i></i><i></i><i></i><i></i></span><br>RR&nbsp;&nbsp;<span class="rr" id="awRRDots"><i></i><i></i><i></i><i></i></span></div>
+          </div>
+          <div class="pad off"><div class="pn"><i></i>SHOULDER</div><div class="nt">D4 62</div><div class="soon">NEXT SESSION</div></div>
+          <div class="pad off"><div class="pn"><i></i>EDGE</div><div class="nt">E4 64</div><div class="soon">NEXT SESSION</div></div>
+          <div class="pad off"><div class="pn"><i></i>BELL</div><div class="nt">F4 65</div><div class="soon">NEXT SESSION</div></div>
+          <div class="pad off"><div class="pn"><i></i>CHOKE</div><div class="nt">G4 67</div><div class="soon">NEXT SESSION</div></div>
+          <div class="pad off"><div class="pn"><i></i>SWELL</div><div class="nt">A4 69</div><div class="soon">NEXT SESSION</div></div>
+        </div>
+        <div class="aw-strip">
+          <button class="aw-strike" id="awStrike">STRIKE (SPACE)</button>
+          <button class="tb plain" id="awChoke" style="flex:0 1 130px">STOP (X)</button>
+          <button class="tb" id="awMidi" style="flex:0 1 190px">USE MIDI KEYBOARD</button>
+        </div>
+      </div>
+
+      <div class="aw-body">
+        <div class="col">
+          <h4>RIBBONS<small>STEREO PAIR</small></h4>
+          <div class="ctl"><div class="row">LEVEL<span class="val" data-v="rLevel"></span></div><input type="range" data-p="rLevel" min="-24" max="6" step="0.1" value="0"></div>
+          <div class="ctl"><div class="row">WIDTH<span class="val" data-v="rWidth"></span></div><input type="range" data-p="rWidth" min="0" max="150" step="1" value="100"></div>
+          <div class="ctl"><div class="row">TONE<span class="val" data-v="rTone"></span></div><input type="range" data-p="rTone" min="-9" max="9" step="0.1" value="0"></div>
+          <div class="ctl"><div class="row">COMPRESS<span class="gr" id="awGrR"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="val" data-v="rComp"></span></div><input type="range" data-p="rComp" min="0" max="100" step="1" value="0"></div>
+          <div class="ctl"><div class="row">DRIVE<span class="val" data-v="rDrive"></span></div><input type="range" data-p="rDrive" min="0" max="100" step="1" value="0"></div>
+          <div class="tg"><button class="tb" data-t="rSolo">SOLO</button><button class="tb" data-t="rPol">Ø POL</button><button class="tb" data-t="rSwap">SWAP L/R</button></div>
+        </div>
+        <div class="col blend">
+          <h4>BLEND</h4>
+          <div class="presets"><button class="tb" data-blend="0" title="Hold to hear the ribbons">0</button><button class="tb" data-blend="50" title="Hold to hear 50/50">50/50</button><button class="tb" data-blend="100" title="Hold to hear the mono mic">100</button></div>
+          <button class="setb" id="awSet">SET</button>
+          <div class="ctl"><div class="row">RIBBONS &lt; &gt; MONO<span class="val" data-v="blend"></span></div><input type="range" data-p="blend" min="0" max="100" step="1" value="50"></div>
+          <div class="ctl"><div class="row">MONO DELAY<span class="val" data-v="mDelay"></span></div><input type="range" data-p="mDelay" min="0" max="5" step="0.01" value="0"></div>
+          <div class="ctl"><div class="row">VELOCITY<span class="val" data-v="vel"></span></div><input type="range" data-p="vel" min="1" max="127" step="1" value="100"></div>
+          <div class="ctl"><div class="row">DECAY<span class="val" data-v="decay"></span></div><input type="range" data-p="decay" min="0" max="100" step="1" value="100"></div>
+          <div class="ctl"><div class="row">TUNE<span class="val" data-v="tune"></span></div><input type="range" data-p="tune" min="-12" max="12" step="0.01" value="0"></div>
+          <div class="tg"><button class="tb" data-t="roundRobin">ROUND ROBIN</button></div>
+        </div>
+        <div class="col mono">
+          <h4>MONO<small>SPOT MIC</small></h4>
+          <div class="ctl"><div class="row">LEVEL<span class="val" data-v="mLevel"></span></div><input type="range" data-p="mLevel" min="-24" max="6" step="0.1" value="0"></div>
+          <div class="ctl"><div class="row">PAN<span class="val" data-v="mPan"></span></div><input type="range" data-p="mPan" min="-100" max="100" step="1" value="15"></div>
+          <div class="ctl"><div class="row">TONE<span class="val" data-v="mTone"></span></div><input type="range" data-p="mTone" min="-9" max="9" step="0.1" value="0"></div>
+          <div class="ctl"><div class="row">COMPRESS<span class="gr" id="awGrM"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="val" data-v="mComp"></span></div><input type="range" data-p="mComp" min="0" max="100" step="1" value="0"></div>
+          <div class="ctl"><div class="row">DRIVE<span class="val" data-v="mDrive"></span></div><input type="range" data-p="mDrive" min="0" max="100" step="1" value="0"></div>
+          <div class="tg"><button class="tb" data-t="mSolo">SOLO</button><button class="tb" data-t="mPol">Ø POL</button><button class="tb" data-t="align">ALIGN</button></div>
+        </div>
+      </div>
+
+      <div class="aw-foot">
+        <div class="trig" id="awTrig"><i></i><div>TRIG<small id="awTrigText">C4 TIP</small></div></div>
+        <div class="meters">
+          <div class="meter">L<div class="segs" id="awMeterL"></div></div>
+          <div class="meter">R<div class="segs" id="awMeterR"></div></div>
+        </div>
+        <div class="outc ctl" style="margin:0"><div class="row" style="font-size:11px;letter-spacing:.2em">OUTPUT<span class="val" data-v="out"></span></div><input type="range" data-p="out" min="-24" max="6" step="0.1" value="0"></div>
+      </div>
+    </div>
+    <p class="aw-help">Keys: <kbd>Space</kbd> strike · <kbd>1</kbd>–<kbd>5</kbd> pick a velocity layer · <kbd>X</kbd> stop. Double-click a fader to reset it. Hold 0, 50/50 or 100 to hear that blend, let go to go back. Headphones recommended.</p>
+  </div>
+</section>
+
+<!-- ============ DOWNLOADS ============ -->
+<section id="download">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="spaced">Free download</div>
+      <h2>Get Alloy and the example hits</h2>
+      <p>No sign-up, no catch. The hits are plain WAV files, so they work in any DAW or sampler too. Alloy is just the easy way to blend the two mics.</p>
+    </div>
+    <div class="dl-grid">
+      <div class="card">
+        <h3>Alloy for Windows</h3>
+        <div class="meta">Version 0.1 · VST3 · 64-bit · 1 MB</div>
+        <p>For Reaper, Cubase, Studio One, Ableton Live, FL Studio and any other VST3 host.</p>
+        <a class="btn" href="../downloads/Alloy-0.1-Windows.zip" download>Download for Windows</a>
+      </div>
+      <div class="card">
+        <h3>Alloy for Mac</h3>
+        <div class="meta">Version 0.1 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 1.5 MB</div>
+        <p>Audio Unit instrument for Logic Pro and GarageBand, plus a VST3 for other hosts. Read the note inside before you install.</p>
+        <a class="btn" href="../downloads/Alloy-0.1-Mac.zip" download>Download for Mac</a>
+      </div>
+      <div class="card">
+        <h3>Alloy Test 1 hits</h3>
+        <div class="meta">20 tip hits · ribbon pair + mono · 48 kHz 24-bit WAV · 87 MB</div>
+        <p>5 velocity layers × 4 round robins, every hit on both mic setups, named and ready for Alloy.</p>
+        <a class="btn" href="../downloads/Collingwood-Alloy-Test-1-WAV.zip" download>Download the hits</a>
+      </div>
+    </div>
+
+    <details class="inst">
+      <summary>How to install</summary>
+      <h4>Windows</h4>
+      <ol class="steps">
+        <li>Unzip the download. You'll get a folder called <code>Alloy.vst3</code>.</li>
+        <li>Move it into <code>C:\Program Files\Common Files\VST3</code></li>
+        <li>Rescan plug-ins in your DAW and add Alloy to an instrument track.</li>
+      </ol>
+      <h4>Mac</h4>
+      <ol class="steps">
+        <li>Unzip the download and open <code>READ ME FIRST.txt</code>.</li>
+        <li>In Finder choose Go › Go to Folder… and paste <code>~/Library/Audio/Plug-Ins/Components</code>, then drag <code>Alloy.component</code> in. For VST3 hosts, put <code>Alloy.vst3</code> in <code>~/Library/Audio/Plug-Ins/VST3</code>.</li>
+        <li>This first version isn't signed by Apple yet, so unblock it once: open Terminal and paste <code>xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/Components/Alloy.component</code></li>
+        <li>In Logic, make a Software Instrument track and pick AU Instruments › Collingwood › Alloy.</li>
+      </ol>
+      <h4>Loading the hits</h4>
+      <ol class="steps">
+        <li>Unzip the hits. Keep the folder <code>Collingwood - Alloy Test 1</code> together (it holds Ribbon, Mono and alloy.txt).</li>
+        <li>In Alloy press LOAD and pick that folder, or drag the folder onto Alloy.</li>
+        <li>Play C4 (MIDI note 60) for the tip.</li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<!-- ============ RECORDING ============ -->
+<section id="recording">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="spaced">The example hits</div>
+      <h2>How Test 1 was recorded</h2>
+      <p>One of my hand-hammered cymbals, recorded in my workshop in Bristol. It's a first test, so I've been open about what I'll change for the full packs.</p>
+    </div>
+    <div class="rec">
+      <table>
+        <tr><td>Cymbal</td><td><span class="todo">size and name of the cymbal</span>, hand-hammered by me</td></tr>
+        <tr><td>Articulation</td><td>Tip, played with a <span class="todo">stick / weight</span></td></tr>
+        <tr><td>Hits</td><td>20: 5 velocity layers × 4 round robins</td></tr>
+        <tr><td>Stereo pair</td><td>2 × Alder Audio ALDER ribbon mics, <span class="todo">about 1.2 m away, crossed pair?</span></td></tr>
+        <tr><td>Mono mic</td><td>JZ Vintage V11, <span class="todo">about 40 cm over the bow?</span></td></tr>
+        <tr><td>Interface</td><td><span class="todo">audio interface / preamps</span></td></tr>
+        <tr><td>Format</td><td>48 kHz, 24-bit WAV. Both setups recorded at the same moment</td></tr>
+        <tr><td>Mic timing</td><td>The mono mic hears each hit 0.68 ms before the ribbons. Alloy's ALIGN lines them up</td></tr>
+        <tr><td>Editing</td><td>Cut just before each hit, short fade in, rings out to silence. One gain per mic, so the layers keep their real dynamics</td></tr>
+        <tr><td>Processing</td><td>None, apart from a 150 Hz low-cut during recording</td></tr>
+      </table>
+      <div class="notes">
+        <h3>What I'm changing for the full packs</h3>
+        <ul>
+          <li>No low-cut filter, so you get the full body of the cymbal.</li>
+          <li>The two ribbons matched in level (the left one sat a bit low in this test).</li>
+          <li>Velocity layers spread further apart, especially the middle ones.</li>
+          <li>All six articulations: tip, shoulder, edge, bell, choke and swell.</li>
+          <li>A wider stereo picture.</li>
+        </ul>
+        <p class="fine" style="margin-top:16px"><span class="todo">Setup photo here when you have one</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMING SOON ============ -->
+<section id="coming">
+  <div class="wrap">
+    <div class="soon-box">
+      <div>
+        <div class="spaced" style="color:var(--bronze);font-size:12px">Coming soon</div>
+        <h2>Full cymbal sample packs</h2>
+        <p style="color:#cfc7bb">One hand-hammered Collingwood cymbal per pack, played every way it can be played, on the ribbon pair and the mono mic. Plain WAVs that work anywhere, and they open straight into Alloy.</p>
+      </div>
+      <ul>
+        <li>6 articulations per cymbal</li>
+        <li>5 velocity layers × 4 round robins</li>
+        <li>Stereo ribbon pair + mono on every hit</li>
+        <li>48 kHz 24-bit WAV, royalty free in your music</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="spaced" style="color:var(--bronze2)">Cymbal Samples</div>
+    <div>cymbalsamples.com · a <a href="https://www.collingwoodcymbals.com">Collingwood Cymbals</a> project · Bristol, England</div>
+    <div>Alloy and the example hits are free to use in your own music. Please don't resell or share the files themselves.</div>
+  </div>
+</footer>
+
+<script>
+  // build the meter segments
+  ['awMeterL','awMeterR'].forEach(function(id){var el=document.getElementById(id);for(var i=0;i<27;i++)el.appendChild(document.createElement('i'));});
+  // hide the start hint after the first hit
+  ['awPadTip','awStrike'].forEach(function(id){document.getElementById(id).addEventListener('pointerdown',function(){var h=document.getElementById('awHint');if(h)h.remove();},{once:true});});
+</script>
+<script src="alloy-web.js"></script>
+</body>
+</html>
