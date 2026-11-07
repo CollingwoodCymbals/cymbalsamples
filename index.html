@@ -72,6 +72,24 @@ h2{font:500 clamp(28px,3.6vw,40px)/1.15 Oswald,sans-serif;margin:8px 0 12px}
 .aw-name .st{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--devmut);letter-spacing:.06em}
 .aw-wave{position:relative;background:#0c0c0d;border:1px solid #222;border-radius:3px;height:110px}
 .aw-wave canvas{width:100%;height:100%;display:block}
+.vt{position:absolute;top:4px;left:6px;display:flex;gap:4px}
+.vt button{background:none;border:0;border-bottom:1px solid transparent;color:var(--devmut);font:500 10px Oswald,sans-serif;letter-spacing:.2em;padding:2px 6px;cursor:pointer}
+.vt button.mo{color:#a77a3e}
+.vt button.on{background:#232326;color:#eee;border-bottom-color:#eee}
+.vt button.mo.on{color:var(--amber);border-bottom-color:var(--amber)}
+.eq{margin:4px 0 8px}
+.eqh{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.2em;margin-bottom:10px}
+.eqh small{font-size:9px;color:var(--devmut);letter-spacing:.2em}
+.pp{margin-left:auto;display:flex;gap:3px}
+.pp .tb{flex:0 0 auto;padding:4px 8px;font-size:10px}
+.knobs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;text-align:center}
+.kn .dial{width:34px;height:34px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f4f1ea,#bdb8ae 60%,#7d7973);border:1px solid #111;box-shadow:0 2px 4px rgba(0,0,0,.6),0 0 0 4px #232326;position:relative;cursor:ns-resize;touch-action:none;--a:-135deg}
+.col.mono .kn .dial{background:radial-gradient(circle at 40% 35%,#f6d49a,#d9a04a 60%,#9a6620)}
+.kn .dial i{position:absolute;left:50%;top:3px;width:2px;height:13px;margin-left:-1px;background:#1a1a1a;border-radius:1px;transform-origin:1px 14px;transform:rotate(var(--a))}
+.kn .dial:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.kn .kl{font-size:9px;letter-spacing:.12em;margin-top:8px;white-space:nowrap}
+.kn .kv{font-family:'IBM Plex Mono',monospace;background:#0c0c0d;border:1px solid #333;border-radius:3px;padding:2px 0;font-size:10px;margin-top:4px;color:#eee;white-space:nowrap}
+.tg .tb{padding:7px 4px;letter-spacing:.12em}
 .aw-wave .lbl{position:absolute;top:6px;left:8px;font-size:10px;letter-spacing:.2em}
 .aw-wave .lbl i{font-style:normal;color:var(--amber);margin-left:10px}
 .aw-wave .inf{position:absolute;top:6px;right:8px;font-size:10px;letter-spacing:.2em;color:var(--devmut)}
@@ -236,6 +254,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       <p class="lead">I make cymbals by hand in my Bristol workshop. Alloy is a free plugin that plays recordings of them inside music software such as Logic, Cubase, Reaper or Ableton. Every hit is recorded on a stereo ribbon pair and a mono mic, and one fader blends between the two.</p>
       <ul class="hero-list">
         <li>VST3 for Windows and Mac, plus AU for Logic</li>
+        <li>Level, compression, punch, drive and a five-band EQ on each mic</li>
         <li>Comes with my first set of example hits, all free</li>
         <li>You can try it in your browser first, below</li>
       </ul>
@@ -245,7 +264,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       </div>
       <div class="fine">Works in Logic Pro, Cubase, Reaper, Ableton Live, FL Studio, Studio One and other VST3 or AU hosts · 48 kHz 24-bit WAV hits included</div>
     </div>
-    <div class="hero-img"><img src="alloy-panel.jpg" width="900" height="898" alt="The Alloy cymbal plugin: ribbons, blend and mono controls with six articulation pads"></div>
+    <div class="hero-img"><img src="alloy-panel.jpg" width="900" height="948" alt="The Alloy cymbal plugin: ribbons, blend and mono controls with six articulation pads"></div>
   </div>
 </div>
 
@@ -273,7 +292,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
         <div class="aw-name"><div class="nm">ALLOY TEST 1</div><div class="st" id="awStatus">1 ARTICULATION · 5 LAYERS · 4 RR · 48 kHz 24 BIT</div></div>
         <div class="aw-wave">
           <canvas id="awWave"></canvas>
-          <div class="lbl">RIBBONS<i>MONO</i></div>
+          <div class="vt"><button data-view="both" class="on">BOTH</button><button data-view="ribbons">RIBBONS</button><button data-view="mono" class="mo">MONO</button></div>
           <div class="inf" id="awHitInfo">TIP</div>
           <div class="off">MONO MIC +0.68 ms AHEAD (MEASURED)</div>
         </div>
@@ -295,10 +314,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <h4>RIBBONS<small>STEREO PAIR</small></h4>
           <div class="ctl"><div class="row">LEVEL<span class="val" data-v="rLevel"></span></div><input type="range" data-p="rLevel" min="-24" max="6" step="0.1" value="0"></div>
           <div class="ctl"><div class="row">WIDTH<span class="val" data-v="rWidth"></span></div><input type="range" data-p="rWidth" min="0" max="150" step="1" value="100"></div>
-          <div class="ctl"><div class="row">TONE<span class="val" data-v="rTone"></span></div><input type="range" data-p="rTone" min="-9" max="9" step="0.1" value="0"></div>
           <div class="ctl"><div class="row">COMPRESS<span class="gr" id="awGrR"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="val" data-v="rComp"></span></div><input type="range" data-p="rComp" min="0" max="100" step="1" value="0"></div>
+          <div class="ctl"><div class="row">PUNCH<span class="val" data-v="rPunch"></span></div><input type="range" data-p="rPunch" min="-100" max="100" step="1" value="0"></div>
           <div class="ctl"><div class="row">DRIVE<span class="val" data-v="rDrive"></span></div><input type="range" data-p="rDrive" min="0" max="100" step="1" value="0"></div>
-          <div class="tg"><button class="tb" data-t="rSolo">SOLO</button><button class="tb" data-t="rPol">Ø POL</button><button class="tb" data-t="rSwap">SWAP L/R</button></div>
+          <div class="eq"><div class="eqh">EQ<small>PRE OR POST COMP</small><span class="pp"><button class="tb" data-pp="rPost" data-pos="pre">PRE</button><button class="tb" data-pp="rPost" data-pos="post">POST</button></span></div>
+            <div class="knobs"><div class="kn" data-k="rCut" data-min="20" data-max="600" data-def="20" data-scale="log"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons LOW CUT"><i></i></div><div class="kl">LOW CUT</div><div class="kv"></div></div><div class="kn" data-k="rLow" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons LOW"><i></i></div><div class="kl">LOW</div><div class="kv"></div></div><div class="kn" data-k="rMid" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons MID"><i></i></div><div class="kl">MID</div><div class="kv"></div></div><div class="kn" data-k="rMidF" data-min="300" data-max="10000" data-def="2000" data-scale="log"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons MID FREQ"><i></i></div><div class="kl">MID FREQ</div><div class="kv"></div></div><div class="kn" data-k="rHigh" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons HIGH"><i></i></div><div class="kl">HIGH</div><div class="kv"></div></div></div></div>
+          <div class="tg"><button class="tb" data-t="rSolo">SOLO</button><button class="tb" data-t="rPol">Ø POL</button><button class="tb" data-t="rSwap">SWAP L/R</button><button class="tb" data-t="rSlow">SLOW</button></div>
         </div>
         <div class="col blend">
           <h4>BLEND</h4>
@@ -309,16 +330,18 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <div class="ctl"><div class="row">VELOCITY<span class="val" data-v="vel"></span></div><input type="range" data-p="vel" min="1" max="127" step="1" value="100"></div>
           <div class="ctl"><div class="row">DECAY<span class="val" data-v="decay"></span></div><input type="range" data-p="decay" min="0" max="100" step="1" value="100"></div>
           <div class="ctl"><div class="row">TUNE<span class="val" data-v="tune"></span></div><input type="range" data-p="tune" min="-12" max="12" step="0.01" value="0"></div>
-          <div class="tg"><button class="tb" data-t="roundRobin">ROUND ROBIN</button></div>
+          <div class="tg"><button class="tb" data-t="roundRobin">ROUND ROBIN</button><button class="tb" data-t="chokeOn">CHOKE ON OFF</button></div>
         </div>
         <div class="col mono">
           <h4>MONO<small>SPOT MIC</small></h4>
           <div class="ctl"><div class="row">LEVEL<span class="val" data-v="mLevel"></span></div><input type="range" data-p="mLevel" min="-24" max="6" step="0.1" value="0"></div>
           <div class="ctl"><div class="row">PAN<span class="val" data-v="mPan"></span></div><input type="range" data-p="mPan" min="-100" max="100" step="1" value="15"></div>
-          <div class="ctl"><div class="row">TONE<span class="val" data-v="mTone"></span></div><input type="range" data-p="mTone" min="-9" max="9" step="0.1" value="0"></div>
           <div class="ctl"><div class="row">COMPRESS<span class="gr" id="awGrM"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="val" data-v="mComp"></span></div><input type="range" data-p="mComp" min="0" max="100" step="1" value="0"></div>
+          <div class="ctl"><div class="row">PUNCH<span class="val" data-v="mPunch"></span></div><input type="range" data-p="mPunch" min="-100" max="100" step="1" value="0"></div>
           <div class="ctl"><div class="row">DRIVE<span class="val" data-v="mDrive"></span></div><input type="range" data-p="mDrive" min="0" max="100" step="1" value="0"></div>
-          <div class="tg"><button class="tb" data-t="mSolo">SOLO</button><button class="tb" data-t="mPol">Ø POL</button><button class="tb" data-t="align">ALIGN</button></div>
+          <div class="eq"><div class="eqh">EQ<small>PRE OR POST COMP</small><span class="pp"><button class="tb" data-pp="mPost" data-pos="pre">PRE</button><button class="tb" data-pp="mPost" data-pos="post">POST</button></span></div>
+            <div class="knobs"><div class="kn" data-k="mCut" data-min="20" data-max="600" data-def="20" data-scale="log"><div class="dial" tabindex="0" role="slider" aria-label="Mono LOW CUT"><i></i></div><div class="kl">LOW CUT</div><div class="kv"></div></div><div class="kn" data-k="mLow" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Mono LOW"><i></i></div><div class="kl">LOW</div><div class="kv"></div></div><div class="kn" data-k="mMid" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Mono MID"><i></i></div><div class="kl">MID</div><div class="kv"></div></div><div class="kn" data-k="mMidF" data-min="300" data-max="10000" data-def="2000" data-scale="log"><div class="dial" tabindex="0" role="slider" aria-label="Mono MID FREQ"><i></i></div><div class="kl">MID FREQ</div><div class="kv"></div></div><div class="kn" data-k="mHigh" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Mono HIGH"><i></i></div><div class="kl">HIGH</div><div class="kv"></div></div></div></div>
+          <div class="tg"><button class="tb" data-t="mSolo">SOLO</button><button class="tb" data-t="mPol">Ø POL</button><button class="tb" data-t="align">ALIGN</button><button class="tb" data-t="mSlow">SLOW</button></div>
         </div>
       </div>
 
@@ -331,7 +354,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
         <div class="outc ctl" style="margin:0"><div class="row" style="font-size:11px;letter-spacing:.2em">OUTPUT<span class="val" data-v="out"></span></div><input type="range" data-p="out" min="-24" max="6" step="0.1" value="0"></div>
       </div>
     </div>
-    <p class="aw-help">Double-click a fader to reset it. Hold 0, 50/50 or 100 to hear that blend, let go to go back. Headphones recommended.</p>
+    <p class="aw-help">Drag a knob up or down to turn it. Double-click a fader or knob to reset it. Hold 0, 50/50 or 100 to hear that blend, let go to go back. Headphones recommended.</p>
   </div>
 </section>
 
@@ -346,15 +369,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     <div class="dl-grid">
       <div class="card">
         <h3>Alloy for Windows</h3>
-        <div class="meta">Version 0.1 · VST3 · 64-bit · 1 MB</div>
+        <div class="meta">Version 0.2 · VST3 · 64-bit · 1 MB</div>
         <p>For Reaper, Cubase, Studio One, Ableton Live, FL Studio and any other VST3 host.</p>
-        <a class="btn" href="downloads/Alloy-0.1-Windows.zip" download>Download for Windows</a>
+        <a class="btn" href="downloads/Alloy-0.2-Windows.zip" download>Download for Windows</a>
       </div>
       <div class="card">
         <h3>Alloy for Mac</h3>
-        <div class="meta">Version 0.1 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 1.5 MB</div>
+        <div class="meta">Version 0.2 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 1.5 MB</div>
         <p>Audio Unit instrument for Logic Pro and GarageBand, plus a VST3 for other hosts. Read the note inside before you install.</p>
-        <a class="btn" href="downloads/Alloy-0.1-Mac.zip" download>Download for Mac</a>
+        <a class="btn" href="downloads/Alloy-0.2-Mac.zip" download>Download for Mac</a>
       </div>
       <div class="card">
         <h3>Alloy Test 1 hits</h3>
@@ -376,7 +399,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       <ol class="steps">
         <li>Unzip the download and open <code>READ ME FIRST.txt</code>.</li>
         <li>In Finder choose Go › Go to Folder… and paste <code>~/Library/Audio/Plug-Ins/Components</code>, then drag <code>Alloy.component</code> in. For VST3 hosts, put <code>Alloy.vst3</code> in <code>~/Library/Audio/Plug-Ins/VST3</code>.</li>
-        <li>This first version isn't signed by Apple yet, so unblock it once: open Terminal and paste <code>xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/Components/Alloy.component</code></li>
+        <li>Alloy isn't signed by Apple yet, so unblock it once: open Terminal and paste <code>xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/Components/Alloy.component</code></li>
         <li>In Logic, make a Software Instrument track and pick AU Instruments › Collingwood › Alloy.</li>
       </ol>
       <h4>Loading the hits</h4>

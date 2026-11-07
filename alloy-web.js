@@ -16,13 +16,17 @@
 
   // ---------- parameters (match the plug-in's faders) ----------
   const P = {
-    rLevel: 0, rWidth: 100, rTone: 0, rComp: 0, rDrive: 0,
+    rLevel: 0, rWidth: 100, rComp: 0, rPunch: 0, rDrive: 0,
+    rCut: 20, rLow: 0, rMid: 0, rMidF: 2000, rHigh: 0,
     blend: 50, mDelay: 0, vel: 100, decay: 100, tune: 0,
-    mLevel: 0, mPan: 15, mTone: 0, mComp: 0, mDrive: 0,
+    mLevel: 0, mPan: 15, mComp: 0, mPunch: 0, mDrive: 0,
+    mCut: 20, mLow: 0, mMid: 0, mMidF: 2000, mHigh: 0,
     out: 0,
-    rSolo: false, rPol: false, rSwap: false,
-    mSolo: false, mPol: false, align: true, roundRobin: true
+    rSolo: false, rPol: false, rSwap: false, rSlow: false, rPost: false,
+    mSolo: false, mPol: false, align: true, mSlow: false, mPost: false,
+    roundRobin: true, chokeOn: false
   };
+  let view = 'both';                 // wave view: both / ribbons / mono
 
   const dB = (x) => Math.pow(10, x / 20);
 
@@ -54,21 +58,35 @@
       b.delay = ctx.createDelay(0.05);
       b.input.connect(b.delay); head = b.delay;
     }
-    b.low = ctx.createBiquadFilter(); b.low.type = 'lowshelf'; b.low.frequency.value = 400;
-    b.high = ctx.createBiquadFilter(); b.high.type = 'highshelf'; b.high.frequency.value = 3500;
+    b.head = head;
+    // five-knob EQ: low cut, low shelf, mid (sweepable), high shelf
+    b.cut = ctx.createBiquadFilter(); b.cut.type = 'highpass'; b.cut.Q.value = 0.707;
+    b.low = ctx.createBiquadFilter(); b.low.type = 'lowshelf'; b.low.frequency.value = 150;
+    b.mid = ctx.createBiquadFilter(); b.mid.type = 'peaking'; b.mid.Q.value = 0.9;
+    b.high = ctx.createBiquadFilter(); b.high.type = 'highshelf'; b.high.frequency.value = 7000;
+    b.cut.connect(b.low); b.low.connect(b.mid); b.mid.connect(b.high);
     b.shaper = ctx.createWaveShaper(); b.shaper.oversample = '2x';
     b.comp = ctx.createDynamicsCompressor();
-    b.comp.knee.value = 6; b.comp.attack.value = 0.003; b.comp.release.value = 0.25;
+    b.comp.knee.value = 6; b.comp.attack.value = 0.003; b.comp.release.value = 0.15;
     b.makeup = ctx.createGain();
     b.level = ctx.createGain();
     b.pol = ctx.createGain();
     b.blend = ctx.createGain();
-    head.connect(b.low); b.low.connect(b.high); b.high.connect(b.shaper);
-    b.shaper.connect(b.comp); b.comp.connect(b.makeup); b.makeup.connect(b.level);
+    b.shaper.connect(b.comp); b.comp.connect(b.makeup);
+    b.post = null; routeEQ(b, false);
     b.level.connect(b.pol);
     if (!stereo) { b.pan = ctx.createStereoPanner(); b.pol.connect(b.pan); b.pan.connect(b.blend); }
     else b.pol.connect(b.blend);
     return b;
+  }
+
+  // EQ before (PRE) or after (POST) the compressor, like the plug-in
+  function routeEQ(b, post) {
+    if (b.post === post) return;
+    [b.head, b.high, b.makeup].forEach((n) => { try { n.disconnect(); } catch (e) {} });
+    if (post) { b.head.connect(b.shaper); b.makeup.connect(b.cut); b.high.connect(b.level); }
+    else { b.head.connect(b.cut); b.high.connect(b.shaper); b.makeup.connect(b.level); }
+    b.post = post;
   }
 
   function build() {
@@ -86,10 +104,12 @@
     requestAnimationFrame(meterLoop);
   }
 
-  function setBusTone(b, t) {        // tilt: +dB brighter, -dB darker
-    b.low.gain.value = -t / 2; b.high.gain.value = t;
+  function setBusEQ(b, cut, lo, mid, midf, hi) {
+    b.cut.frequency.value = cut <= 20.5 ? 10 : cut;   // fully left = off
+    b.low.gain.value = lo; b.mid.gain.value = mid; b.mid.frequency.value = midf; b.high.gain.value = hi;
   }
-  function setBusComp(b, c) {        // 0..100
+  function setBusComp(b, c, slow) {  // 0..100
+    b.comp.release.value = slow ? 0.6 : 0.15;
     b.comp.threshold.value = -c * 0.4;            // 0 .. -40 dB
     b.comp.ratio.value = 1 + c / 100 * 7;         // 1 .. 8
     b.makeup.gain.value = dB(c * 0.12);           // gentle make-up
@@ -104,13 +124,13 @@
     const sw = P.rSwap;
     r.ll.gain.value = sw ? bx : a; r.rr.gain.value = sw ? bx : a;
     r.lr.gain.value = sw ? a : bx; r.rl.gain.value = sw ? a : bx;
-    setBusTone(r, P.rTone); setBusComp(r, P.rComp);
+    setBusEQ(r, P.rCut, P.rLow, P.rMid, P.rMidF, P.rHigh); setBusComp(r, P.rComp, P.rSlow); routeEQ(r, P.rPost);
     r.shaper.curve = driveCurve(P.rDrive);
     r.pol.gain.value = P.rPol ? -1 : 1;
     // mono
     m.level.gain.value = dB(P.mLevel);
     m.pan.pan.value = P.mPan / 100;
-    setBusTone(m, P.mTone); setBusComp(m, P.mComp);
+    setBusEQ(m, P.mCut, P.mLow, P.mMid, P.mMidF, P.mHigh); setBusComp(m, P.mComp, P.mSlow); routeEQ(m, P.mPost);
     m.shaper.curve = driveCurve(P.mDrive);
     m.pol.gain.value = P.mPol ? -1 : 1;
     m.delay.delayTime.value = ((P.align ? OFFSET_MS : 0) + P.mDelay) / 1000;
@@ -132,7 +152,7 @@
       loading[k] = fetch(AUDIO + k + '.mp3')
         .then((res) => { if (!res.ok) throw new Error(k); return res.arrayBuffer(); })
         .then((ab) => new Promise((ok, bad) => ctx.decodeAudioData(ab, ok, bad)))
-        .then((buf) => { buffers[k] = buf; peaks[k] = makePeaks(buf); loadedCount++; status(); return buf; });
+        .then((buf) => { buffers[k] = buf; peaks[k] = makePeaks(buf, -1); peaks[k + 'L'] = makePeaks(buf, 0); peaks[k + 'R'] = makePeaks(buf, 1); loadedCount++; status(); return buf; });
     }
     return loading[k];
   }
@@ -149,8 +169,9 @@
     el.textContent = loadedCount < 40 ? 'LOADING ' + loadedCount + ' / 40 HITS' : '1 ARTICULATION · 5 LAYERS · 4 RR · 48 kHz 24 BIT';
   }
 
-  function makePeaks(buf) {
-    const n = 600, d0 = buf.getChannelData(0), d1 = buf.numberOfChannels > 1 ? buf.getChannelData(1) : d0;
+  function makePeaks(buf, ch) {      // ch -1 = both channels, 0 = left, 1 = right
+    const n = 600, last = buf.numberOfChannels - 1;
+    const d0 = buf.getChannelData(ch < 0 ? 0 : Math.min(ch, last)), d1 = ch < 0 ? buf.getChannelData(last) : d0;
     const step = Math.floor(buf.length / n), out = new Float32Array(n);
     for (let i = 0; i < n; i++) {
       let mx = 0;
@@ -185,6 +206,10 @@
     sR.playbackRate.value = sM.playbackRate.value = rate;
     sR.connect(env); env.connect(nodes.r.input);
     sM.connect(env2); env2.connect(nodes.m.input);
+    // PUNCH: lift (or soften) the first 40 ms of each mic's hit
+    [[env, P.rPunch], [env2, P.mPunch]].forEach(([g, pn]) => {
+      if (pn !== 0) { g.gain.setValueAtTime(dB(pn * 0.09), t); g.gain.linearRampToValueAtTime(1, t + 0.04); }
+    });
     if (P.decay < 100) {             // shorten the ring-out
       const len = 0.25 + (P.decay / 100) * 6;
       [env, env2].forEach((g) => { g.gain.setValueAtTime(1, t + len * 0.3); g.gain.linearRampToValueAtTime(0, t + len); });
@@ -212,10 +237,10 @@
     document.querySelectorAll('#awVelDots i').forEach((d, i) => d.classList.toggle('on', i < layer));
     document.querySelectorAll('#awRRDots i').forEach((d, i) => d.classList.toggle('on', i === robin - 1));
     const pad = $('awPadTip'); if (pad) { pad.classList.add('hit'); setTimeout(() => pad.classList.remove('hit'), 140); }
-    drawWave(peaks[kR], peaks[kM]);
+    drawWave(peaks[kR], peaks[kM], kR);
   }
 
-  function drawWave(pr, pm) {
+  function drawWave(pr, pm, kR) {
     const c = $('awWave'); if (!c) return;
     const dpr = window.devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
     c.width = w * dpr; c.height = h * dpr;
@@ -228,8 +253,23 @@
       const n = p.length, bw = w / n;
       for (let i = 0; i < n; i++) { const a = Math.min(1, Math.pow(p[i], 0.5) * scale) * (h * 0.46); g.fillRect(i * bw, mid - a, Math.max(1, bw - 0.3), a * 2); }
     };
-    draw(pr, 'rgba(236,230,220,' + (0.25 + 0.6 * Math.cos(x * Math.PI / 2)) + ')', 1.1);
-    draw(pm, 'rgba(240,166,64,' + (0.25 + 0.6 * Math.sin(x * Math.PI / 2)) + ')', 1.1);
+    const lane = (p, col, top, hh) => {
+      if (!p) return;
+      g.fillStyle = col;
+      const n = p.length, bw = w / n, m2 = top + hh / 2;
+      for (let i = 0; i < n; i++) { const a = Math.min(1, Math.pow(p[i], 0.5) * 1.6) * (hh * 0.46); g.fillRect(i * bw, m2 - a, Math.max(1, bw - 0.3), a * 2); }
+    };
+    if (view === 'ribbons') {
+      lane(kR && peaks[kR + 'L'], 'rgba(236,230,220,.85)', 0, h / 2);
+      lane(kR && peaks[kR + 'R'], 'rgba(236,230,220,.85)', h / 2, h / 2);
+      g.fillStyle = '#2a2a2d'; g.fillRect(0, h / 2, w, 1);
+      g.fillStyle = '#8f8a84'; g.font = '10px Oswald, sans-serif'; g.fillText('L', 8, h / 2 - 6); g.fillText('R', 8, h - 6);
+    } else if (view === 'mono') {
+      draw(pm, 'rgba(240,166,64,.85)', 1.1);
+    } else {
+      draw(pr, 'rgba(236,230,220,' + (0.25 + 0.6 * Math.cos(x * Math.PI / 2)) + ')', 1.1);
+      draw(pm, 'rgba(240,166,64,' + (0.25 + 0.6 * Math.sin(x * Math.PI / 2)) + ')', 1.1);
+    }
   }
 
   let flashT = null;
@@ -259,9 +299,14 @@
   }
 
   // ---------- controls ----------
+  function eqdb(v) { return (v > 0.05 ? '+' : '') + (Math.abs(v) < 0.05 ? '0.0' : v.toFixed(1)) + ' dB'; }
+  function hz(v) { return v >= 1000 ? (v / 1000).toFixed(1) + 'kHz' : Math.round(v) + ' Hz'; }
   const fmt = {
     rLevel: (v) => (v > 0 ? '+' : '') + v.toFixed(1) + ' dB', mLevel: (v) => (v > 0 ? '+' : '') + v.toFixed(1) + ' dB', out: (v) => (v > 0 ? '+' : '') + v.toFixed(1) + ' dB',
-    rTone: (v) => (v > 0 ? '+' : '') + v.toFixed(1) + ' dB', mTone: (v) => (v > 0 ? '+' : '') + v.toFixed(1) + ' dB',
+    rPunch: (v) => Math.round(v) + ' %', mPunch: (v) => Math.round(v) + ' %',
+    rCut: (v) => v <= 20.5 ? 'OFF' : Math.round(v) + ' Hz', mCut: (v) => v <= 20.5 ? 'OFF' : Math.round(v) + ' Hz',
+    rLow: eqdb, rMid: eqdb, rHigh: eqdb, mLow: eqdb, mMid: eqdb, mHigh: eqdb,
+    rMidF: hz, mMidF: hz,
     rWidth: (v) => Math.round(v) + ' %', rComp: (v) => Math.round(v) + ' %', mComp: (v) => Math.round(v) + ' %',
     rDrive: (v) => Math.round(v) + ' %', mDrive: (v) => Math.round(v) + ' %',
     blend: (v) => Math.round(100 - v) + '/' + Math.round(v), mDelay: (v) => v.toFixed(2) + ' ms',
@@ -292,6 +337,36 @@
       const up = () => { if (saved !== null) { setBlend(saved); saved = null; } b.classList.remove('on'); };
       b.addEventListener('pointerdown', down); b.addEventListener('pointerup', up); b.addEventListener('pointerleave', up);
     });
+    // knobs: drag up/down (or use the arrow keys), double-click to reset
+    document.querySelectorAll('.kn').forEach((k) => {
+      const p = k.dataset.k, mn = parseFloat(k.dataset.min), mx = parseFloat(k.dataset.max);
+      const log = k.dataset.scale === 'log', def = parseFloat(k.dataset.def);
+      const box = k.querySelector('.kv'), dial = k.querySelector('.dial');
+      const toN = (v) => log ? Math.log(v / mn) / Math.log(mx / mn) : (v - mn) / (mx - mn);
+      const fromN = (n) => log ? mn * Math.pow(mx / mn, n) : mn + n * (mx - mn);
+      let n = toN(def);
+      const upd = () => { n = Math.max(0, Math.min(1, n)); P[p] = fromN(n); dial.style.setProperty('--a', (n * 270 - 135) + 'deg'); box.textContent = fmt[p](P[p]); dial.setAttribute('aria-valuetext', box.textContent); applyAll(); };
+      let y0 = null, n0 = 0;
+      dial.addEventListener('pointerdown', (e) => { e.preventDefault(); y0 = e.clientY; n0 = n; dial.setPointerCapture(e.pointerId); });
+      dial.addEventListener('pointermove', (e) => { if (y0 === null) return; n = n0 + (y0 - e.clientY) / 160; upd(); });
+      dial.addEventListener('pointerup', () => { y0 = null; });
+      dial.addEventListener('dblclick', () => { n = toN(def); upd(); });
+      dial.addEventListener('keydown', (e) => { if (e.key === 'ArrowUp' || e.key === 'ArrowRight') { n += 0.02; upd(); e.preventDefault(); } if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') { n -= 0.02; upd(); e.preventDefault(); } });
+      upd();
+    });
+    // PRE / POST pairs
+    document.querySelectorAll('[data-pp]').forEach((b) => {
+      const p = b.dataset.pp, post = b.dataset.pos === 'post';
+      const sync = () => document.querySelectorAll('[data-pp="' + p + '"]').forEach((x) => x.classList.toggle('on', (x.dataset.pos === 'post') === P[p]));
+      b.addEventListener('click', () => { P[p] = post; sync(); applyAll(); });
+      sync();
+    });
+    // wave view: BOTH / RIBBONS / MONO
+    document.querySelectorAll('[data-view]').forEach((b) => b.addEventListener('click', () => {
+      view = b.dataset.view;
+      document.querySelectorAll('[data-view]').forEach((x) => x.classList.toggle('on', x === b));
+      redrawLast();
+    }));
     const set = $('awSet'); if (set) set.addEventListener('click', () => setBlend(50));
     const pad = $('awPadTip');
     if (pad) pad.addEventListener('pointerdown', (e) => {
@@ -317,7 +392,7 @@
     window.addEventListener('resize', redrawLast);
   }
   let lastK = null;
-  function redrawLast() { if (lastK) drawWave(peaks[lastK[0]], peaks[lastK[1]]); }
+  function redrawLast() { if (lastK) drawWave(peaks[lastK[0]], peaks[lastK[1]], lastK[0]); }
   const _show = show;
   show = function (layer, robin, vel, kR, kM) { lastK = [kR, kM]; _show(layer, robin, vel, kR, kM); };
 
