@@ -1,4 +1,4 @@
 # Alloy update file. Alloy reads this once a day (after cymbalsamples.com/alloy/latest.txt).
 # When a new Alloy is out, change the version line (and the url if the download page moves).
-version 0.5
+version 0.6
 url https://cymbalsamples.com/alloy

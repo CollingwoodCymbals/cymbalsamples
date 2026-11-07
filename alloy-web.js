@@ -22,19 +22,22 @@
     mLevel: 0, mPan: 15, mComp: 0, mPunch: 0, mDrive: 0,
     mCut: 20, mLow: 0, mMid: 0, mMidF: 2000, mHigh: 0,
     out: 0,
-    rSolo: false, rPol: false, rSwap: false, rSlow: false, rPost: false,
-    mSolo: false, mPol: false, align: true, mSlow: false, mPost: false,
+    rSolo: false, rPol: false, rSwap: false, rSlow: false, rPost: false, rAuto: true,
+    mSolo: false, mPol: false, align: true, mSlow: false, mPost: false, mAuto: true,
     rrMode: 'random', chokeOn: false
   };
   let view = 'both';                 // wave view: both / ribbons / mono
 
   const dB = (x) => Math.pow(10, x / 20);
 
-  function driveCurve(amount) {      // amount 0..100
-    const k = amount / 100 * 8, n = 1024, c = new Float32Array(n);
+  // DRIVE: fixed drive gain per fader position (about 12 dB at 80 %), tanh saturation.
+  // AUTO GAIN on turns the output down by that same fixed amount, so normal levels
+  // come out about as loud as they went in; off lets more DRIVE get louder and hotter.
+  function driveCurve(amount, auto) {  // amount 0..100
+    const g = dB(amount * 0.15), n = 2048, c = new Float32Array(n);
     for (let i = 0; i < n; i++) {
       const x = i * 2 / (n - 1) - 1;
-      c[i] = k === 0 ? x : Math.tanh(x * (1 + k)) / Math.tanh(1 + k);
+      c[i] = amount === 0 ? x : Math.tanh(x * g) / (auto ? g : 1);
     }
     return c;
   }
@@ -59,7 +62,7 @@
       b.input.connect(b.delay); head = b.delay;
     }
     b.head = head;
-    // five-knob EQ: low cut, low shelf, mid (sweepable), high shelf
+    // four-band EQ: low cut, low shelf, mid (sweepable), high shelf
     b.cut = ctx.createBiquadFilter(); b.cut.type = 'highpass'; b.cut.Q.value = 0.707;
     b.low = ctx.createBiquadFilter(); b.low.type = 'lowshelf'; b.low.frequency.value = 150;
     b.mid = ctx.createBiquadFilter(); b.mid.type = 'peaking'; b.mid.Q.value = 0.9;
@@ -125,13 +128,13 @@
     r.ll.gain.value = sw ? bx : a; r.rr.gain.value = sw ? bx : a;
     r.lr.gain.value = sw ? a : bx; r.rl.gain.value = sw ? a : bx;
     setBusEQ(r, P.rCut, P.rLow, P.rMid, P.rMidF, P.rHigh); setBusComp(r, P.rComp, P.rSlow); routeEQ(r, P.rPost);
-    r.shaper.curve = driveCurve(P.rDrive);
+    r.shaper.curve = driveCurve(P.rDrive, P.rAuto);
     r.pol.gain.value = P.rPol ? -1 : 1;
     // mono
     m.level.gain.value = dB(P.mLevel);
     m.pan.pan.value = P.mPan / 100;
     setBusEQ(m, P.mCut, P.mLow, P.mMid, P.mMidF, P.mHigh); setBusComp(m, P.mComp, P.mSlow); routeEQ(m, P.mPost);
-    m.shaper.curve = driveCurve(P.mDrive);
+    m.shaper.curve = driveCurve(P.mDrive, P.mAuto);
     m.pol.gain.value = P.mPol ? -1 : 1;
     m.delay.delayTime.value = ((P.align ? OFFSET_MS : 0) + P.mDelay) / 1000;
     // blend (equal power), solos win
