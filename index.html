@@ -90,6 +90,10 @@ h2{font:500 clamp(28px,3.6vw,40px)/1.15 Oswald,sans-serif;margin:8px 0 12px}
 .kn .kl{font-size:9px;letter-spacing:.12em;margin-top:8px;white-space:nowrap}
 .kn .kv{font-family:'IBM Plex Mono',monospace;background:#0c0c0d;border:1px solid #333;border-radius:3px;padding:2px 0;font-size:10px;margin-top:4px;color:#eee;white-space:nowrap}
 .tg .tb{padding:7px 4px;letter-spacing:.12em}
+.rrsw{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;margin:4px 0 10px;white-space:nowrap}
+.rrsw .pp{margin-left:auto}
+.rrsw .pp .tb{padding:5px 7px}
+.upd{color:var(--muted);font-size:14px;margin:4px 0 14px}
 .aw-wave .lbl{position:absolute;top:6px;left:8px;font-size:10px;letter-spacing:.2em}
 .aw-wave .lbl i{font-style:normal;color:var(--amber);margin-left:10px}
 .aw-wave .inf{position:absolute;top:6px;right:8px;font-size:10px;letter-spacing:.2em;color:var(--devmut)}
@@ -319,7 +323,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <div class="ctl"><div class="row">DRIVE<span class="val" data-v="rDrive"></span></div><input type="range" data-p="rDrive" min="0" max="100" step="1" value="0"></div>
           <div class="eq"><div class="eqh">EQ<small>PRE OR POST COMP</small><span class="pp"><button class="tb" data-pp="rPost" data-pos="pre">PRE</button><button class="tb" data-pp="rPost" data-pos="post">POST</button></span></div>
             <div class="knobs"><div class="kn" data-k="rCut" data-min="20" data-max="600" data-def="20" data-scale="log"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons LOW CUT"><i></i></div><div class="kl">LOW CUT</div><div class="kv"></div></div><div class="kn" data-k="rLow" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons LOW"><i></i></div><div class="kl">LOW</div><div class="kv"></div></div><div class="kn" data-k="rMid" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons MID"><i></i></div><div class="kl">MID</div><div class="kv"></div></div><div class="kn" data-k="rMidF" data-min="300" data-max="10000" data-def="2000" data-scale="log"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons MID FREQ"><i></i></div><div class="kl">MID FREQ</div><div class="kv"></div></div><div class="kn" data-k="rHigh" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Ribbons HIGH"><i></i></div><div class="kl">HIGH</div><div class="kv"></div></div></div></div>
-          <div class="tg"><button class="tb" data-t="rSolo">SOLO</button><button class="tb" data-t="rPol">Ø POL</button><button class="tb" data-t="rSwap">SWAP L/R</button><button class="tb" data-t="rSlow">SLOW</button></div>
+          <div class="tg"><button class="tb" data-t="rSolo">SOLO</button><button class="tb" data-t="rPol">Ø POL</button><button class="tb" data-t="rSwap">SWAP L/R</button><button class="tb" data-t="rSlow">COMP SLOW</button></div>
         </div>
         <div class="col blend">
           <h4>BLEND</h4>
@@ -330,7 +334,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <div class="ctl"><div class="row">VELOCITY<span class="val" data-v="vel"></span></div><input type="range" data-p="vel" min="1" max="127" step="1" value="100"></div>
           <div class="ctl"><div class="row">DECAY<span class="val" data-v="decay"></span></div><input type="range" data-p="decay" min="0" max="100" step="1" value="100"></div>
           <div class="ctl"><div class="row">TUNE<span class="val" data-v="tune"></span></div><input type="range" data-p="tune" min="-12" max="12" step="0.01" value="0"></div>
-          <div class="tg"><button class="tb" data-t="roundRobin">ROUND ROBIN</button><button class="tb" data-t="chokeOn">CHOKE ON OFF</button></div>
+          <div class="rrsw"><span>ROUND ROBIN</span><span class="pp"><button class="tb" data-rr="off">OFF</button><button class="tb" data-rr="cycle">CYCLE</button><button class="tb" data-rr="random">RANDOM</button></span></div>
+          <div class="tg" style="justify-content:center"><button class="tb" data-t="chokeOn" style="flex:0 1 60%">CHOKE ON OFF</button></div>
         </div>
         <div class="col mono">
           <h4>MONO<small>SPOT MIC</small></h4>
@@ -341,7 +346,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <div class="ctl"><div class="row">DRIVE<span class="val" data-v="mDrive"></span></div><input type="range" data-p="mDrive" min="0" max="100" step="1" value="0"></div>
           <div class="eq"><div class="eqh">EQ<small>PRE OR POST COMP</small><span class="pp"><button class="tb" data-pp="mPost" data-pos="pre">PRE</button><button class="tb" data-pp="mPost" data-pos="post">POST</button></span></div>
             <div class="knobs"><div class="kn" data-k="mCut" data-min="20" data-max="600" data-def="20" data-scale="log"><div class="dial" tabindex="0" role="slider" aria-label="Mono LOW CUT"><i></i></div><div class="kl">LOW CUT</div><div class="kv"></div></div><div class="kn" data-k="mLow" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Mono LOW"><i></i></div><div class="kl">LOW</div><div class="kv"></div></div><div class="kn" data-k="mMid" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Mono MID"><i></i></div><div class="kl">MID</div><div class="kv"></div></div><div class="kn" data-k="mMidF" data-min="300" data-max="10000" data-def="2000" data-scale="log"><div class="dial" tabindex="0" role="slider" aria-label="Mono MID FREQ"><i></i></div><div class="kl">MID FREQ</div><div class="kv"></div></div><div class="kn" data-k="mHigh" data-min="-12" data-max="12" data-def="0"><div class="dial" tabindex="0" role="slider" aria-label="Mono HIGH"><i></i></div><div class="kl">HIGH</div><div class="kv"></div></div></div></div>
-          <div class="tg"><button class="tb" data-t="mSolo">SOLO</button><button class="tb" data-t="mPol">Ø POL</button><button class="tb" data-t="align">ALIGN</button><button class="tb" data-t="mSlow">SLOW</button></div>
+          <div class="tg"><button class="tb" data-t="mSolo">SOLO</button><button class="tb" data-t="mPol">Ø POL</button><button class="tb" data-t="align">ALIGN</button><button class="tb" data-t="mSlow">COMP SLOW</button></div>
         </div>
       </div>
 
@@ -369,15 +374,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     <div class="dl-grid">
       <div class="card">
         <h3>Alloy for Windows</h3>
-        <div class="meta">Version 0.2 · VST3 · 64-bit · 1 MB</div>
+        <div class="meta">Version 0.4 · VST3 · 64-bit · 1 MB</div>
         <p>For Reaper, Cubase, Studio One, Ableton Live, FL Studio and any other VST3 host.</p>
-        <a class="btn" href="downloads/Alloy-0.2-Windows.zip" download>Download for Windows</a>
+        <a class="btn" href="downloads/Alloy-0.4-Windows.zip" download>Download for Windows</a>
       </div>
       <div class="card">
         <h3>Alloy for Mac</h3>
-        <div class="meta">Version 0.2 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 1.5 MB</div>
+        <div class="meta">Version 0.4 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 1.5 MB</div>
         <p>Audio Unit instrument for Logic Pro and GarageBand, plus a VST3 for other hosts. Read the note inside before you install.</p>
-        <a class="btn" href="downloads/Alloy-0.2-Mac.zip" download>Download for Mac</a>
+        <a class="btn" href="downloads/Alloy-0.4-Mac.zip" download>Download for Mac</a>
       </div>
       <div class="card">
         <h3>Alloy Test 1 hits</h3>
@@ -386,6 +391,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
         <a class="btn" href="downloads/Collingwood-Alloy-Test-1-WAV.zip" download>Download the hits</a>
       </div>
     </div>
+
+    <p class="upd">Alloy checks once a day for a newer version and tells you on its panel. It never sends anything about you.</p>
 
     <details class="inst">
       <summary>How to install</summary>

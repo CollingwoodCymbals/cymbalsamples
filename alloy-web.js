@@ -12,7 +12,7 @@
   const peaks = {};                  // key -> Float32Array for the display
   const loading = {};
   let loadedCount = 0;
-  let rr = 0, voices = [];
+  let rr = 0, lastRobin = 0, voices = [];
 
   // ---------- parameters (match the plug-in's faders) ----------
   const P = {
@@ -24,7 +24,7 @@
     out: 0,
     rSolo: false, rPol: false, rSwap: false, rSlow: false, rPost: false,
     mSolo: false, mPol: false, align: true, mSlow: false, mPost: false,
-    roundRobin: true, chokeOn: false
+    rrMode: 'random', chokeOn: false
   };
   let view = 'both';                 // wave view: both / ribbons / mono
 
@@ -192,8 +192,11 @@
     if (loadedCount === 0) loadAll().catch(() => {});
     vel = vel == null ? P.vel : vel;
     const layer = layerFor(vel);
-    const robin = P.roundRobin ? (rr % RRS) + 1 : 1;
-    if (P.roundRobin) rr++;
+    // ROUND ROBIN: RANDOM (never the same take twice running), CYCLE (1,2,3,4,1...) or OFF
+    let robin = 1;
+    if (P.rrMode === 'cycle') { robin = (rr % RRS) + 1; rr++; }
+    else if (P.rrMode === 'random') { robin = 1 + Math.floor(Math.random() * (RRS - 1)); if (robin >= lastRobin) robin++; }
+    lastRobin = robin;
     const kR = key(layer, robin, 'Ribbon'), kM = key(layer, robin, 'Mono');
     let bR, bM;
     try { [bR, bM] = await Promise.all([load(kR), load(kM)]); }
@@ -353,6 +356,12 @@
       dial.addEventListener('dblclick', () => { n = toN(def); upd(); });
       dial.addEventListener('keydown', (e) => { if (e.key === 'ArrowUp' || e.key === 'ArrowRight') { n += 0.02; upd(); e.preventDefault(); } if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') { n -= 0.02; upd(); e.preventDefault(); } });
       upd();
+    });
+    // ROUND ROBIN three-way switch
+    document.querySelectorAll('[data-rr]').forEach((b) => {
+      const sync = () => document.querySelectorAll('[data-rr]').forEach((x) => x.classList.toggle('on', x.dataset.rr === P.rrMode));
+      b.addEventListener('click', () => { P.rrMode = b.dataset.rr; sync(); });
+      sync();
     });
     // PRE / POST pairs
     document.querySelectorAll('[data-pp]').forEach((b) => {
