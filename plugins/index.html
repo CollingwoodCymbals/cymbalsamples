@@ -74,8 +74,13 @@ details.inst h4{margin:16px 0 6px;font:500 17px Oswald,sans-serif;letter-spacing
 .upd{color:var(--muted);font-size:14px;margin:4px 0 14px}
 footer{border-top:1px solid var(--line);padding:30px 0 50px;font-size:13px;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-between}
-.plug{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-@media(max-width:900px){.plug{grid-template-columns:1fr}}
+section.top{border-top:0;padding-top:48px}
+#more{border-top:0;padding-top:0}
+section.top .sec-head{margin-bottom:28px}
+.plug{display:grid;grid-template-columns:1.25fr 1fr;grid-template-areas:"text shots" "support shots";grid-template-rows:auto 1fr;gap:0 48px;align-items:start}
+.plug-text{grid-area:text}.plug .support{grid-area:support}.shots{grid-area:shots}
+@media(max-width:900px){.plug{grid-template-columns:1fr;grid-template-areas:"text" "shots" "support";grid-template-rows:auto;gap:0}.shots{margin:4px 0 8px}}
+@media(max-width:700px){section{padding:44px 0}section.top{padding-top:32px}section.top .sec-head{margin-bottom:20px}}
 .plug-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
 .plug-head img{width:64px;height:64px;border-radius:14px}
 .plug-head h2{margin:0}
@@ -83,12 +88,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
 .plug p{color:#cfc7bb}
 .feat{color:#cfc7bb;padding-left:20px;margin:0 0 18px}
 .shots{display:grid;gap:14px}
-.shots img{width:100%;max-width:520px;height:auto;display:block;border-radius:8px;border:1px solid #000;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.shots img{width:100%;max-width:400px;height:auto;display:block;border-radius:8px;border:1px solid #000;box-shadow:0 20px 50px rgba(0,0,0,.5)}
 .cap{font-size:13px;color:var(--muted);margin-top:4px}
 .dl2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
 @media(max-width:700px){.dl2{grid-template-columns:1fr}}
-.support{margin-top:28px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
-.support p{margin:0;color:#cfc7bb;flex:1 1 300px}
+.support{margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.support p{margin:0;color:#cfc7bb;flex:1 1 240px}
 .soon{margin-top:0;border:1px dashed var(--line);border-radius:10px;padding:28px 22px;text-align:center;color:var(--muted)}
 .soon h3{font:500 22px Oswald,sans-serif;color:var(--text);margin:0 0 6px;letter-spacing:.02em}
 .soon p{margin:0 0 16px}
@@ -110,20 +115,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
   </div>
 </header>
 
-<section style="border-top:0">
+<section id="mono" class="top">
   <div class="wrap">
     <div class="sec-head">
       <div class="spaced">Plug-ins</div>
       <h2>Plug-ins from Collingwood Cymbals</h2>
-      <p>Small, simple tools made in Bristol. Free to download. If one is useful to you, you can chip in below.</p>
     </div>
-  </div>
-</section>
-
-<section id="mono">
-  <div class="wrap">
     <div class="plug">
-      <div>
+      <div class="plug-text">
         <div class="plug-head"><img src="img/Mono-icon-256.png" alt="Mono icon"><h2>Mono</h2></div>
         <p class="one">One big button: stereo or mono, nothing else.</p>
         <p>Phones, laptops, club systems and Bluetooth speakers all fold your mix to mono sooner or later. Mono lets you hear that with one click, so you can catch anything that disappears.</p>
@@ -135,6 +134,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
           <li>Automatable</li>
           <li>Sharp on Retina and high-DPI screens</li>
         </ul>
+      </div>
+      <div class="support">
+        <p>Mono and Alloy are free. If they're useful to you, donations are gratefully received.</p>
+        <a class="btn" href="https://paypal.me/collingwoodcymbals" target="_blank" rel="noopener">Donate</a>
       </div>
       <div class="shots">
         <div><img src="img/Mono-1.0-panel-mono.png" width="760" height="420" alt="Mono plug-in switched to MONO"><div class="cap">MONO</div></div>
@@ -173,10 +176,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       </ol>
     </details>
 
-    <div class="support">
-      <p>Mono and Alloy are free. If they're useful to you, you can chip in here.</p>
-      <a class="btn" href="https://paypal.me/collingwoodcymbals" target="_blank" rel="noopener">Support Collingwood</a>
-    </div>
   </div>
 </section>
 
