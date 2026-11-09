@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Plug-ins · Cymbal Samples</title>
+<meta name="description" content="Plug-ins from Collingwood Cymbals in Bristol. Mono: one big button to hear your mix in mono. VST3 for Windows, AU and VST3 for Mac.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141210; --panel:#1d1a17; --line:#3a332c;
+  --text:#ece6dc; --muted:#a59a8b; --bronze:#c99a55; --bronze2:#e7c48a;
+  --amber:#f0a640; --green:#5cc46b; --red:#ff5a4a;
+  --dev:#2b2b2e; --dev2:#232326; --devline:#3d3d42; --devtext:#d9d6d0; --devmut:#8d8a85;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--bronze2)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.spaced{font-family:Oswald,sans-serif;letter-spacing:.32em;text-transform:uppercase}
+header{position:sticky;top:0;z-index:20;background:rgba(20,18,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:24px;height:62px}
+.logo{color:var(--text);text-decoration:none;font-size:15px;display:flex;align-items:center;gap:12px}
+.logo img{height:30px;width:auto}
+nav{display:flex;gap:22px;margin-left:auto;font-size:14px}
+nav a{color:var(--muted);text-decoration:none}nav a:hover{color:var(--text)}
+@media(max-width:760px){nav{display:none}}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--bronze);color:#1a140c;border:0;border-radius:6px;padding:13px 22px;font:600 15px Inter,sans-serif;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--bronze2)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--bronze)}
+.btn small{font-weight:400;opacity:.75}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+.kicker{color:var(--bronze);font-size:12px;margin-bottom:14px}
+h1{font:500 clamp(38px,5.4vw,62px)/1.04 Oswald,sans-serif;margin:0 0 20px;letter-spacing:.01em}
+h1 em{font-style:normal;color:var(--bronze2)}
+sup.fr{font-size:.6em;vertical-align:.55em;line-height:0;margin-left:1px}
+.lead{font-size:18px;color:#d6cec2;max-width:560px}
+.hero-list{margin:0 0 22px;padding-left:20px;color:#d6cec2;font-size:16px;line-height:1.7;max-width:560px}
+.free-tag{display:inline-block;background:#24301f;color:#a9e39c;border:1px solid #3c5a33;border-radius:20px;padding:3px 12px;font-size:13px;margin-bottom:18px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 14px}
+.fine{font-size:13px;color:var(--muted)}
+.hero-img{border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);border:1px solid #000}
+.hero-img img{display:block;width:100%;height:auto}
+
+section{padding:64px 0;border-top:1px solid var(--line)}
+.sec-head{max-width:720px;margin-bottom:34px}
+.sec-head .spaced{color:var(--bronze);font-size:12px}
+h2{font:500 clamp(28px,3.6vw,40px)/1.15 Oswald,sans-serif;margin:8px 0 12px}
+.sec-head p{color:#cfc7bb;margin:0}
+/* downloads */
+.dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.dl-grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;display:flex;flex-direction:column}
+.card h3{font:500 22px Oswald,sans-serif;margin:0 0 4px;letter-spacing:.02em}
+.card .meta{font-size:13px;color:var(--muted);margin-bottom:12px}
+.card p{font-size:15px;color:#cfc7bb;margin:0 0 16px}
+.card .btn{margin-top:auto;justify-content:center}
+.steps{font-size:14px;color:#cfc7bb;margin:0 0 16px;padding-left:18px}
+.steps li{margin-bottom:6px}
+code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:#0e0d0c;border:1px solid var(--line);border-radius:4px;padding:1px 6px;word-break:break-all}
+details.inst{margin-top:20px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 20px}
+details.inst summary{cursor:pointer;font-weight:600}
+details.inst h4{margin:16px 0 6px;font:500 17px Oswald,sans-serif;letter-spacing:.04em}
+.upd{color:var(--muted);font-size:14px;margin:4px 0 14px}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-between}
+.plug{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media(max-width:900px){.plug{grid-template-columns:1fr}}
+.plug-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+.plug-head img{width:64px;height:64px;border-radius:14px}
+.plug-head h2{margin:0}
+.one{font-size:18px;color:#d6cec2;margin:0 0 16px}
+.plug p{color:#cfc7bb}
+.feat{color:#cfc7bb;padding-left:20px;margin:0 0 18px}
+.shots{display:grid;gap:14px}
+.shots img{width:100%;max-width:520px;height:auto;display:block;border-radius:8px;border:1px solid #000;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.cap{font-size:13px;color:var(--muted);margin-top:4px}
+.dl2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+@media(max-width:700px){.dl2{grid-template-columns:1fr}}
+.support{margin-top:28px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+.support p{margin:0;color:#cfc7bb;flex:1 1 300px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="/" class="logo spaced"><img src="/logo.png" alt="">Cymbal Samples</a>
+    <nav>
+      <a href="/">Alloy</a>
+      <a href="/plugins/">Plug-ins</a>
+      <a href="/#coming">Coming soon</a>
+    </nav>
+  </div>
+</header>
+
+<section style="border-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="spaced">Plug-ins</div>
+      <h2>Plug-ins from Collingwood Cymbals</h2>
+      <p>Small, simple tools made in Bristol. Free to download. If one is useful to you, you can chip in below.</p>
+    </div>
+  </div>
+</section>
+
+<section id="mono">
+  <div class="wrap">
+    <div class="plug">
+      <div>
+        <div class="plug-head"><img src="img/Mono-icon-256.png" alt="Mono icon"><h2>Mono</h2></div>
+        <p class="one">One big button: stereo or mono, nothing else.</p>
+        <p>Phones, laptops, club systems and Bluetooth speakers all fold your mix to mono sooner or later. Mono lets you hear that with one click, so you can catch anything that disappears.</p>
+        <p>Press it and both sides play the same signal. Press it again and your audio comes back untouched, bit for bit. Every switch fades over 10 ms, so it never clicks, even mid-playback or under automation.</p>
+        <ul class="feat">
+          <li>One-click STEREO / MONO with a click-free 10 ms fade</li>
+          <li>Mono is (L + R) / 2 on both sides; stereo is untouched, bit for bit</li>
+          <li>Zero latency, almost no CPU</li>
+          <li>Automatable</li>
+          <li>Sharp on Retina and high-DPI screens</li>
+        </ul>
+      </div>
+      <div class="shots">
+        <div><img src="img/Mono-1.0-panel-mono.png" width="760" height="420" alt="Mono plug-in switched to MONO"><div class="cap">MONO</div></div>
+        <div><img src="img/Mono-1.0-panel-stereo.png" width="760" height="420" alt="Mono plug-in switched to STEREO"><div class="cap">STEREO</div></div>
+      </div>
+    </div>
+
+    <div class="dl2">
+      <div class="card">
+        <h3>Mono for Windows</h3>
+        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11 · 1 MB</div>
+        <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/mono-1.0/Mono-1.0-Windows.zip" download>Download for Windows</a>
+      </div>
+      <div class="card">
+        <h3>Mono for Mac</h3>
+        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 1 MB</div>
+        <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/mono-1.0/Mono-1.0-Mac.zip" download>Download for Mac</a>
+      </div>
+    </div>
+
+    <details class="inst">
+      <summary>How to install</summary>
+      <h4>Windows</h4>
+      <ol class="steps">
+        <li>Unzip the download.</li>
+        <li>Copy the <code>Mono.vst3</code> folder into your VST3 folder. The usual one is <code>C:\Program Files\Common Files\VST3</code></li>
+        <li>Rescan plug-ins in your DAW. Mono is listed under Collingwood Cymbals.</li>
+      </ol>
+      <h4>Mac</h4>
+      <ol class="steps">
+        <li>Unzip the download.</li>
+        <li>In Finder choose Go › Go to Folder… and paste <code>~/Library/Audio/Plug-Ins/Components</code>, then drag <code>Mono.component</code> in. For VST3 hosts, put <code>Mono.vst3</code> in <code>~/Library/Audio/Plug-Ins/VST3</code>.</li>
+        <li>Open your DAW. Mono is listed under Collingwood Cymbals.</li>
+      </ol>
+    </details>
+
+    <div class="support">
+      <p>Mono and Alloy are free. If they're useful to you, you can chip in here.</p>
+      <a class="btn" href="PAYPAL_ME_LINK" target="_blank" rel="noopener">Support Collingwood</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="spaced" style="color:var(--bronze2)">Cymbal Samples</div>
+    <div>cymbalsamples.com · a <a href="https://www.collingwoodcymbals.com">Collingwood Cymbals</a> project · Bristol, England</div>
+    <div>Free to use in your own music. Please don't resell or share the files themselves.</div>
+  </div>
+</footer>
+
+</body>
+</html>
