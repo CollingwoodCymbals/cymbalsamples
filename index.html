@@ -23,12 +23,13 @@ a{color:var(--bronze2)}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 .spaced{font-family:Oswald,sans-serif;letter-spacing:.32em;text-transform:uppercase}
 header{position:sticky;top:0;z-index:20;background:rgba(20,18,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;gap:24px;height:62px}
+header .wrap{display:flex;align-items:center;gap:24px;min-height:62px}
 .logo{color:var(--text);text-decoration:none;font-size:15px;display:flex;align-items:center;gap:12px}
 .logo img{height:30px;width:auto}
 nav{display:flex;gap:22px;margin-left:auto;font-size:14px}
 nav a{color:var(--muted);text-decoration:none}nav a:hover{color:var(--text)}
-@media(max-width:760px){nav{display:none}}
+nav a[aria-current]{color:var(--text)}
+@media(max-width:860px){header .wrap{flex-wrap:wrap;gap:0 24px;padding-top:12px}nav{order:3;width:100%;margin:0;padding:10px 0 12px;gap:18px;font-size:13px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}nav::-webkit-scrollbar{display:none}}
 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--bronze);color:#1a140c;border:0;border-radius:6px;padding:13px 22px;font:600 15px Inter,sans-serif;text-decoration:none;cursor:pointer}
 .btn:hover{background:var(--bronze2)}
 .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
@@ -241,12 +242,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
 
 <header>
   <div class="wrap">
-    <a href="#" class="logo spaced"><img src="logo.png" alt="">Cymbal Samples</a>
+    <a href="/" class="logo spaced"><img src="/logo.png" alt="">Cymbal Samples</a>
     <nav>
-      <a href="#alloy-web">Play it</a>
-      <a href="#download">Download</a>
-      <a href="#recording">How it was recorded</a>
-      <a href="#coming">Coming soon</a>
+      <a href="/" aria-current="page">Alloy</a>
+      <a href="/#alloy-web">Play it</a>
+      <a href="/#download">Download</a>
+      <a href="/#recording">How it was recorded</a>
+      <a href="/plugins/">Plug-ins</a>
+      <a href="/#coming">Coming soon</a>
     </nav>
   </div>
 </header>
@@ -503,8 +506,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
 <footer>
   <div class="wrap">
     <div class="spaced" style="color:var(--bronze2)">Cymbal Samples</div>
+    <div><a href="/">Alloy</a> · <a href="/plugins/">Plug-ins</a> · <a href="/#signup">Mailing list</a></div>
     <div>cymbalsamples.com · a <a href="https://www.collingwoodcymbals.com">Collingwood Cymbals</a> project · Bristol, England</div>
-    <div>Alloy and the example hits are free to use in your own music. Please don't resell or share the files themselves.</div>
+    <div>Alloy, Mono and the example hits are free to use in your own music. Please don't resell or share the files themselves.</div>
   </div>
 </footer>
 
