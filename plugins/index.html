@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plug-ins · Cymbal Samples</title>
-<meta name="description" content="Plug-ins from Collingwood Cymbals in Bristol. Mono: one big button to hear your mix in mono. VST3 for Windows, AU and VST3 for Mac.">
+<meta name="description" content="Free plug-ins from Collingwood Cymbals in Bristol. Strata: a delay you draw like an EQ. Mono: one big button to hear your mix in mono. VST3 for Windows, AU and VST3 for Mac.">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,6 +79,9 @@ section.top{border-top:0;padding-top:48px}
 section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--line);max-width:none}
 .plug{display:grid;grid-template-columns:1.25fr 1fr;grid-template-areas:"text shots" "support shots";grid-template-rows:auto 1fr;gap:0 48px;align-items:start}
 .plug-text{grid-area:text}.plug .support{grid-area:support}.shots{grid-area:shots}
+#strata .shots img{max-width:460px}
+#strata,#mono{scroll-margin-top:80px}
+.plug + .dl2 + .upd{margin-top:14px}
 @media(max-width:900px){.plug{grid-template-columns:1fr;grid-template-areas:"text" "shots" "support";grid-template-rows:auto;gap:0}.shots{margin:4px 0 8px}}
 @media(max-width:700px){section{padding:44px 0}section.top{padding-top:32px}section.top .sec-head{margin-bottom:26px;padding-bottom:20px}}
 .plug-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
@@ -115,12 +118,74 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
   </div>
 </header>
 
-<section id="mono" class="top">
+<section id="plugins-top" class="top">
   <div class="wrap">
     <div class="sec-head">
       <div class="spaced">Plug-ins</div>
       <h2>Plug-ins from Collingwood Cymbals</h2>
     </div>
+    <div class="plug" id="strata">
+      <div class="plug-text">
+        <div class="plug-head"><img src="img/Strata-icon-256.png" alt="Strata icon"><h2>Strata</h2></div>
+        <p class="one">A delay you draw like an EQ: choose which frequencies echo.</p>
+        <p>Most delays echo everything, so the repeats build up in the low mids and muddy the mix. With Strata you draw where the echoes go. Each band picks out part of the sound, like the crack of a snare or the top of a vocal, and gives it its own echo. The rest stays dry, and the original sound is never filtered.</p>
+        <p>For example: a dotted eighth on the snare, a long dark repeat under the bass and a fast ping-pong on the hi-hats, all in one plug-in.</p>
+        <ul class="feat">
+          <li>Up to 5 bands: bell, low shelf or high shelf</li>
+          <li>Each band has its own echo time (1 ms to 4 s, or synced from 1/64 to 2 bars, straight, dotted or triplet), feedback, pan, ping-pong and pre-delay</li>
+          <li>Amount up to 150 % per band</li>
+          <li>Drive In, and Drive Loop that gets grittier with every repeat</li>
+          <li>Lo-Fi switch for worn, tape-style repeats</li>
+          <li>Live analyser behind the curve, and zoom down to a single octave</li>
+          <li>Zero latency, low CPU, fully automatable</li>
+          <li>Tells you when an update is out</li>
+        </ul>
+      </div>
+      <div class="support">
+        <p>Strata, Mono and Alloy are free. If they're useful to you, donations are gratefully received.</p>
+        <a class="btn" href="https://paypal.me/collingwoodcymbals" target="_blank" rel="noopener">Donate</a>
+      </div>
+      <div class="shots">
+        <div><img src="img/Strata-1.0-window.png" width="900" height="790" alt="Strata plug-in window with four echo bands drawn on the curve"></div>
+      </div>
+    </div>
+
+    <div class="dl2">
+      <div class="card">
+        <h3>Strata for Windows</h3>
+        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11 · 1.3 MB</div>
+        <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.0/Strata-1.0-Windows.zip" download>Download for Windows</a>
+      </div>
+      <div class="card">
+        <h3>Strata for Mac</h3>
+        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 2 MB</div>
+        <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.0/Strata-1.0-Mac.zip" download>Download for Mac</a>
+      </div>
+    </div>
+    <p class="upd"><a href="/downloads/Strata-1.0-Manual.pdf">Read the Strata manual (PDF)</a>. It's also inside both downloads.</p>
+
+    <details class="inst">
+      <summary>How to install</summary>
+      <h4>Windows</h4>
+      <ol class="steps">
+        <li>Unzip the download.</li>
+        <li>Copy the <code>Strata.vst3</code> folder into your VST3 folder. The usual one is <code>C:\Program Files\Common Files\VST3</code></li>
+        <li>Rescan plug-ins in your DAW. Strata is listed under Collingwood Cymbals.</li>
+      </ol>
+      <h4>Mac</h4>
+      <ol class="steps">
+        <li>Unzip the download.</li>
+        <li>In Finder choose Go › Go to Folder… and paste <code>~/Library/Audio/Plug-Ins/Components</code>, then drag <code>Strata.component</code> in. For VST3 hosts, put <code>Strata.vst3</code> in <code>~/Library/Audio/Plug-Ins/VST3</code>.</li>
+        <li>Open your DAW. In Logic it's under Audio Units › Collingwood › Strata.</li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<section id="mono">
+  <div class="wrap">
     <div class="plug">
       <div class="plug-text">
         <div class="plug-head"><img src="img/Mono-icon-256.png" alt="Mono icon"><h2>Mono</h2></div>
@@ -134,10 +199,6 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
           <li>Automatable</li>
           <li>Sharp on Retina and high-DPI screens</li>
         </ul>
-      </div>
-      <div class="support">
-        <p>Mono and Alloy are free. If they're useful to you, donations are gratefully received.</p>
-        <a class="btn" href="https://paypal.me/collingwoodcymbals" target="_blank" rel="noopener">Donate</a>
       </div>
       <div class="shots">
         <div><img src="img/Mono-1.0-panel-mono.png" width="760" height="420" alt="Mono plug-in switched to MONO"><div class="cap">MONO</div></div>
@@ -194,7 +255,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
     <div class="spaced" style="color:var(--bronze2)">Cymbal Samples</div>
     <div><a href="/">Alloy</a> · <a href="/plugins/">Plug-ins</a> · <a href="/#signup">Mailing list</a></div>
     <div>cymbalsamples.com · a <a href="https://www.collingwoodcymbals.com">Collingwood Cymbals</a> project · Bristol, England</div>
-    <div>Alloy, Mono and the example hits are free to use in your own music. Please don't resell or share the files themselves.</div>
+    <div>Alloy, Strata, Mono and the example hits are free to use in your own music. Please don't resell or share the files themselves.</div>
   </div>
 </footer>
 
