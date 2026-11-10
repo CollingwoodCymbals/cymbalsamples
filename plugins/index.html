@@ -100,6 +100,15 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 .soon{margin-top:0;border:1px dashed var(--line);border-radius:10px;padding:28px 22px;text-align:center;color:var(--muted)}
 .soon h3{font:500 22px Oswald,sans-serif;color:var(--text);margin:0 0 6px;letter-spacing:.02em}
 .soon p{margin:0 0 16px}
+.vid{position:relative;max-width:460px;border-radius:8px;overflow:hidden;border:1px solid #000;box-shadow:0 20px 50px rgba(0,0,0,.5);background:#000}
+.vid video{display:block;width:100%;height:auto}
+.vid-play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:rgba(10,8,6,.35);border:0;cursor:pointer;color:var(--text);font:600 15px Inter,sans-serif}
+.vid-play:hover{background:rgba(10,8,6,.2)}
+.vid-btn{width:84px;height:84px;border-radius:50%;background:var(--bronze);box-shadow:0 8px 30px rgba(0,0,0,.6);position:relative}
+.vid-btn::after{content:"";position:absolute;left:34px;top:26px;border-left:26px solid #1a140c;border-top:16px solid transparent;border-bottom:16px solid transparent}
+.vid-play:hover .vid-btn{background:var(--bronze2)}
+.vid-label{background:rgba(10,8,6,.8);padding:7px 14px;border-radius:20px}
+.vid.on .vid-play{display:none}
 </style>
 </head>
 <body>
@@ -145,7 +154,11 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
         <a class="btn" href="https://paypal.me/collingwoodcymbals" target="_blank" rel="noopener">Donate</a>
       </div>
       <div class="shots">
-        <div><img src="img/Strata-1.0-window.png" width="900" height="790" alt="Strata plug-in window with four echo bands drawn on the curve"></div>
+        <div class="vid" id="strata-vid">
+          <video src="img/Strata-1.0-in-action.mp4" poster="img/Strata-1.0-video-poster.jpg" width="900" height="790" preload="none" playsinline></video>
+          <button class="vid-play" type="button" aria-label="Play the Strata video"><span class="vid-btn"></span><span class="vid-label">Watch Strata in action · 28 s · sound on</span></button>
+        </div>
+        <div class="cap">Video: a drum loop, then two bands added while it plays.</div>
       </div>
     </div>
 
@@ -258,5 +271,9 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
   </div>
 </footer>
 
+<script>
+(function(){var w=document.getElementById('strata-vid');if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
+b.addEventListener('click',function(){w.classList.add('on');v.controls=true;v.play();});})();
+</script>
 </body>
 </html>
