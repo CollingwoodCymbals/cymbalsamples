@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plug-ins · Cymbal Samples</title>
-<meta name="description" content="Free plug-ins from Collingwood Cymbals in Bristol. Strata: a delay that only echoes the frequencies you choose. Mono: one big button to hear your mix in mono. VST3 for Windows, AU and VST3 for Mac.">
+<meta name="description" content="Plug-ins from Collingwood Cymbals in Bristol. Groan: a kick drum synth. Strata: a delay that only echoes the frequencies you choose. Mono: one big button to hear your mix in mono. VST3 for Windows, AU and VST3 for Mac.">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,8 +79,9 @@ section.top{border-top:0;padding-top:48px}
 section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--line);max-width:none}
 .plug{display:grid;grid-template-columns:1.25fr 1fr;grid-template-areas:"text shots" "support shots";grid-template-rows:auto 1fr;gap:0 48px;align-items:start}
 .plug-text{grid-area:text}.plug .support{grid-area:support}.shots{grid-area:shots}
-#strata .shots img{max-width:460px}
-#strata,#mono{scroll-margin-top:80px}
+#strata .shots img,#groan .shots img{max-width:460px}
+#strata,#mono,#groan{scroll-margin-top:80px}
+#strata-sec{border-top:1px solid var(--line)}
 .plug + .dl2 + .upd{margin-top:14px}
 @media(max-width:900px){.plug{grid-template-columns:1fr;grid-template-areas:"text" "shots" "support";grid-template-rows:auto;gap:0}.shots{margin:4px 0 8px}}
 @media(max-width:700px){section{padding:44px 0}section.top{padding-top:32px}section.top .sec-head{margin-bottom:26px;padding-bottom:20px}}
@@ -134,6 +135,57 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       <h2>Plug-ins from Collingwood Cymbals</h2>
       <p><a href="/how-the-plugins-are-made/">How the plugins are made</a></p>
     </div>
+    <div class="plug" id="groan">
+      <div class="plug-text">
+        <div class="plug-head"><img src="img/Groan-icon-256.png" alt="Groan icon"><h2>Groan</h2></div>
+        <p class="one">A kick drum synth.</p>
+        <p>Each note is a pitched body that glides from a start pitch down to an end pitch, with a click and a thump on the front. Drag the S and E handles on the display to set the pitches and the glide, then add drive, crackle and rattle for texture.</p>
+        <ul class="feat">
+          <li>Four sources: sine, saw, burst (filtered noise) and FM</li>
+          <li>Glide in milliseconds or synced to the tempo, with an adjustable curve</li>
+          <li>Click, click tone, thump and thump time for the front of the kick</li>
+          <li>Drive, crackle and rattle (in milliseconds or on the grid)</li>
+          <li>Attack, hold, decay and swell, or let the note length set it</li>
+          <li>Two four-band EQs: one before the drive, one at the output</li>
+          <li>Key tracking, so higher notes play higher</li>
+          <li>Tells you when an update is out</li>
+        </ul>
+      </div>
+      <div class="support">
+        <p>Groan is £19. You download it straight away for Windows and Mac, and you get future updates free.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/groan" target="_blank" rel="noopener">Buy Groan · £19</a>
+      </div>
+      <div class="shots">
+        <div class="vid" id="groan-vid">
+          <video src="img/Groan-1.0-in-action.mp4" poster="img/Groan-1.0-video-poster.jpg" width="900" height="630" preload="none" playsinline></video>
+          <button class="vid-play" type="button" aria-label="Play the Groan video"><span class="vid-btn"></span><span class="vid-label">Watch Groan in action · 29 s · sound on</span></button>
+        </div>
+        <div class="cap">Video: a beat playing, with the kick changed live in Groan.</div>
+        <img src="img/Groan-1.0-window-EQ.jpg" width="900" height="630" alt="The Groan EQ tab, with pre and post four-band EQs" loading="lazy">
+        <div class="cap">The EQ tab.</div>
+      </div>
+    </div>
+
+    <div class="dl2">
+      <div class="card">
+        <h3>Groan for Windows</h3>
+        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11</div>
+        <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/groan" target="_blank" rel="noopener">Buy Groan · £19</a>
+      </div>
+      <div class="card">
+        <h3>Groan for Mac</h3>
+        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+</div>
+        <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/groan" target="_blank" rel="noopener">Buy Groan · £19</a>
+      </div>
+    </div>
+    <p class="upd">One purchase includes both versions. <a href="/downloads/Groan-1.0-Manual.pdf">Read the Groan manual (PDF)</a>. It's also inside both downloads.</p>
+  </div>
+</section>
+
+<section id="strata-sec" class="strata-sec">
+  <div class="wrap">
     <div class="plug" id="strata">
       <div class="plug-text">
         <div class="plug-head"><img src="img/Strata-icon-256.png" alt="Strata icon"><h2>Strata</h2></div>
@@ -273,8 +325,8 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 </footer>
 
 <script>
-(function(){var w=document.getElementById('strata-vid');if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
-b.addEventListener('click',function(){w.classList.add('on');v.controls=true;v.play();});})();
+['strata-vid','groan-vid'].forEach(function(id){var w=document.getElementById(id);if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
+b.addEventListener('click',function(){w.classList.add('on');v.controls=true;v.play();});});
 </script>
 </body>
 </html>
