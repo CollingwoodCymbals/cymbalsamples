@@ -110,6 +110,19 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 .vid-play:hover .vid-btn{background:var(--bronze2)}
 .vid-label{background:rgba(10,8,6,.8);padding:7px 14px;border-radius:20px}
 .vid.on .vid-play{display:none}
+.pick{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media(max-width:1000px){.pick{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.pick{grid-template-columns:1fr 1fr}}
+.pick-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 16px;display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--text)}
+.pick-card:hover{border-color:var(--bronze)}
+.pick-card img{width:56px;height:56px;border-radius:12px;margin-bottom:6px}
+.pick-name{font:500 22px Oswald,sans-serif;letter-spacing:.02em}
+.pick-one{font-size:14px;color:#cfc7bb;flex:1}
+.pick-price{font-weight:600;color:var(--bronze2);font-size:15px;margin-top:6px}
+.pick-price.free{color:#a9e39c}
+.pick-note{margin:18px 0 0;font-size:14px;color:var(--muted)}
+.pick-note a{color:var(--bronze2)}
+#groan-sec{border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -133,54 +146,66 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
     <div class="sec-head">
       <div class="spaced">Plug-ins</div>
       <h2>Plug-ins from Collingwood Cymbals</h2>
-      <p><a href="/how-the-plugins-are-made/">How the plugins are made</a></p>
+      <p>Five plug-ins for Windows and Mac. Pick one to see it in action.</p>
     </div>
-    <div class="plug" id="groan">
+    <div class="pick">
+      <a class="pick-card" href="#tremor"><img src="img/Tremor-icon-256.png" alt=""><span class="pick-name">Tremor</span><span class="pick-one">A tremolo you shape like an EQ</span><span class="pick-price">£19</span></a>
+      <a class="pick-card" href="#sediment"><img src="img/Sediment-icon-256.png" alt=""><span class="pick-name">Sediment</span><span class="pick-one">A reverb you shape like an EQ</span><span class="pick-price">£19</span></a>
+      <a class="pick-card" href="#strata"><img src="img/Strata-icon-256.png" alt=""><span class="pick-name">Strata</span><span class="pick-one">A delay that only echoes the frequencies you choose</span><span class="pick-price free">Free</span></a>
+      <a class="pick-card" href="#groan"><img src="img/Groan-icon-256.png" alt=""><span class="pick-name">Groan</span><span class="pick-one">A kick drum synth</span><span class="pick-price">£19</span></a>
+      <a class="pick-card" href="#mono"><img src="img/Mono-icon-256.png" alt=""><span class="pick-name">Mono</span><span class="pick-one">One button to hear your mix in mono</span><span class="pick-price free">Free</span></a>
+    </div>
+    <p class="pick-note">Sediment and Tremor together: <a href="https://cymbalsamples.gumroad.com/l/sediment-tremor" target="_blank" rel="noopener">£32 for both</a>. <a href="/how-the-plugins-are-made/">How the plugins are made</a></p>
+  </div>
+</section>
+
+<section id="tremor-sec">
+  <div class="wrap">
+    <div class="plug" id="tremor">
       <div class="plug-text">
-        <div class="plug-head"><img src="img/Groan-icon-256.png" alt="Groan icon"><h2>Groan</h2></div>
-        <p class="one">A kick drum synth.</p>
-        <p>Each note is a pitched body that glides from a start pitch down to an end pitch, with a click and a thump on the front. Drag the S and E handles on the display to set the pitches and the glide, then add drive, crackle and rattle for texture.</p>
+        <div class="plug-head"><img src="img/Tremor-icon-256.png" alt="Tremor icon"><h2>Tremor</h2></div>
+        <p class="one">A tremolo you shape like an EQ.</p>
+        <p>Draw up to five bands to pick out parts of the sound. Each band rises and falls with its own wave, so you can pulse just the bass, or just the top. One band over the whole range is a plain tremolo.</p>
         <ul class="feat">
-          <li>Four sources: sine, saw, burst (filtered noise) and FM</li>
-          <li>Glide in milliseconds or synced to the tempo, with an adjustable curve</li>
-          <li>Click, click tone, thump and thump time for the front of the kick</li>
-          <li>Drive, crackle and rattle (in milliseconds or on the grid)</li>
-          <li>Attack, hold, decay and swell, or let the note length set it</li>
-          <li>Two four-band EQs: one before the drive, one at the output</li>
-          <li>Key tracking, so higher notes play higher</li>
+          <li>Up to 5 bands: bell, low shelf or high shelf</li>
+          <li>Bell slope from 6 to 96 dB/oct: from 24 up, a flat top with steep sides</li>
+          <li>Each band: sine, triangle, square, saw up, saw down or random, with depth, smooth and phase</li>
+          <li>Free rate (0.05 to 20 Hz) or synced, from 4 bars to 1/32, locked to the song</li>
+          <li>Mono, auto-pan or stereo offset on every band</li>
+          <li>Fade-in, so the wobble swells in after each new note</li>
+          <li>Solo and mute on every band, zero latency, low CPU</li>
           <li>Tells you when an update is out</li>
         </ul>
       </div>
       <div class="support">
-        <p>Groan is £19. You download it straight away for Windows and Mac, and you get future updates free.</p>
-        <a class="btn" href="https://cymbalsamples.gumroad.com/l/groan" target="_blank" rel="noopener">Buy Groan · £19</a>
+        <p>Tremor is £19. You download it straight away for Windows and Mac, and you get future updates free. Sediment and Tremor together are £32.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/tremor" target="_blank" rel="noopener">Buy Tremor · £19</a>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/sediment-tremor" target="_blank" rel="noopener">Buy both · £32</a>
       </div>
       <div class="shots">
-        <div class="vid" id="groan-vid">
-          <video src="img/Groan-1.0-in-action.mp4" poster="img/Groan-1.0-video-poster.jpg" width="900" height="630" preload="none" playsinline></video>
-          <button class="vid-play" type="button" aria-label="Play the Groan video"><span class="vid-btn"></span><span class="vid-label">Watch Groan in action · 29 s · sound on</span></button>
+        <div class="vid" id="tremor-vid">
+          <video src="img/Tremor-1.0-in-action.mp4" poster="img/Tremor-1.0-video-poster.jpg" width="900" height="830" preload="none" playsinline></video>
+          <button class="vid-play" type="button" aria-label="Play the Tremor video"><span class="vid-btn"></span><span class="vid-label">Watch Tremor in action · 25 s · sound on</span></button>
         </div>
-        <div class="cap">Video: a beat playing, with the kick changed live in Groan.</div>
-        <img src="img/Groan-1.0-window-EQ.jpg" width="900" height="630" alt="The Groan EQ tab, with pre and post four-band EQs" loading="lazy">
-        <div class="cap">The EQ tab.</div>
+        <div class="cap">Video: a drum loop, with bands added and moved while it plays.</div>
       </div>
     </div>
 
     <div class="dl2">
       <div class="card">
-        <h3>Groan for Windows</h3>
+        <h3>Tremor for Windows</h3>
         <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11</div>
         <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
-        <a class="btn" href="https://cymbalsamples.gumroad.com/l/groan" target="_blank" rel="noopener">Buy Groan · £19</a>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/tremor" target="_blank" rel="noopener">Buy Tremor · £19</a>
       </div>
       <div class="card">
-        <h3>Groan for Mac</h3>
+        <h3>Tremor for Mac</h3>
         <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+</div>
         <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
-        <a class="btn" href="https://cymbalsamples.gumroad.com/l/groan" target="_blank" rel="noopener">Buy Groan · £19</a>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/tremor" target="_blank" rel="noopener">Buy Tremor · £19</a>
       </div>
     </div>
-    <p class="upd">One purchase includes both versions. <a href="/downloads/Groan-1.0-Manual.pdf">Read the Groan manual (PDF)</a>. It's also inside both downloads.</p>
+    <p class="upd">One purchase includes both versions. <a href="/downloads/Tremor-1.0-Manual.pdf">Read the Tremor manual (PDF)</a>. It's also inside both downloads.</p>
   </div>
 </section>
 
@@ -232,56 +257,6 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
     </div>
     <p class="upd">One purchase includes both versions. <a href="/downloads/Sediment-1.0-Manual.pdf">Read the Sediment manual (PDF)</a>. It's also inside both downloads.</p>
 
-  </div>
-</section>
-
-<section id="tremor-sec">
-  <div class="wrap">
-    <div class="plug" id="tremor">
-      <div class="plug-text">
-        <div class="plug-head"><img src="img/Tremor-icon-256.png" alt="Tremor icon"><h2>Tremor</h2></div>
-        <p class="one">A tremolo you shape like an EQ.</p>
-        <p>Draw up to five bands to pick out parts of the sound. Each band rises and falls with its own wave, so you can pulse just the bass, or just the top. One band over the whole range is a plain tremolo.</p>
-        <ul class="feat">
-          <li>Up to 5 bands: bell, low shelf or high shelf</li>
-          <li>Bell slope from 6 to 96 dB/oct: from 24 up, a flat top with steep sides</li>
-          <li>Each band: sine, triangle, square, saw up, saw down or random, with depth, smooth and phase</li>
-          <li>Free rate (0.05 to 20 Hz) or synced, from 4 bars to 1/32, locked to the song</li>
-          <li>Mono, auto-pan or stereo offset on every band</li>
-          <li>Fade-in, so the wobble swells in after each new note</li>
-          <li>Solo and mute on every band, zero latency, low CPU</li>
-          <li>Tells you when an update is out</li>
-        </ul>
-      </div>
-      <div class="support">
-        <p>Tremor is £19. You download it straight away for Windows and Mac, and you get future updates free. Sediment and Tremor together are £32.</p>
-        <a class="btn" href="https://cymbalsamples.gumroad.com/l/tremor" target="_blank" rel="noopener">Buy Tremor · £19</a>
-        <a class="btn" href="https://cymbalsamples.gumroad.com/l/sediment-tremor" target="_blank" rel="noopener">Buy both · £32</a>
-      </div>
-      <div class="shots">
-        <div class="vid" id="tremor-vid">
-          <video src="img/Tremor-1.0-in-action.mp4" poster="img/Tremor-1.0-video-poster.jpg" width="900" height="830" preload="none" playsinline></video>
-          <button class="vid-play" type="button" aria-label="Play the Tremor video"><span class="vid-btn"></span><span class="vid-label">Watch Tremor in action · 25 s · sound on</span></button>
-        </div>
-        <div class="cap">Video: a drum loop, with bands added and moved while it plays.</div>
-      </div>
-    </div>
-
-    <div class="dl2">
-      <div class="card">
-        <h3>Tremor for Windows</h3>
-        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11</div>
-        <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
-        <a class="btn" href="https://cymbalsamples.gumroad.com/l/tremor" target="_blank" rel="noopener">Buy Tremor · £19</a>
-      </div>
-      <div class="card">
-        <h3>Tremor for Mac</h3>
-        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+</div>
-        <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
-        <a class="btn" href="https://cymbalsamples.gumroad.com/l/tremor" target="_blank" rel="noopener">Buy Tremor · £19</a>
-      </div>
-    </div>
-    <p class="upd">One purchase includes both versions. <a href="/downloads/Tremor-1.0-Manual.pdf">Read the Tremor manual (PDF)</a>. It's also inside both downloads.</p>
   </div>
 </section>
 
@@ -349,6 +324,57 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
         <li>Open your DAW. In Logic it's under Audio Units › Collingwood › Strata.</li>
       </ol>
     </details>
+  </div>
+</section>
+
+<section id="groan-sec">
+  <div class="wrap">
+    <div class="plug" id="groan">
+      <div class="plug-text">
+        <div class="plug-head"><img src="img/Groan-icon-256.png" alt="Groan icon"><h2>Groan</h2></div>
+        <p class="one">A kick drum synth.</p>
+        <p>Each note is a pitched body that glides from a start pitch down to an end pitch, with a click and a thump on the front. Drag the S and E handles on the display to set the pitches and the glide, then add drive, crackle and rattle for texture.</p>
+        <ul class="feat">
+          <li>Four sources: sine, saw, burst (filtered noise) and FM</li>
+          <li>Glide in milliseconds or synced to the tempo, with an adjustable curve</li>
+          <li>Click, click tone, thump and thump time for the front of the kick</li>
+          <li>Drive, crackle and rattle (in milliseconds or on the grid)</li>
+          <li>Attack, hold, decay and swell, or let the note length set it</li>
+          <li>Two four-band EQs: one before the drive, one at the output</li>
+          <li>Key tracking, so higher notes play higher</li>
+          <li>Tells you when an update is out</li>
+        </ul>
+      </div>
+      <div class="support">
+        <p>Groan is £19. You download it straight away for Windows and Mac, and you get future updates free.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/groan" target="_blank" rel="noopener">Buy Groan · £19</a>
+      </div>
+      <div class="shots">
+        <div class="vid" id="groan-vid">
+          <video src="img/Groan-1.0-in-action.mp4" poster="img/Groan-1.0-video-poster.jpg" width="900" height="630" preload="none" playsinline></video>
+          <button class="vid-play" type="button" aria-label="Play the Groan video"><span class="vid-btn"></span><span class="vid-label">Watch Groan in action · 29 s · sound on</span></button>
+        </div>
+        <div class="cap">Video: a beat playing, with the kick changed live in Groan.</div>
+        <img src="img/Groan-1.0-window-EQ.jpg" width="900" height="630" alt="The Groan EQ tab, with pre and post four-band EQs" loading="lazy">
+        <div class="cap">The EQ tab.</div>
+      </div>
+    </div>
+
+    <div class="dl2">
+      <div class="card">
+        <h3>Groan for Windows</h3>
+        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11</div>
+        <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/groan" target="_blank" rel="noopener">Buy Groan · £19</a>
+      </div>
+      <div class="card">
+        <h3>Groan for Mac</h3>
+        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+</div>
+        <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/groan" target="_blank" rel="noopener">Buy Groan · £19</a>
+      </div>
+    </div>
+    <p class="upd">One purchase includes both versions. <a href="/downloads/Groan-1.0-Manual.pdf">Read the Groan manual (PDF)</a>. It's also inside both downloads.</p>
   </div>
 </section>
 
