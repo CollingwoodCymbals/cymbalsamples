@@ -79,8 +79,8 @@ section.top{border-top:0;padding-top:48px}
 section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--line);max-width:none}
 .plug{display:grid;grid-template-columns:1.25fr 1fr;grid-template-areas:"text shots" "support shots";grid-template-rows:auto 1fr;gap:0 48px;align-items:start}
 .plug-text{grid-area:text}.plug .support{grid-area:support}.shots{grid-area:shots}
-#strata .shots img,#groan .shots img{max-width:460px}
-#strata,#mono,#groan{scroll-margin-top:80px}
+#strata .shots img,#groan .shots img,#sediment .shots img,#tremor .shots img{max-width:460px}
+#strata,#mono,#groan,#sediment,#tremor{scroll-margin-top:80px}
 #strata-sec{border-top:1px solid var(--line)}
 .plug + .dl2 + .upd{margin-top:14px}
 @media(max-width:900px){.plug{grid-template-columns:1fr;grid-template-areas:"text" "shots" "support";grid-template-rows:auto;gap:0}.shots{margin:4px 0 8px}}
@@ -198,6 +198,8 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
           <li>Drive In, and Drive Loop that gets grittier with every repeat</li>
           <li>Lo-Fi switch for worn, tape-style repeats</li>
           <li>Live analyser behind the curve, and zoom down to a single octave</li>
+          <li>Solo and mute on every band</li>
+          <li>Bell slope from 6 to 96 dB/oct: from 24 up, a flat top with steep sides</li>
           <li>Zero latency, low CPU, fully automatable</li>
           <li>Tells you when an update is out</li>
         </ul>
@@ -208,28 +210,28 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       </div>
       <div class="shots">
         <div class="vid" id="strata-vid">
-          <video src="img/Strata-1.0-in-action.mp4" poster="img/Strata-1.0-video-poster.jpg" width="900" height="790" preload="none" playsinline></video>
-          <button class="vid-play" type="button" aria-label="Play the Strata video"><span class="vid-btn"></span><span class="vid-label">Watch Strata in action · 28 s · sound on</span></button>
+          <video src="img/Strata-1.1-in-action.mp4" poster="img/Strata-1.1-video-poster.jpg" width="900" height="790" preload="none" playsinline></video>
+          <button class="vid-play" type="button" aria-label="Play the Strata video"><span class="vid-btn"></span><span class="vid-label">Watch Strata in action · 26 s · sound on</span></button>
         </div>
-        <div class="cap">Video: a drum loop, then two bands added while it plays.</div>
+        <div class="cap">Video: a drum loop, with four bands added and moved while it plays.</div>
       </div>
     </div>
 
     <div class="dl2">
       <div class="card">
         <h3>Strata for Windows</h3>
-        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11 · 1.3 MB</div>
+        <div class="meta">Version 1.1 · VST3 · 64-bit · Windows 10 or 11 · 1.3 MB</div>
         <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
-        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.0/Strata-1.0-Windows.zip" download>Download for Windows</a>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.1/Strata-1.1-Windows.zip" download>Download for Windows</a>
       </div>
       <div class="card">
         <h3>Strata for Mac</h3>
-        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 2 MB</div>
+        <div class="meta">Version 1.1 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 2.1 MB</div>
         <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
-        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.0/Strata-1.0-Mac.zip" download>Download for Mac</a>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.1/Strata-1.1-Mac.zip" download>Download for Mac</a>
       </div>
     </div>
-    <p class="upd"><a href="/downloads/Strata-1.0-Manual.pdf">Read the Strata manual (PDF)</a>. It's also inside both downloads.</p>
+    <p class="upd"><a href="/downloads/Strata-1.1-Manual.pdf">Read the Strata manual (PDF)</a>. It's also inside both downloads.</p>
 
     <details class="inst">
       <summary>How to install</summary>
@@ -325,7 +327,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 </footer>
 
 <script>
-['strata-vid','groan-vid'].forEach(function(id){var w=document.getElementById(id);if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
+['strata-vid','groan-vid','sediment-vid','tremor-vid'].forEach(function(id){var w=document.getElementById(id);if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
 b.addEventListener('click',function(){w.classList.add('on');v.controls=true;v.play();});});
 </script>
 </body>
