@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plug-ins · Cymbal Samples</title>
-<meta name="description" content="Plug-ins from Collingwood Cymbals in Bristol. Groan: a kick drum synth. Strata: a delay that only echoes the frequencies you choose. Mono: one big button to hear your mix in mono. VST3 for Windows, AU and VST3 for Mac.">
+<meta name="description" content="Plug-ins from Collingwood Cymbals in Bristol. Groan: a kick drum synth. Sediment: a reverb you shape like an EQ. Tremor: a tremolo you shape like an EQ. Strata: a delay that only echoes the frequencies you choose. Mono: one big button to hear your mix in mono. VST3 for Windows, AU and VST3 for Mac.">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,8 +79,8 @@ section.top{border-top:0;padding-top:48px}
 section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--line);max-width:none}
 .plug{display:grid;grid-template-columns:1.25fr 1fr;grid-template-areas:"text shots" "support shots";grid-template-rows:auto 1fr;gap:0 48px;align-items:start}
 .plug-text{grid-area:text}.plug .support{grid-area:support}.shots{grid-area:shots}
-#strata .shots img,#groan .shots img{max-width:460px}
-#strata,#mono,#groan{scroll-margin-top:80px}
+#strata .shots img,#groan .shots img,#sediment .shots img,#tremor .shots img{max-width:460px}
+#strata,#mono,#groan,#sediment,#tremor{scroll-margin-top:80px}
 #strata-sec{border-top:1px solid var(--line)}
 .plug + .dl2 + .upd{margin-top:14px}
 @media(max-width:900px){.plug{grid-template-columns:1fr;grid-template-areas:"text" "shots" "support";grid-template-rows:auto;gap:0}.shots{margin:4px 0 8px}}
@@ -184,6 +184,107 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
   </div>
 </section>
 
+<section id="sediment-sec">
+  <div class="wrap">
+    <div class="plug" id="sediment">
+      <div class="plug-text">
+        <div class="plug-head"><img src="img/Sediment-icon-256.png" alt="Sediment icon"><h2>Sediment</h2></div>
+        <p class="one">A reverb you shape like an EQ.</p>
+        <p>Draw up to five bands on the curve to pick out parts of the sound. Each band goes to its own reverb, with its own size, decay and pre-delay, and the dry sound is never filtered.</p>
+        <ul class="feat">
+          <li>Up to 5 bands: bell, low shelf or high shelf</li>
+          <li>Bell slope from 6 to 96 dB/oct: from 24 up, a flat top with steep sides</li>
+          <li>Each band: room, chamber, hall or church, decay from 0.2 to 30 s, size, pre-delay (in ms or synced), width and pan</li>
+          <li>Freeze any band's tail</li>
+          <li>Low and high decay controls, diffusion and early/late balance per band</li>
+          <li>Colour for every band: modern, 1980s or 1970s</li>
+          <li>Solo and mute on every band, and tail meters for each</li>
+          <li>Tells you when an update is out</li>
+        </ul>
+      </div>
+      <div class="support">
+        <p>Sediment is £19. You download it straight away for Windows and Mac, and you get future updates free. Sediment and Tremor together are £32.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/sediment" target="_blank" rel="noopener">Buy Sediment · £19</a>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/sediment-tremor" target="_blank" rel="noopener">Buy both · £32</a>
+      </div>
+      <div class="shots">
+        <div class="vid" id="sediment-vid">
+          <video src="img/Sediment-1.0-in-action.mp4" poster="img/Sediment-1.0-video-poster.jpg" width="940" height="846" preload="none" playsinline></video>
+          <button class="vid-play" type="button" aria-label="Play the Sediment video"><span class="vid-btn"></span><span class="vid-label">Watch Sediment in action · 32 s · sound on</span></button>
+        </div>
+        <div class="cap">Video: a drum loop, then two bands added while it plays, one frozen.</div>
+      </div>
+    </div>
+
+    <div class="dl2">
+      <div class="card">
+        <h3>Sediment for Windows</h3>
+        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11</div>
+        <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/sediment" target="_blank" rel="noopener">Buy Sediment · £19</a>
+      </div>
+      <div class="card">
+        <h3>Sediment for Mac</h3>
+        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+</div>
+        <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/sediment" target="_blank" rel="noopener">Buy Sediment · £19</a>
+      </div>
+    </div>
+    <p class="upd">One purchase includes both versions. <a href="/downloads/Sediment-1.0-Manual.pdf">Read the Sediment manual (PDF)</a>. It's also inside both downloads.</p>
+
+  </div>
+</section>
+
+<section id="tremor-sec">
+  <div class="wrap">
+    <div class="plug" id="tremor">
+      <div class="plug-text">
+        <div class="plug-head"><img src="img/Tremor-icon-256.png" alt="Tremor icon"><h2>Tremor</h2></div>
+        <p class="one">A tremolo you shape like an EQ.</p>
+        <p>Draw up to five bands to pick out parts of the sound. Each band rises and falls with its own wave, so you can pulse just the bass, or just the top. One band over the whole range is a plain tremolo.</p>
+        <ul class="feat">
+          <li>Up to 5 bands: bell, low shelf or high shelf</li>
+          <li>Bell slope from 6 to 96 dB/oct: from 24 up, a flat top with steep sides</li>
+          <li>Each band: sine, triangle, square, saw up, saw down or random, with depth, smooth and phase</li>
+          <li>Free rate (0.05 to 20 Hz) or synced, from 4 bars to 1/32, locked to the song</li>
+          <li>Mono, auto-pan or stereo offset on every band</li>
+          <li>Fade-in, so the wobble swells in after each new note</li>
+          <li>Solo and mute on every band, zero latency, low CPU</li>
+          <li>Tells you when an update is out</li>
+        </ul>
+      </div>
+      <div class="support">
+        <p>Tremor is £19. You download it straight away for Windows and Mac, and you get future updates free. Sediment and Tremor together are £32.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/tremor" target="_blank" rel="noopener">Buy Tremor · £19</a>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/sediment-tremor" target="_blank" rel="noopener">Buy both · £32</a>
+      </div>
+      <div class="shots">
+        <div class="vid" id="tremor-vid">
+          <video src="img/Tremor-1.0-in-action.mp4" poster="img/Tremor-1.0-video-poster.jpg" width="900" height="830" preload="none" playsinline></video>
+          <button class="vid-play" type="button" aria-label="Play the Tremor video"><span class="vid-btn"></span><span class="vid-label">Watch Tremor in action · 25 s · sound on</span></button>
+        </div>
+        <div class="cap">Video: a drum loop, with bands added and moved while it plays.</div>
+      </div>
+    </div>
+
+    <div class="dl2">
+      <div class="card">
+        <h3>Tremor for Windows</h3>
+        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11</div>
+        <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/tremor" target="_blank" rel="noopener">Buy Tremor · £19</a>
+      </div>
+      <div class="card">
+        <h3>Tremor for Mac</h3>
+        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+</div>
+        <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/tremor" target="_blank" rel="noopener">Buy Tremor · £19</a>
+      </div>
+    </div>
+    <p class="upd">One purchase includes both versions. <a href="/downloads/Tremor-1.0-Manual.pdf">Read the Tremor manual (PDF)</a>. It's also inside both downloads.</p>
+  </div>
+</section>
+
 <section id="strata-sec" class="strata-sec">
   <div class="wrap">
     <div class="plug" id="strata">
@@ -198,6 +299,8 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
           <li>Drive In, and Drive Loop that gets grittier with every repeat</li>
           <li>Lo-Fi switch for worn, tape-style repeats</li>
           <li>Live analyser behind the curve, and zoom down to a single octave</li>
+          <li>Solo and mute on every band</li>
+          <li>Bell slope from 6 to 96 dB/oct: from 24 up, a flat top with steep sides</li>
           <li>Zero latency, low CPU, fully automatable</li>
           <li>Tells you when an update is out</li>
         </ul>
@@ -208,28 +311,28 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       </div>
       <div class="shots">
         <div class="vid" id="strata-vid">
-          <video src="img/Strata-1.0-in-action.mp4" poster="img/Strata-1.0-video-poster.jpg" width="900" height="790" preload="none" playsinline></video>
+          <video src="img/Strata-1.1-in-action.mp4" poster="img/Strata-1.1-video-poster.jpg" width="900" height="790" preload="none" playsinline></video>
           <button class="vid-play" type="button" aria-label="Play the Strata video"><span class="vid-btn"></span><span class="vid-label">Watch Strata in action · 28 s · sound on</span></button>
         </div>
-        <div class="cap">Video: a drum loop, then two bands added while it plays.</div>
+        <div class="cap">Video: a drum loop, then two bands added while it plays, with solo and slope.</div>
       </div>
     </div>
 
     <div class="dl2">
       <div class="card">
         <h3>Strata for Windows</h3>
-        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11 · 1.3 MB</div>
+        <div class="meta">Version 1.1 · VST3 · 64-bit · Windows 10 or 11 · 1.3 MB</div>
         <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
-        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.0/Strata-1.0-Windows.zip" download>Download for Windows</a>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.1/Strata-1.1-Windows.zip" download>Download for Windows</a>
       </div>
       <div class="card">
         <h3>Strata for Mac</h3>
-        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 2 MB</div>
+        <div class="meta">Version 1.1 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 2.1 MB</div>
         <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
-        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.0/Strata-1.0-Mac.zip" download>Download for Mac</a>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/strata-1.1/Strata-1.1-Mac.zip" download>Download for Mac</a>
       </div>
     </div>
-    <p class="upd"><a href="/downloads/Strata-1.0-Manual.pdf">Read the Strata manual (PDF)</a>. It's also inside both downloads.</p>
+    <p class="upd"><a href="/downloads/Strata-1.1-Manual.pdf">Read the Strata manual (PDF)</a>. It's also inside both downloads.</p>
 
     <details class="inst">
       <summary>How to install</summary>
@@ -325,7 +428,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 </footer>
 
 <script>
-['strata-vid','groan-vid'].forEach(function(id){var w=document.getElementById(id);if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
+['strata-vid','groan-vid','sediment-vid','tremor-vid'].forEach(function(id){var w=document.getElementById(id);if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
 b.addEventListener('click',function(){w.classList.add('on');v.controls=true;v.play();});});
 </script>
 </body>
