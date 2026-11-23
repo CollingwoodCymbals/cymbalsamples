@@ -28,6 +28,8 @@ jobs:
         run: |
           set -e
           args=""
+          # big files (over GitHub's 100 MB) arrive split in downloads/parts/<name>.partN; join them first
+          for f in $FILES; do if [ ! -f "downloads/$f" ] && ls downloads/parts/"$f".part* >/dev/null 2>&1; then cat downloads/parts/"$f".part* > "downloads/$f"; fi; done
           for f in $FILES; do test -f "downloads/$f"; args="$args downloads/$f"; done
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" $args --clobber
