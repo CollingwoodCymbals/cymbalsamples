@@ -85,6 +85,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 #strata-sec{border-top:1px solid var(--line)}
 .plug + .dl2 + .upd{margin-top:14px}
 @media(max-width:900px){.plug{grid-template-columns:1fr;grid-template-areas:"text" "shots" "support";grid-template-rows:auto;gap:0}.shots{margin:4px 0 8px}}
+@media(max-width:900px){.plug{display:flex;flex-direction:column}.plug-text{display:contents}.plug-text>*{order:4}.plug-text>.plug-head{order:1}.plug-text>.one{order:2}.plug .shots{order:3;margin:6px 0 18px}.plug .support{order:5}}
 @media(max-width:700px){section{padding:44px 0}section.top{padding-top:32px}section.top .sec-head{margin-bottom:26px;padding-bottom:20px}}
 .plug-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
 .plug-head img{width:64px;height:64px;border-radius:14px}
