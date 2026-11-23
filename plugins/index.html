@@ -80,7 +80,8 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 .plug{display:grid;grid-template-columns:1.25fr 1fr;grid-template-areas:"text shots" "support shots";grid-template-rows:auto 1fr;gap:0 48px;align-items:start}
 .plug-text{grid-area:text}.plug .support{grid-area:support}.shots{grid-area:shots}
 #strata .shots img,#groan .shots img,#sediment .shots img,#tremor .shots img{max-width:460px}
-#strata,#mono,#groan,#sediment,#tremor{scroll-margin-top:80px}
+#strata,#mono,#groan,#sediment,#tremor,#lantern{scroll-margin-top:80px}
+#tremor-sec{border-top:1px solid var(--line)}
 #strata-sec{border-top:1px solid var(--line)}
 .plug + .dl2 + .upd{margin-top:14px}
 @media(max-width:900px){.plug{grid-template-columns:1fr;grid-template-areas:"text" "shots" "support";grid-template-rows:auto;gap:0}.shots{margin:4px 0 8px}}
@@ -110,7 +111,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 .vid-play:hover .vid-btn{background:var(--bronze2)}
 .vid-label{background:rgba(10,8,6,.8);padding:7px 14px;border-radius:20px}
 .vid.on .vid-play{display:none}
-.pick{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.pick{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
 @media(max-width:1000px){.pick{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:640px){.pick{grid-template-columns:1fr 1fr}}
 .pick-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 16px;display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--text)}
@@ -160,6 +161,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       <p>Plug-ins for Windows and Mac. Pick one to see it in action.</p>
     </div>
     <div class="pick">
+      <a class="pick-card" href="#lantern"><img src="img/Lantern-icon-256.png" alt=""><span class="pick-name">Lantern</span><span class="pick-one">An instrument that plays a picture</span><span class="pick-price">£24</span></a>
       <a class="pick-card" href="#tremor"><img src="img/Tremor-icon-256.png" alt=""><span class="pick-name">Tremor</span><span class="pick-one">A tremolo you shape like an EQ</span><span class="pick-price">£19</span></a>
       <a class="pick-card" href="#sediment"><img src="img/Sediment-icon-256.png" alt=""><span class="pick-name">Sediment</span><span class="pick-one">A reverb you shape like an EQ</span><span class="pick-price">£19</span></a>
       <a class="pick-card" href="#strata"><img src="img/Strata-icon-256.png" alt=""><span class="pick-name">Strata</span><span class="pick-one">A delay that only echoes the frequencies you choose</span><span class="pick-price free">Free</span></a>
@@ -179,6 +181,56 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       </div>
       <p class="signup-msg" role="status"></p>
     </form>
+  </div>
+</section>
+
+<section id="lantern-sec">
+  <div class="wrap">
+    <div class="plug" id="lantern">
+      <div class="plug-text">
+        <div class="plug-head"><img src="img/Lantern-icon-256.png" alt="Lantern icon"><h2>Lantern</h2></div>
+        <p class="one">An instrument that plays a picture.</p>
+        <p>Drop in a picture and a line moves across it. NOTES turns the bright places under the line into notes in a key, played by Lantern's own synth and sent out as MIDI. SPECTRUM plays the slice under the line as a spectrum, so the picture shows up on a spectrogram. Use either, or both.</p>
+        <ul class="feat">
+          <li>Drop, load or paste a picture. It's saved with your project</li>
+          <li>Read the light from brightness, red, green, blue, colour or edges, with invert, contrast and crop</li>
+          <li>Scan left to right, right to left, top to bottom or bottom to top: loop, ping-pong or once</li>
+          <li>Synced to the song in bars, or free in seconds, with 4 to 128 steps and swing</li>
+          <li>Notes in a scale, as chords, held, or free in quarter tones, in any key</li>
+          <li>Built-in synth: sine, triangle, saw, square, bell or pluck, with tone, resonance and ADSR</li>
+          <li>Spectrum: 32 to 256 bands, log, linear or on the notes of the key</li>
+          <li>MIDI out on channel 1, to play your other instruments (VST3 hosts)</li>
+          <li>Tells you when an update is out</li>
+        </ul>
+      </div>
+      <div class="support">
+        <p>Lantern is £24. You download it straight away for Windows and Mac, and you get future updates free.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/lantern" target="_blank" rel="noopener">Buy Lantern · £24</a>
+      </div>
+      <div class="shots">
+        <div class="vid" id="lantern-vid">
+          <video src="img/Lantern-1.0-in-action.mp4" poster="img/Lantern-1.0-video-poster.jpg" width="1280" height="690" preload="none" playsinline></video>
+          <button class="vid-play" type="button" aria-label="Play the Lantern video"><span class="vid-btn"></span><span class="vid-label">Watch Lantern in action · 36 s · sound on</span></button>
+        </div>
+        <div class="cap">Video: one picture played through Lantern's sounds, scan modes and spectrum, ending on a chord progression. Lantern's own sound only.</div>
+      </div>
+    </div>
+
+    <div class="dl2">
+      <div class="card">
+        <h3>Lantern for Windows</h3>
+        <div class="meta">Version 1.0 · VST3 instrument · 64-bit · Windows 10 or 11</div>
+        <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/lantern" target="_blank" rel="noopener">Buy Lantern · £24</a>
+      </div>
+      <div class="card">
+        <h3>Lantern for Mac</h3>
+        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+</div>
+        <p>Audio Unit instrument for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
+        <a class="btn" href="https://cymbalsamples.gumroad.com/l/lantern" target="_blank" rel="noopener">Buy Lantern · £24</a>
+      </div>
+    </div>
+    <p class="upd">One purchase includes both versions. MIDI out works in VST3 hosts (Logic doesn't take MIDI from an instrument). <a href="/downloads/Lantern-1.0-Manual.pdf">Read the Lantern manual (PDF)</a>. It's also inside both downloads.</p>
   </div>
 </section>
 
@@ -477,7 +529,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 </footer>
 
 <script>
-['strata-vid','groan-vid','sediment-vid','tremor-vid'].forEach(function(id){var w=document.getElementById(id);if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
+['strata-vid','groan-vid','sediment-vid','tremor-vid','lantern-vid'].forEach(function(id){var w=document.getElementById(id);if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
 b.addEventListener('click',function(){w.classList.add('on');v.controls=true;v.play();});});
 </script>
 <script>
