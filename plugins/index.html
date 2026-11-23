@@ -123,6 +123,17 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 .pick-note{margin:18px 0 0;font-size:14px;color:var(--muted)}
 .pick-note a{color:var(--bronze2)}
 #groan-sec{border-top:1px solid var(--line)}
+.signup{margin-top:22px;border:1px solid #3a3128;border-radius:10px;padding:22px;display:grid;grid-template-columns:1fr 1.3fr;gap:18px;align-items:center}
+.signup p{margin:6px 0 0;color:#cfc7bb}
+.signup-row{display:flex;gap:10px}
+.signup input[type=email]{flex:1;min-width:0;background:#15110c;border:1px solid #4a3f33;border-radius:6px;color:var(--text);padding:12px 14px;font:15px Inter,sans-serif}
+.signup input[type=email]:focus{outline:2px solid var(--bronze);outline-offset:1px}
+.signup .signup-msg{grid-column:1/-1;margin:0;min-height:0;font-size:14px;color:var(--bronze2)}
+.signup .signup-msg:empty{display:none}
+.signup-hero{grid-template-columns:1fr;gap:12px;padding:18px;margin-top:24px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:700px){.signup{grid-template-columns:1fr}.signup-row{flex-direction:column}.signup .btn{justify-content:center}}
 </style>
 </head>
 <body>
@@ -156,6 +167,18 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       <a class="pick-card" href="#mono"><img src="img/Mono-icon-256.png" alt=""><span class="pick-name">Mono</span><span class="pick-one">One button to hear your mix in mono</span><span class="pick-price free">Free</span></a>
     </div>
     <p class="pick-note">Sediment and Tremor together: <a href="https://cymbalsamples.gumroad.com/l/sediment-tremor" target="_blank" rel="noopener">£32 for both</a>. <a href="/how-the-plugins-are-made/">How the plugins are made</a></p>
+    <form class="signup" id="signup" novalidate>
+      <div>
+        <div class="spaced" style="color:var(--bronze);font-size:12px">Mailing list</div>
+        <p>An email when there's a new plug-in or sample pack.</p>
+      </div>
+      <div class="signup-row">
+        <input name="email" type="email" required placeholder="Your email address" autocomplete="email" aria-label="Email address">
+        <input name="website" type="text" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+        <button class="btn" type="submit">Sign up</button>
+      </div>
+      <p class="signup-msg" role="status"></p>
+    </form>
   </div>
 </section>
 
@@ -439,7 +462,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
     <div class="soon">
       <h3>More plug-ins coming soon</h3>
       <p>New ones are added here as they're ready. Join the mailing list to hear when they're out.</p>
-      <a class="btn ghost" href="/#signup">Join the mailing list</a>
+      <a class="btn ghost" href="#signup">Join the mailing list</a>
     </div>
   </div>
 </section>
@@ -447,7 +470,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 <footer>
   <div class="wrap">
     <div class="spaced" style="color:var(--bronze2)">Cymbal Samples</div>
-    <div><a href="/">Alloy</a> · <a href="/plugins/">Plug-ins</a> · <a href="/#signup">Mailing list</a></div>
+    <div><a href="/">Alloy</a> · <a href="/plugins/">Plug-ins</a> · <a href="/plugins/#signup">Mailing list</a></div>
     <div>cymbalsamples.com · a <a href="https://www.collingwoodcymbals.com">Collingwood Cymbals</a> project · Bristol, England</div>
     <div>Alloy, Strata, Mono and the example hits are free to use in your own music. Please don't resell or share the files themselves.</div>
   </div>
@@ -456,6 +479,16 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 <script>
 ['strata-vid','groan-vid','sediment-vid','tremor-vid'].forEach(function(id){var w=document.getElementById(id);if(!w)return;var v=w.querySelector('video'),b=w.querySelector('.vid-play');
 b.addEventListener('click',function(){w.classList.add('on');v.controls=true;v.play();});});
+</script>
+<script>
+  document.querySelectorAll('form.signup').forEach(function(f){var m=f.querySelector('.signup-msg'),b=f.querySelector('button');
+    var URL='https://script.google.com/macros/s/AKfycbziMXN00jlaeEnPqM-qGa2vjsH4LGya5F792Y2qFuXh-fFmuoRN1gtI-om0oOCkOMgD/exec';
+    f.addEventListener('submit',function(e){e.preventDefault();var em=f.email.value.trim();
+      if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(em)){m.textContent='Please enter a valid email address.';return;}
+      b.disabled=true;m.textContent='Sending...';
+      var d=new URLSearchParams({email:em,website:f.website.value,source:'cymbalsamples.com',list:'plugins'});
+      fetch(URL,{method:'POST',mode:'no-cors',body:d}).then(function(){f.querySelector('.signup-row').remove();m.textContent="Thanks, you're on the list.";})
+      .catch(function(){b.disabled=false;m.textContent='That didn\'t go through. Please try again.';});});});
 </script>
 </body>
 </html>

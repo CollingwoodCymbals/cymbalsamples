@@ -232,6 +232,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
 .signup input[type=email]:focus{outline:2px solid var(--bronze);outline-offset:1px}
 .signup .signup-msg{grid-column:1/-1;margin:0;min-height:0;font-size:14px;color:var(--bronze2)}
 .signup .signup-msg:empty{display:none}
+.signup-hero{grid-template-columns:1fr;gap:12px;padding:18px;margin-top:24px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (max-width:700px){.signup{grid-template-columns:1fr}.signup-row{flex-direction:column}.signup .btn{justify-content:center}}
@@ -273,6 +274,18 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       </div>
       <div class="fine">Works in Logic Pro, Cubase, Reaper, Ableton Live, FL Studio, Studio One and other VST3 or AU hosts · 48 kHz 24-bit WAV hits included</div>
       <div class="fine" style="margin-top:6px">Pro Tools (AAX) versions are in progress.</div>
+      <form class="signup signup-hero" id="signup-top" novalidate>
+      <div>
+        <div class="spaced" style="color:var(--bronze);font-size:12px">Mailing list</div>
+        <p>An email when there's a new plug-in or sample pack.</p>
+      </div>
+      <div class="signup-row">
+        <input name="email" type="email" required placeholder="Your email address" autocomplete="email" aria-label="Email address">
+        <input name="website" type="text" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+        <button class="btn" type="submit">Sign up</button>
+      </div>
+      <p class="signup-msg" role="status"></p>
+    </form>
     </div>
     <div class="hero-img"><img src="alloy-panel.jpg" width="900" height="948" alt="The Alloy cymbal plugin: ribbons, blend and mono controls with six articulation pads"></div>
   </div>
@@ -491,15 +504,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     <form class="signup" id="signup" novalidate>
       <div>
         <div class="spaced" style="color:var(--bronze);font-size:12px">Mailing list</div>
-        <p>Get an email when the first pack is out.</p>
+        <p>An email when there's a new plug-in or sample pack.</p>
       </div>
       <div class="signup-row">
-        <label for="suEmail" class="sr">Email address</label>
-        <input id="suEmail" name="email" type="email" required placeholder="Your email address" autocomplete="email">
+        <input name="email" type="email" required placeholder="Your email address" autocomplete="email" aria-label="Email address">
         <input name="website" type="text" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
         <button class="btn" type="submit">Sign up</button>
       </div>
-      <p class="signup-msg" id="suMsg" role="status"></p>
+      <p class="signup-msg" role="status"></p>
     </form>
   </div>
 </section>
@@ -507,7 +519,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
 <footer>
   <div class="wrap">
     <div class="spaced" style="color:var(--bronze2)">Cymbal Samples</div>
-    <div><a href="/">Alloy</a> · <a href="/plugins/">Plug-ins</a> · <a href="/#signup">Mailing list</a></div>
+    <div><a href="/">Alloy</a> · <a href="/plugins/">Plug-ins</a> · <a href="/plugins/#signup">Mailing list</a></div>
     <div>cymbalsamples.com · a <a href="https://www.collingwoodcymbals.com">Collingwood Cymbals</a> project · Bristol, England</div>
     <div>Alloy, Strata, Mono and the example hits are free to use in your own music. Please don't resell or share the files themselves.</div>
   </div>
@@ -523,14 +535,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     set(on);b.addEventListener('click',function(){set(!aw.classList.contains('tips-on'))});})();
 </script>
 <script>
-  (function(){var f=document.getElementById('signup'),m=document.getElementById('suMsg'),b=f.querySelector('button');
+  document.querySelectorAll('form.signup').forEach(function(f){var m=f.querySelector('.signup-msg'),b=f.querySelector('button');
     var URL='https://script.google.com/macros/s/AKfycbziMXN00jlaeEnPqM-qGa2vjsH4LGya5F792Y2qFuXh-fFmuoRN1gtI-om0oOCkOMgD/exec';
     f.addEventListener('submit',function(e){e.preventDefault();var em=f.email.value.trim();
       if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(em)){m.textContent='Please enter a valid email address.';return;}
       b.disabled=true;m.textContent='Sending...';
-      var d=new URLSearchParams({email:em,website:f.website.value,source:'cymbalsamples.com'});
+      var d=new URLSearchParams({email:em,website:f.website.value,source:'cymbalsamples.com',list:'plugins'});
       fetch(URL,{method:'POST',mode:'no-cors',body:d}).then(function(){f.querySelector('.signup-row').remove();m.textContent="Thanks, you're on the list.";})
-      .catch(function(){b.disabled=false;m.textContent='That didn\'t go through. Please try again.';});});})();
+      .catch(function(){b.disabled=false;m.textContent='That didn\'t go through. Please try again.';});});});
 </script>
 <script src="alloy-web.js"></script>
 </body>
