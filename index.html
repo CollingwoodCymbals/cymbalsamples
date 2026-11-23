@@ -249,6 +249,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
 .trio-list{margin:0 0 18px;padding-left:20px;color:#d6cec2;line-height:1.7}
 .trio-cover{width:120px;height:120px;border-radius:8px;border:1px solid #000;float:right;margin:0 0 12px 16px}
 .trio-note{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:14px;color:#cfc7bb;margin-top:18px}
+.upd-badge{display:inline-block;margin:0 0 18px 8px;color:var(--text);text-decoration:none;font-size:13px}
+.upd-badge:hover{color:var(--bronze2)}
+.upd-box{background:var(--panel);border:1px solid var(--bronze);border-radius:10px;padding:16px 20px;margin:0 0 18px;color:#d6cec2;font-size:15px}
+.upd-box ul{margin:8px 0;padding-left:20px}
 </style>
 </head>
 <body>
@@ -275,6 +279,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     <div>
       <div class="kicker spaced">Collingwood Cymbals · Bristol</div>
       <span class="free-tag">Free plugin · Windows &amp; Mac · no sign-up</span>
+      <a class="upd-badge" href="#updated"><span class="new-tag">Updated</span> Alloy 1.0 is out</a>
       <h1>Alloy. A free cymbal plugin with <em>real hand-hammered</em> hits.</h1>
       <p class="lead">I make cymbals by hand in my Bristol workshop. Alloy is a free plugin that plays recordings of them inside music software such as Logic, Cubase, Reaper or Ableton. Every hit is recorded on a stereo ribbon pair and a mono mic, and one fader blends between the two.</p>
       <ul class="hero-list">
@@ -333,7 +338,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
         <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/splash-trio/Collingwood-Splash-Trio.zip" download>Download the Splash Trio <small>121 MB</small></a>
       </div>
       <p class="fine">In Alloy, press LOAD and pick one cymbal's folder, or drag the folder onto Alloy.</p>
-      <div class="trio-note"><b>Alloy 1.0 is on the way.</b> It's what you see in the videos: where you click on a pad now sets how hard it plays. Until then the pack plays in <a href="#download">Alloy 0.6</a>, free for Windows and Mac.</div>
+      <div class="trio-note"><b>Made for Alloy 1.0</b>, which is what you see in the videos. <a href="#download">Get Alloy 1.0 free</a> for Windows and Mac.</div>
     </div>
   </div>
 </section>
@@ -437,18 +442,26 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       <h2>Get Alloy and the example hits</h2>
       <p>No sign-up, no catch. The hits are plain WAV files, so they work in any DAW or sampler too. Alloy is just the easy way to blend the two mics.</p>
     </div>
+    <div class="upd-box" id="updated">
+      <div><span class="new-tag">Updated</span> <b>Alloy has been updated to 1.0.</b> Still free, for Windows and Mac.</div>
+      <ul>
+        <li>Click high on a pad for a loud hit, low for a soft one</li>
+        <li>Pads with no hits in the loaded pack are greyed out</li>
+      </ul>
+      <div>On an older Alloy? Download 1.0 below and put it in place of the old one. From 0.4 on, Alloy's own update light will tell you too.</div>
+    </div>
     <div class="dl-grid">
       <div class="card">
         <h3>Alloy for Windows</h3>
-        <div class="meta">Version 0.6 · VST3 · 64-bit · 1 MB</div>
+        <div class="meta">Version 1.0 · VST3 · 64-bit · 1 MB</div>
         <p>For Reaper, Cubase, Studio One, Ableton Live, FL Studio and any other VST3 host.</p>
-        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/alloy-0.6/Alloy-0.6-Windows.zip" download>Download for Windows</a>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/alloy-1.0/Alloy-1.0-Windows.zip" download>Download for Windows</a>
       </div>
       <div class="card">
         <h3>Alloy for Mac</h3>
-        <div class="meta">Version 0.6 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 2 MB</div>
+        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 2 MB</div>
         <p>Audio Unit instrument for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
-        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/alloy-0.6/Alloy-0.6-Mac.zip" download>Download for Mac</a>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/alloy-1.0/Alloy-1.0-Mac.zip" download>Download for Mac</a>
       </div>
       <div class="card">
         <h3>Alloy Test 1 hits</h3>
@@ -458,8 +471,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       </div>
     </div>
 
-    <p class="upd">Alloy is in early testing. <a href="#signup">Join the mailing list</a> for news.</p>
-    <p class="upd"><a href="downloads/Alloy-0.6-manual.pdf">Read the Alloy manual (PDF)</a>. It's also inside both downloads.</p>
+    <p class="upd"><a href="#signup">Join the mailing list</a> for news of new releases.</p>
+    <p class="upd"><a href="downloads/Alloy-0.6-manual.pdf">Read the Alloy manual (PDF)</a>.</p>
     <p class="upd">Alloy checks once a day for a newer version and tells you on its panel. It never sends anything about you.</p>
 
     <details class="inst">
