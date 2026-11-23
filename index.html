@@ -239,6 +239,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
 .new-strip{display:block;text-align:center;padding:10px 16px;background:#1f1a13;border-bottom:1px solid var(--line);color:var(--text,#ece6dc);text-decoration:none;font-size:15px}
 .new-strip:hover u{color:var(--bronze)}
 .new-tag{font:600 11px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--bronze);color:#1a140c;border-radius:4px;padding:2px 6px;vertical-align:middle;margin-right:6px}
+.trio .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+@media(max-width:900px){.trio .wrap{grid-template-columns:1fr;gap:28px}.trio .wrap>div:last-child{order:-1}}
+.trio-vid{border-radius:10px;overflow:hidden;border:1px solid #000;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#000}
+.trio-vid video{display:block;width:100%;height:auto;aspect-ratio:1800/1896}
+.trio-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.trio-tabs button{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:6px 14px;font:500 14px Inter,sans-serif;cursor:pointer}
+.trio-tabs button[aria-pressed=true]{color:#1a140c;background:var(--bronze);border-color:var(--bronze)}
+.trio-list{margin:0 0 18px;padding-left:20px;color:#d6cec2;line-height:1.7}
+.trio-cover{width:120px;height:120px;border-radius:8px;border:1px solid #000;float:right;margin:0 0 12px 16px}
+.trio-note{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:14px;color:#cfc7bb;margin-top:18px}
 </style>
 </head>
 <body>
@@ -249,6 +259,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     <a href="/" class="logo spaced"><img src="/logo.png" alt="">Cymbal Samples</a>
     <nav>
       <a href="/" aria-current="page">Alloy</a>
+      <a href="/#splash-trio">Splash Trio</a>
       <a href="/#alloy-web">Play it</a>
       <a href="/#download">Download</a>
       <a href="/#recording">How it was recorded</a>
@@ -294,6 +305,38 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     <div class="hero-img"><img src="alloy-panel.jpg" width="900" height="948" alt="The Alloy cymbal plugin: ribbons, blend and mono controls with six articulation pads"></div>
   </div>
 </div>
+
+<!-- ============ SPLASH TRIO ============ -->
+<section id="splash-trio" class="trio">
+  <div class="wrap">
+    <div>
+      <div class="trio-vid"><video id="trioVideo" controls playsinline preload="none" poster="/splash-trio/img/Splash-Trio-demo-8in-174g.jpg" src="/splash-trio/img/Splash-Trio-demo-8in-174g.mp4"></video></div>
+      <div class="trio-tabs" role="group" aria-label="Choose a splash">
+        <button type="button" aria-pressed="true" data-v="8in-174g">8&Prime; 174 g</button>
+        <button type="button" aria-pressed="false" data-v="9.25in-239g">9&frac14;&Prime; 239 g</button>
+        <button type="button" aria-pressed="false" data-v="9.25in-254g">9&frac14;&Prime; 254 g</button>
+      </div>
+      <p class="fine">The same take on each splash, played in Alloy, so you can compare them. Each video is levelled on its own.</p>
+    </div>
+    <div>
+      <span class="free-tag">New · Free sample pack</span>
+      <img class="trio-cover" src="/splash-trio/img/Splash-Trio-cover.jpg" width="120" height="120" alt="Splash Trio cover">
+      <h2>Splash Trio</h2>
+      <p class="lead">Three hand-hammered splashes from my Bristol workshop, free. An 8&Prime; (174 g) and two 9&frac14;&Prime; (239 g and 254 g).</p>
+      <ul class="trio-list">
+        <li>36 hits per cymbal: Edge, Tip and Choke, 3 velocity layers, 4 round robins</li>
+        <li>Every hit on a stereo ribbon pair and a mono spot mic, recorded at the same moment</li>
+        <li>48 kHz 24-bit WAV, trimmed, faded and low-cut only</li>
+        <li>One folder per cymbal, named and ready for Alloy, or any DAW or sampler</li>
+      </ul>
+      <div class="cta" style="margin-top:6px">
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/splash-trio/Collingwood-Splash-Trio.zip" download>Download the Splash Trio <small>121 MB</small></a>
+      </div>
+      <p class="fine">In Alloy, press LOAD and pick one cymbal's folder, or drag the folder onto Alloy.</p>
+      <div class="trio-note"><b>Alloy 1.0 is on the way.</b> It's what you see in the videos: where you click on a pad now sets how hard it plays. Until then the pack plays in <a href="#download">Alloy 0.6</a>, free for Windows and Mac.</div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ WEB ALLOY ============ -->
 <section id="alloy-web">
@@ -525,7 +568,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
     <div class="spaced" style="color:var(--bronze2)">Cymbal Samples</div>
     <div><a href="/">Alloy</a> · <a href="/plugins/">Plug-ins</a> · <a href="/plugins/#signup">Mailing list</a></div>
     <div>cymbalsamples.com · a <a href="https://www.collingwoodcymbals.com">Collingwood Cymbals</a> project · Bristol, England</div>
-    <div>Alloy, Strata, Mono and the example hits are free to use in your own music. Please don't resell or share the files themselves.</div>
+    <div>Alloy, Strata, Mono, the Splash Trio and the example hits are free to use in your own music. Please don't resell or share the files themselves.</div>
   </div>
 </footer>
 
@@ -549,5 +592,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       .catch(function(){b.disabled=false;m.textContent='That didn\'t go through. Please try again.';});});});
 </script>
 <script src="alloy-web.js"></script>
+<script>
+(function(){var v=document.getElementById('trioVideo');if(!v)return;
+document.querySelectorAll('.trio-tabs button').forEach(function(b){b.addEventListener('click',function(){
+var k=b.getAttribute('data-v'),play=!v.paused;v.poster='/splash-trio/img/Splash-Trio-demo-'+k+'.jpg';v.src='/splash-trio/img/Splash-Trio-demo-'+k+'.mp4';
+document.querySelectorAll('.trio-tabs button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});if(play)v.play();});});})();
+</script>
 </body>
 </html>
