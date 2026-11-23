@@ -256,6 +256,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
 .upd-box{background:var(--panel);border:1px solid var(--bronze);border-radius:10px;padding:16px 20px;margin:0 0 18px;color:#d6cec2;font-size:15px}
 .upd-box ul{margin:8px 0;padding-left:20px}
 .manual-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:18px 0 6px}
+.hero-img-m,.cta-m{display:none}
+@media(max-width:900px){.hero-img-m{display:block;margin:4px 0 18px}.cta-m{display:flex;margin:0 0 24px}.hero-img-d{display:none}}
 </style>
 </head>
 <body>
@@ -284,6 +286,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       <span class="free-tag">Free plugin · Windows &amp; Mac · no sign-up</span>
       <a class="upd-badge" href="#updated"><span class="new-tag">Updated</span> Alloy 1.0 is out</a>
       <h1>Alloy. A free cymbal plugin with <em>real hand-hammered</em> hits.</h1>
+      <div class="hero-img hero-img-m"><img src="alloy-panel.jpg" width="900" height="948" alt="The Alloy cymbal plugin: ribbons, blend and mono controls with six articulation pads"></div>
+      <div class="cta cta-m"><a class="btn" href="#download">Download Alloy free</a></div>
       <p class="lead">I make cymbals by hand in my Bristol workshop. Alloy is a free plugin that plays recordings of them inside music software such as Logic, Cubase, Reaper or Ableton. Every hit is recorded on a stereo ribbon pair and a mono mic, and one fader blends between the two.</p>
       <ul class="hero-list">
         <li>VST3 for Windows and Mac, plus AU for Logic</li>
@@ -310,7 +314,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-bet
       <p class="signup-msg" role="status"></p>
     </form>
     </div>
-    <div class="hero-img"><img src="alloy-panel.jpg" width="900" height="948" alt="The Alloy cymbal plugin: ribbons, blend and mono controls with six articulation pads"></div>
+    <div class="hero-img hero-img-d"><img src="alloy-panel.jpg" width="900" height="948" alt="The Alloy cymbal plugin: ribbons, blend and mono controls with six articulation pads"></div>
   </div>
 </div>
 
