@@ -79,6 +79,7 @@ section.top{border-top:0;padding-top:48px}
 section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--line);max-width:none}
 .plug{display:grid;grid-template-columns:1.25fr 1fr;grid-template-areas:"text shots" "support shots";grid-template-rows:auto 1fr;gap:0 48px;align-items:start}
 .plug-text{grid-area:text}.plug .support{grid-area:support}.shots{grid-area:shots}
+#column .shots img{max-width:380px}
 #strata .shots img,#groan .shots img,#sediment .shots img,#tremor .shots img{max-width:460px}
 #strata,#mono,#groan,#sediment,#tremor,#lantern{scroll-margin-top:80px}
 #tremor-sec{border-top:1px solid var(--line)}
@@ -170,6 +171,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       <p>Plug-ins for Windows and Mac. Pick one to see it in action.</p>
     </div>
     <div class="pick">
+      <a class="pick-card" href="#column"><img src="img/Column-icon-256.png" alt=""><span class="pick-name">Column <span class="new-tag">New</span></span><span class="pick-one">A console channel strip that changes nothing</span><span class="pick-price free">Free</span></a>
       <a class="pick-card" href="#lantern"><img src="img/Lantern-icon-256.png" alt=""><span class="pick-name">Lantern <span class="new-tag">New</span></span><span class="pick-one">An instrument that plays a picture</span><span class="pick-price">£24</span></a>
       <a class="pick-card" href="#tremor"><img src="img/Tremor-icon-256.png" alt=""><span class="pick-name">Tremor</span><span class="pick-one">A tremolo you shape like an EQ</span><span class="pick-price">£19</span></a>
       <a class="pick-card" href="#sediment"><img src="img/Sediment-icon-256.png" alt=""><span class="pick-name">Sediment</span><span class="pick-one">A reverb you shape like an EQ</span><span class="pick-price">£19</span></a>
@@ -198,6 +200,64 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       </div>
       <p class="signup-msg" role="status"></p>
     </form>
+  </div>
+</section>
+
+<section id="column">
+  <div class="wrap">
+    <div class="plug">
+      <div class="plug-text">
+        <div class="plug-head"><img src="img/Column-icon-256.png" alt="Column icon"><h2>Column</h2></div>
+        <p class="one">A console channel strip that changes nothing.</p>
+        <p>Column is one channel of a mixing console, built to look and move like the real thing: input gain and filters, a four-band EQ, aux sends, pan, solo, mute and a fader.</p>
+        <p>All the channel controls do precisely nothing. Your audio comes out exactly as it went in, sample for sample, with no delay, whatever the controls are set to. Every control is still a real parameter, so you can move it and automate it.</p>
+        <p>The meters are real. The two needle meters and the SIG and PEAK lamps read the signal coming in.</p>
+        <ul class="feat">
+          <li>Two needle meters: VU, PPM, true peak, RMS or LUFS, with a reference level from -30 to 0 dBFS and MAX readouts</li>
+          <li>Input: GAIN, HPF, LPF, 48V, PAD and polarity</li>
+          <li>Four-band EQ with Q on the mids and BELL on the high and low bands</li>
+          <li>Four aux sends and returns, PRE, pan, SOLO, MUTE and a fader to +10 dB</li>
+          <li>A large lit button, a MIC/LINE switch, INSERT, DIRECT, REC and SEL</li>
+          <li>Audio passes through unchanged, with zero latency</li>
+          <li>Tells you when an update is out</li>
+        </ul>
+      </div>
+      <div class="shots">
+        <div><img src="img/Column-1.0-window.jpg" width="760" height="1024" alt="The Column channel strip window"></div>
+      </div>
+    </div>
+
+    <div class="dl2">
+      <div class="card">
+        <h3>Column for Windows</h3>
+        <div class="meta">Version 1.0 · VST3 · 64-bit · Windows 10 or 11 · 3 MB</div>
+        <p>For Reaper, Ableton Live, Cubase, Studio One, FL Studio, Bitwig and other VST3 hosts.</p>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/column-1.0/Column-1.0-Windows.zip" download>Download for Windows</a>
+      </div>
+      <div class="card">
+        <h3>Column for Mac</h3>
+        <div class="meta">Version 1.0 · AU + VST3 · Apple silicon &amp; Intel · macOS 10.15+ · 3.7 MB</div>
+        <p>Audio Unit for Logic Pro and GarageBand, plus a VST3 for other hosts. Signed and notarised by Apple.</p>
+        <a class="btn" href="https://github.com/CollingwoodCymbals/cymbalsamples/releases/download/column-1.0/Column-1.0-Mac.zip" download>Download for Mac</a>
+      </div>
+    </div>
+    <p class="upd"><a href="/downloads/Column-1.0-Manual.pdf">Read the Column manual (PDF)</a>. It's also inside both downloads.</p>
+
+    <details class="inst">
+      <summary>How to install</summary>
+      <h4>Windows</h4>
+      <ol class="steps">
+        <li>Unzip the download.</li>
+        <li>Copy the <code>Column.vst3</code> folder into your VST3 folder. The usual one is <code>C:\Program Files\Common Files\VST3</code></li>
+        <li>Rescan plug-ins in your DAW. Column is listed under Collingwood Cymbals.</li>
+      </ol>
+      <h4>Mac</h4>
+      <ol class="steps">
+        <li>Unzip the download.</li>
+        <li>In Finder choose Go › Go to Folder… and paste <code>~/Library/Audio/Plug-Ins/Components</code>, then drag <code>Column.component</code> in. For VST3 hosts, put <code>Column.vst3</code> in <code>~/Library/Audio/Plug-Ins/VST3</code>.</li>
+        <li>Open your DAW. Column is listed under Collingwood Cymbals.</li>
+      </ol>
+    </details>
   </div>
 </section>
 
