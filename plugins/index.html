@@ -123,7 +123,7 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
 .pick-one{font-size:14px;color:#cfc7bb;flex:1}
 .pick-price{font-weight:600;color:var(--bronze2);font-size:15px;margin-top:6px}
 .pick-price.free{color:#a9e39c}
-.bundle{margin-top:18px;background:var(--panel);border:1px solid var(--bronze);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.bundle{margin:0 0 18px;background:var(--panel);border:1px solid var(--bronze);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .bundle img{width:84px;height:84px;border-radius:10px;flex:none}
 .bundle-text{flex:1 1 260px}
 .bundle-text h3{font:500 24px Oswald,sans-serif;letter-spacing:.02em;margin:0 0 4px}
@@ -170,15 +170,6 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       <h2>Plug-ins from Collingwood Cymbals</h2>
       <p>Plug-ins for Windows and Mac. Pick one to see it in action.</p>
     </div>
-    <div class="pick">
-      <a class="pick-card" href="#tremor"><img src="img/Tremor-icon-256.png" alt=""><span class="pick-name">Tremor</span><span class="pick-one">A tremolo you shape like an EQ</span><span class="pick-price">£19</span></a>
-      <a class="pick-card" href="#column"><img src="img/Column-icon-256.png" alt=""><span class="pick-name">Column <span class="new-tag">New</span></span><span class="pick-one">A console channel strip that changes nothing</span><span class="pick-price free">Free</span></a>
-      <a class="pick-card" href="#lantern"><img src="img/Lantern-icon-256.png" alt=""><span class="pick-name">Lantern <span class="new-tag">New</span></span><span class="pick-one">An instrument that plays a picture</span><span class="pick-price">£24</span></a>
-      <a class="pick-card" href="#sediment"><img src="img/Sediment-icon-256.png" alt=""><span class="pick-name">Sediment</span><span class="pick-one">A reverb you shape like an EQ</span><span class="pick-price">£19</span></a>
-      <a class="pick-card" href="#strata"><img src="img/Strata-icon-256.png" alt=""><span class="pick-name">Strata</span><span class="pick-one">A delay that only echoes the frequencies you choose</span><span class="pick-price free">Free</span></a>
-      <a class="pick-card" href="#groan"><img src="img/Groan-icon-256.png" alt=""><span class="pick-name">Groan</span><span class="pick-one">A kick drum synth</span><span class="pick-price">£19</span></a>
-      <a class="pick-card" href="#mono"><img src="img/Mono-icon-256.png" alt=""><span class="pick-name">Mono</span><span class="pick-one">One button to hear your mix in mono</span><span class="pick-price free">Free</span></a>
-    </div>
     <div class="bundle">
       <img src="img/Plugin-Bundle-1-thumb-240.jpg" alt="Plug-in Bundle 1">
       <div class="bundle-text">
@@ -188,6 +179,15 @@ section.top .sec-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px s
       </div>
       <a class="btn" href="https://cymbalsamples.gumroad.com/l/plugin-bundle-1" target="_blank" rel="noopener"><span class="bf-only">Get all six · £29</span><span class="bf-after" hidden>Get all six · £59</span></a>
       <script>if(Date.now()>Date.UTC(2026,10,30,23,59,59)){document.querySelectorAll('.bf-only').forEach(function(e){e.hidden=true});document.querySelectorAll('.bf-after').forEach(function(e){e.hidden=false});}</script>
+    </div>
+    <div class="pick">
+      <a class="pick-card" href="#tremor"><img src="img/Tremor-icon-256.png" alt=""><span class="pick-name">Tremor</span><span class="pick-one">A tremolo you shape like an EQ</span><span class="pick-price">£19</span></a>
+      <a class="pick-card" href="#column"><img src="img/Column-icon-256.png" alt=""><span class="pick-name">Column <span class="new-tag">New</span></span><span class="pick-one">A console channel strip that changes nothing</span><span class="pick-price free">Free</span></a>
+      <a class="pick-card" href="#lantern"><img src="img/Lantern-icon-256.png" alt=""><span class="pick-name">Lantern <span class="new-tag">New</span></span><span class="pick-one">An instrument that plays a picture</span><span class="pick-price">£24</span></a>
+      <a class="pick-card" href="#sediment"><img src="img/Sediment-icon-256.png" alt=""><span class="pick-name">Sediment</span><span class="pick-one">A reverb you shape like an EQ</span><span class="pick-price">£19</span></a>
+      <a class="pick-card" href="#strata"><img src="img/Strata-icon-256.png" alt=""><span class="pick-name">Strata</span><span class="pick-one">A delay that only echoes the frequencies you choose</span><span class="pick-price free">Free</span></a>
+      <a class="pick-card" href="#groan"><img src="img/Groan-icon-256.png" alt=""><span class="pick-name">Groan</span><span class="pick-one">A kick drum synth</span><span class="pick-price">£19</span></a>
+      <a class="pick-card" href="#mono"><img src="img/Mono-icon-256.png" alt=""><span class="pick-name">Mono</span><span class="pick-one">One button to hear your mix in mono</span><span class="pick-price free">Free</span></a>
     </div>
     <p class="pick-note"><a href="/how-the-plugins-are-made/">How the plugins are made</a></p>
     <form class="signup" id="signup" novalidate>
