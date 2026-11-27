@@ -1,0 +1,4 @@
+# Kestrel update file. Kestrel reads this once a day.
+# When a new Kestrel is out, change the version line (and the url if the download page moves).
+version 1.1
+url https://cymbalsamples.com/kestrel
